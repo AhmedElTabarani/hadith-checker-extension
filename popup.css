@@ -1,0 +1,38 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Neo Sans Arabic', sans-serif;
+  font-family: 'Neo Sans', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  background-color: blanchedalmond;
+  padding: 15px;
+}
+
+.cards {
+  background-color: antiquewhite;
+  padding: 2em;
+}
+
+.card {
+  border-bottom: 3px solid;
+  padding: 1em;
+}
+
+.hadith-text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.hadith-info {
+  padding: 1em 0;
+}
+.hadith-info > p {
+  line-height: 20px;
+  font-size: 14px;
+}
+.hadith-info > p > span {
+  font-weight: 600;
+}

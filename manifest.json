@@ -1,0 +1,10 @@
+{
+  "name": "Hadith Checker",
+  "description": "The extension checks the selected text and gives you information about it, is it hadith or not? And what its degree? who is the narrator? where is the hadith page number, or the hadith number?",
+  "version": "0.1",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["contextMenus", "storage", "unlimitedStorage"]
+}
