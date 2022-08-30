@@ -6,6 +6,11 @@
 
 فقط حدد النص وإضغط على الزر الأيمن للفأرة ثم اختار خيار `Check this hadith` ثم ستخرج لك نافذة بها `15` نتيجة بحث
 
+<div align="center">
+
+<img src="https://user-images.githubusercontent.com/69223584/187476442-62fc00f6-8af8-4542-bd29-e197204d19df.png" width=750px hight=750px>
+</div>
+
 ## طريقة تنزيل الإضافة
 
 ### حمل المشروع كملف مضغوط ZIP:
