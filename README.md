@@ -11,48 +11,20 @@
 <img src="https://user-images.githubusercontent.com/69223584/187476442-62fc00f6-8af8-4542-bd29-e197204d19df.png" width=750px hight=750px>
 </div>
 
-## طريقة تنزيل الإضافة
-
-### حمل المشروع كملف مضغوط ZIP:
+## رابط الإضافة على متجر جوجل
 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/69223584/187459860-6d8d5257-ef9c-466c-aec1-2a93aa8805db.png)
+<a href="https://chrome.google.com/webstore/detail/hadith-checker/cfbllcckohbiiplkigbfllfphhakanke" target="_blank">
+
+   <img src="https://camo.githubusercontent.com/67412515c4d8584d1ebbfd028590488eb8e6b8fe92deb2b95069c3d246f847dd/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f7765622d6465762d75706c6f6164732f696d6167652f576c443877433667386b685957504a5573516365516b6858536c76312f485273394d50756661314a316835676c4e6875742e706e67" width="300px">
+
+</a>
 </div>
-
-### فك الضغط لملف الـ ZIP 😁
-
-### اذهب لقسم الإضافات لجوجل كروم
-   1. بالضغط على ايقونة الثلاث نقاط
-   2. ثم الذهاب الى خيار `More tools`  
-   3. ثم الى خيار `Extensions`  
-  
-<div align="center">
-
-![image](https://user-images.githubusercontent.com/69223584/187461368-26ee1005-df96-430d-bde2-276b4cc0ed5e.png)
-</div>
-
-### فعل خيار `Developer mode`
-
-<div align="center">
-
-![image](https://user-images.githubusercontent.com/69223584/155027375-ee39f045-373d-469a-838c-85f7c140dfa6.png)
-</div>
-
-### اختار خيار `Load unpacked`  
-
-<div align="center">
-
-![image](https://user-images.githubusercontent.com/69223584/155027714-b20eab53-1bc9-4073-896f-8488387f9615.png)
-</div>
-
-### اختار مجلد المشروع الذى فكيت ضغطه سابقًا 🔼
-
-### استمتع 🤗
 
 ## يوجد مشكلة !!
 
-- افتح issue إذا قابللت مشكلة ما او لديك اقتراح
+افتح issue إذا قابللت مشكلة ما او لديك اقتراح
 
 ## المساهمة
 
