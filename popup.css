@@ -7,17 +7,18 @@
 
 h1 {
   text-align: center;
-  background-color: blanchedalmond;
+  color: #0070f3;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #e5e7eb;
   padding: 15px;
 }
 
 .cards {
-  background-color: antiquewhite;
   padding: 2em;
 }
 
 .card {
-  border-bottom: 3px solid;
+  border-bottom: 3px solid #0070f3;
   padding: 1em;
 }
 
