@@ -8,7 +8,7 @@
 
 <div align="center">
 
-<img src="https://user-images.githubusercontent.com/69223584/187476442-62fc00f6-8af8-4542-bd29-e197204d19df.png" width=750px hight=750px>
+![image](https://user-images.githubusercontent.com/69223584/188214056-3f2cb353-8350-483b-9cfe-3192883371df.png)
 </div>
 
 ## رابط الإضافة على متجر جوجل
