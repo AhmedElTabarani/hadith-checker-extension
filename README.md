@@ -1,4 +1,4 @@
-# hadith-checker-extension
+# Hadith Checker Extension (Chrome)
 
 إضافة للمتصفح تستطيع من خلالها أن تتفقد الأحاديث هل هي موضوعة أو صحيحة
 
