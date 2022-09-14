@@ -17,8 +17,9 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 });
 
 const searchForHadithByText = async (text, page = 1) => {
+  const url = 'https://dorar-hadith-api.onrender.com'
   const res = await fetch(
-    `https://dorar-hadith-api.herokuapp.com/api/search?value=${text}&page=${page}`
+    `${url}/api/search?value=${text}&page=${page}`
   );
   const data = await res.json();
   return data;
