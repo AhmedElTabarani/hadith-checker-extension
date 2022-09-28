@@ -1,7 +1,38 @@
-const cards = document.getElementsByClassName('cards')[0];
+import {
+  getAllHadith,
+  getAllHadithInfo,
+} from './utils/extractHadithInfo.js';
 
-chrome.storage.local.get('AllHadith', ({ AllHadith }) => {
-  const allCardsDiv = AllHadith.map((_hadith) => {
+const searchForHadithByText = async (text, page = 1) => {
+  const url = `https://dorar.net/dorar_api.json?skey=${text}&page=${page}`;
+  const data = await convertToJSON(url);
+  return data;
+};
+
+const convertToJSON = async (url) => {
+  try {
+    const res = await fetch(encodeURI(url));
+    const data = await res.json();
+    const html = he.decode(data.ahadith.result);
+    const allHadith = getAllHadith(html);
+    const allHadithInfo = getAllHadithInfo(html);
+
+    const result = allHadith.map((hadith, index) => {
+      return {
+        ...hadith,
+        ...allHadithInfo[index],
+      };
+    });
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const cards = document.getElementsByClassName('cards')[0];
+chrome.storage.local.get('text', async ({ text }) => {
+  const allHadith = await searchForHadithByText(text);
+  const allCardsDiv = allHadith.map((_hadith) => {
     const { hadith, el_rawi, el_mohdith, source, number_or_page, grade } =
       _hadith;
 
