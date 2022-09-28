@@ -3,6 +3,14 @@ import {
   getAllHadithInfo,
 } from './utils/extractHadithInfo.js';
 
+const cards = document.getElementsByClassName('cards')[0];
+const next = document.getElementById('next');
+const prev = document.getElementById('prev');
+const pageCounter = document.getElementById('page-counter');
+
+let currPage = 1;
+let currText;
+
 const searchForHadithByText = async (text, page = 1) => {
   const url = `https://dorar.net/dorar_api.json?skey=${text}&page=${page}`;
   const data = await convertToJSON(url);
@@ -29,9 +37,7 @@ const convertToJSON = async (url) => {
   }
 };
 
-const cards = document.getElementsByClassName('cards')[0];
-chrome.storage.local.get('text', async ({ text }) => {
-  const allHadith = await searchForHadithByText(text);
+const updateContent = (allHadith) => {
   const allCardsDiv = allHadith.map((_hadith) => {
     const { hadith, el_rawi, el_mohdith, source, number_or_page, grade } =
       _hadith;
@@ -49,4 +55,32 @@ chrome.storage.local.get('text', async ({ text }) => {
   });
 
   cards.innerHTML = allCardsDiv.join('');
+};
+
+const updatePageCounter = () => {
+  pageCounter.innerText = 'الصفحة رقم: ' + currPage;
+};
+
+// It will only run once (when the window is rendering for the first time)
+chrome.storage.local.get('text', async ({ text }) => {
+  const allHadith = await searchForHadithByText(text);
+  currText = text;
+  updateContent(allHadith);
+});
+
+next.addEventListener('click', async (e) => {
+  e.preventDefault();
+  // TODO: stop when get the last page
+  currPage += 1;
+  const allHadith = await searchForHadithByText(currText, currPage);
+  updateContent(allHadith);
+  updatePageCounter();
+});
+prev.addEventListener('click', async (e) => {
+  e.preventDefault();
+  if (currPage == 1) return;
+  currPage -= 1;
+  const allHadith = await searchForHadithByText(currText, currPage);
+  updateContent(allHadith);
+  updatePageCounter();
 });

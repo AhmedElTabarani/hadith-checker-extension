@@ -13,6 +13,37 @@ h1 {
   padding: 15px;
 }
 
+.group-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+  justify-content: space-between;
+}
+
+.nice-btn {
+  color: white;
+  background-color: #0070f3;
+  font-size: 1.5em;
+  border-radius: 15px;
+  margin: 0.25em 0.5em;
+  padding: 0.25em 1.5em;
+  transition: 0.2s ease;
+}
+
+.nice-btn:hover {
+  transform: scale(1.1);
+}
+.nice-btn:active {
+  background-color: #0160cd;
+}
+#page-counter {
+  color: #0070f3;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 0 2em;
+  margin-top: 1em;
+}
 .cards {
   padding: 2em;
 }

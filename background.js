@@ -12,5 +12,6 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
       url: chrome.runtime.getURL('popup.html'),
       type: 'popup',
     });
-  });
+    }
+  );
 });
