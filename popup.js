@@ -6,10 +6,12 @@ import {
 const cards = document.getElementsByClassName('cards')[0];
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
-const pageCounter = document.getElementById('page-counter');
+const pageCounter = document.querySelector('#page-counter span');
+const hadithCounter = document.querySelector('#hadith-counter span');
 
 let currPage = 1;
-let currText;
+let numberOfHadith;
+let currText = '';
 
 const searchForHadithByText = async (text, page = 1) => {
   const url = `https://dorar.net/dorar_api.json?skey=${text}&page=${page}`;
@@ -58,27 +60,50 @@ const updateContent = (allHadith) => {
 };
 
 const updatePageCounter = () => {
-  pageCounter.innerText = 'الصفحة رقم: ' + currPage;
+  pageCounter.innerText = currPage;
+};
+const updateHadithCounter = () => {
+  hadithCounter.innerText = numberOfHadith;
+};
+
+const showMessage = (text) => {
+  const message = document.getElementById('message');
+  message.innerHTML = text;
+  updatePageCounter();
+  updateHadithCounter();
 };
 
 // It will only run once (when the window is rendering for the first time)
 chrome.storage.local.get('text', async ({ text }) => {
   const allHadith = await searchForHadithByText(text);
   currText = text;
+  numberOfHadith = allHadith.length;
+  if (numberOfHadith === 0) {
+    showMessage(
+      '<span>لا يوجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>'
+    );
+    return;
+  }
+  updatePageCounter();
+  updateHadithCounter();
   updateContent(allHadith);
 });
 
 next.addEventListener('click', async (e) => {
   e.preventDefault();
-  // TODO: stop when get the last page
+  const allHadith = await searchForHadithByText(currText, currPage + 1);
+  if (allHadith.length === 0) {
+    showMessage('<span>لا يوجد نتائج أُخرى</span>');
+    return;
+  }
   currPage += 1;
-  const allHadith = await searchForHadithByText(currText, currPage);
   updateContent(allHadith);
   updatePageCounter();
+  updateHadithCounter();
 });
 prev.addEventListener('click', async (e) => {
   e.preventDefault();
-  if (currPage == 1) return;
+  if (currPage === 1) return;
   currPage -= 1;
   const allHadith = await searchForHadithByText(currText, currPage);
   updateContent(allHadith);
