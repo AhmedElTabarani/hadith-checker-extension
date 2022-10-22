@@ -1,7 +1,7 @@
 export const getAllHadith = (html) => {
   const allHadith = [];
   const allHadithHTML = html.matchAll(
-    /<div class="hadith".*?>(.*?)<\/div>/g
+    /<div class="hadith".*?>(.*?)<\/div>/g,
   );
   for (const hadith of allHadithHTML) {
     const _hadith = hadith[1]
@@ -19,19 +19,23 @@ export const getAllHadith = (html) => {
 export const getAllHadithInfo = (html) => {
   const allHadithInfo = [];
   const allHadithInfoHTML = html.matchAll(
-    /<div class="hadith-info">([\s\S]*?)<\/div>/g
+    /<div class="hadith-info">([\s\S]*?)<\/div>/g,
   );
   for (const hadithInfo of allHadithInfoHTML) {
     const _hadithInfo = hadithInfo[1]
       .replace(/<\/?[^>]+(>|$)/g, '')
       .trim();
-    const el_rawi = _hadithInfo.match(/الراوي: ([\s\S]*?) (?=المحدث)/);
-    const el_mohdith = _hadithInfo.match(/المحدث: ([\s\S]*?) (?=المصدر)/);
+    const el_rawi = _hadithInfo.match(
+      /الراوي: ([\s\S]*?) (?=المحدث)/,
+    );
+    const el_mohdith = _hadithInfo.match(
+      /المحدث: ([\s\S]*?) (?=المصدر)/,
+    );
     const source = _hadithInfo.match(
-      /المصدر: ([\s\S]*?) (?=الصفحة أو الرقم)/
+      /المصدر: ([\s\S]*?) (?=الصفحة أو الرقم)/,
     );
     const number_or_page = _hadithInfo.match(
-      /الصفحة أو الرقم: ([\s\S]*?) (?=خلاصة حكم المحدث)/
+      /الصفحة أو الرقم: ([\s\S]*?) (?=خلاصة حكم المحدث)/,
     );
     const grade = _hadithInfo.match(/خلاصة حكم المحدث: ([\s\S]*?)$/);
 

@@ -41,8 +41,14 @@ const convertToJSON = async (url) => {
 
 const updateContent = (allHadith) => {
   const allCardsDiv = allHadith.map((_hadith) => {
-    const { hadith, el_rawi, el_mohdith, source, number_or_page, grade } =
-      _hadith;
+    const {
+      hadith,
+      el_rawi,
+      el_mohdith,
+      source,
+      number_or_page,
+      grade,
+    } = _hadith;
 
     return `<div class="card">
              <p class="hadith-text">${hadith}</p>
@@ -80,7 +86,7 @@ chrome.storage.local.get('text', async ({ text }) => {
   numberOfHadith = allHadith.length;
   if (numberOfHadith === 0) {
     showMessage(
-      '<span>لا يوجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>'
+      '<span>لا يوجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>',
     );
     return;
   }
@@ -91,7 +97,10 @@ chrome.storage.local.get('text', async ({ text }) => {
 
 next.addEventListener('click', async (e) => {
   e.preventDefault();
-  const allHadith = await searchForHadithByText(currText, currPage + 1);
+  const allHadith = await searchForHadithByText(
+    currText,
+    currPage + 1,
+  );
   if (allHadith.length === 0) {
     showMessage('<span>لا يوجد نتائج أُخرى</span>');
     return;
