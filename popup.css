@@ -78,12 +78,12 @@ h1 {
   padding: 1em 0;
 }
 
-.hadith-info>p {
+.hadith-info > p {
   line-height: 20px;
   font-size: 14px;
 }
 
-.hadith-info>p>span {
+.hadith-info > p > span {
   font-weight: 600;
 }
 

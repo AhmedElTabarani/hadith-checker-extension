@@ -15,6 +15,7 @@ let numberOfHadith;
 let currText = '';
 
 const searchForHadithByText = async (text, page = 1) => {
+  setLoader();
   const url = `https://dorar.net/dorar_api.json?skey=${text}&page=${page}`;
   const data = await convertToJSON(url);
   return data;
@@ -64,6 +65,7 @@ const updateContent = (allHadith) => {
   });
 
   cards.innerHTML = allCardsDiv.join('');
+  hideLoader();
 };
 
 const updatePageCounter = () => {
@@ -74,20 +76,28 @@ const updateHadithCounter = () => {
 };
 
 const showMessage = (text) => {
+  hideLoader();
   const message = document.getElementById('message');
   message.innerHTML = text;
   updatePageCounter();
   updateHadithCounter();
 };
 
+const setLoader = () => {
+  loader.className = 'center';
+  cards.innerHTML = '';
+};
+
+const hideLoader = () => {
+  loader.className = 'loader-hide';
+};
+
 // It will only run once (when the window is rendering for the first time)
 chrome.storage.local.get('text', async ({ text }) => {
-  loader.className = 'center';
   const allHadith = await searchForHadithByText(text);
   currText = text;
   numberOfHadith = allHadith.length;
   if (numberOfHadith === 0) {
-    loader.className = 'loader-head';
     showMessage(
       '<span>لا يوجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>',
     );
@@ -96,7 +106,6 @@ chrome.storage.local.get('text', async ({ text }) => {
   updatePageCounter();
   updateHadithCounter();
   updateContent(allHadith);
-  loader.className = 'loader-head';
 });
 
 next.addEventListener('click', async (e) => {
