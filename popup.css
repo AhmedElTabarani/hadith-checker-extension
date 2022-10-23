@@ -89,12 +89,12 @@ h1 {
   padding: 1em 0;
 }
 
-.hadith-info > p {
+.hadith-info>p {
   line-height: 20px;
   font-size: 14px;
 }
 
-.hadith-info > p > span {
+.hadith-info>p>span {
   font-weight: 600;
 }
 
@@ -135,3 +135,107 @@ h1 {
 }
 
 /* loader css */
+/* share it */
+/*social media share Buttons*/
+.center-share {
+  text-align: center;
+}
+
+.facebook a {
+  background: #3a579a;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.facebook a:hover {
+  background: #314a83;
+}
+
+.twitter a {
+  background: #00abf0;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.twitter a:hover {
+  background: #0092cc;
+}
+
+.pinterest a {
+  background: #cd1c1f;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.pinterest a:hover {
+  background: #ae181a;
+}
+
+
+.telegram a {
+  background: #00abf0;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.telegram a:hover {
+  background: #0092cc;
+}
+
+.whatsapp a {
+  background: #34af23;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.whatsapp a:hover {
+  background: #1e7013;
+}
+
+.email a {
+  background: #2b647a;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.email a:hover {
+  background: #1f495a;
+}
+
+/* share it */

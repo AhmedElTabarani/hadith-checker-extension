@@ -15,14 +15,10 @@ const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 const pageCounter = document.querySelector('#page-counter span');
 const hadithCounter = document.querySelector('#hadith-counter span');
-const loader = document.getElementById('loader');
-
 let currPage = 1;
 let numberOfHadith;
 let currText = '';
-
 const searchForHadithByText = async (text, page = 1) => {
-  setLoader();
   const url = `https://dorar.net/dorar_api.json?skey=${text}&page=${page}`;
   const data = await convertToJSON(url);
   return data;
@@ -58,15 +54,16 @@ const updateContent = (allHadith) => {
       number_or_page,
       grade,
     } = _hadith;
+
     const url =
       'https://chrome.google.com/webstore/detail/hadith-checker/cfbllcckohbiiplkigbfllfphhakanke';
     const share = `
-      <div class='facebook center-share'>
+      <div class='facebook'>
       <a href='https://www.facebook.com/sharer.php?u=${url}&t=${hadith}' rel='noreferrer' target='_blank' title='شارك على فايسيوك'>
       ${facebook}
       </a>
     </div>
-    <div class='email center-share'>
+    <div class='email'>
     <a style='cursor: pointer;' rel='noreferrer' target='_blank' title='شارك على الإيمايل' href='mailto:?subject=Hadith Checker&body=
     ${hadith} :حديث نبوي
     %0d
@@ -76,26 +73,26 @@ const updateContent = (allHadith) => {
     ${email}
     </a>
     </div>
-    <div class='twitter center-share'>
+    <div class='twitter'>
     <a href='http://twitter.com/share?url=${encodeURIComponent(
       url,
     )}&text=${hadith}' rel='noreferrer' target='_blank' title='شارك على تويتر'>
       ${twitter}
     </a>
   </div>
-  <div class='pinterest center-share'>
+  <div class='pinterest'>
     <a href='https://pinterest.com/pin/create/button/?url=${url}&media=${url}&description=${hadith}' rel='noreferrer' target='_blank' title='شارك على بانتيراست'>
       ${pinterest}
     </a>
   </div> 
-  <div class='whatsapp center-share'>
+  <div class='whatsapp'>
     <a href='whatsapp://send?text=${
       hadith + ' ' + url
     }' rel='noreferrer' target='_top' title='شارك على واتساب'>
      ${whatsapp}
     </a>
   </div>
-  <div class='telegram center-share'>
+  <div class='telegram'>
     <a href='https://t.me/share/url?url=${url}&text=${hadith}' rel='noreferrer' target='_blank' title='شارك على تيليغرام'>
      ${telegram}
     </a>
@@ -118,8 +115,27 @@ const updateContent = (allHadith) => {
   });
 
   cards.innerHTML = allCardsDiv.join('');
-  hideLoader();
 };
+
+function shareIt(hadith) {
+  const data = {
+    title: 'Hadith checker',
+    text: hadith,
+    url: './icons/icons128.png',
+  };
+  if (navigator.share) {
+    navigator
+      .share({
+        title: 'web.dev',
+        text: 'Check out web.dev.',
+        url: 'https://web.dev/',
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+  } else {
+    console.log('error');
+  }
+}
 
 const updatePageCounter = () => {
   pageCounter.innerText = currPage;
@@ -129,20 +145,10 @@ const updateHadithCounter = () => {
 };
 
 const showMessage = (text) => {
-  hideLoader();
   const message = document.getElementById('message');
   message.innerHTML = text;
   updatePageCounter();
   updateHadithCounter();
-};
-
-const setLoader = () => {
-  loader.className = 'center';
-  cards.innerHTML = '';
-};
-
-const hideLoader = () => {
-  loader.className = 'loader-hide';
 };
 
 // It will only run once (when the window is rendering for the first time)
@@ -183,4 +189,11 @@ prev.addEventListener('click', async (e) => {
   const allHadith = await searchForHadithByText(currText, currPage);
   updateContent(allHadith);
   updatePageCounter();
+});
+// Listen for clicks on the entire window
+document.addEventListener('click', function (event) {
+  // If the clicked element has the `.click-me` class, it's a match!
+  if (event.target.matches('.share-button')) {
+    shareIt(event.target.dataset.hadith);
+  }
 });
