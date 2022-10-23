@@ -1,6 +1,6 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    title: 'Check this hadith',
+    title: 'Check this hadith - dev:testing',
     id: 'check-hadith',
     contexts: ['selection'],
   });

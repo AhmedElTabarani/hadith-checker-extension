@@ -1,5 +1,5 @@
 {
-  "name": "Hadith Checker",
+  "name": "Hadith Checker dev:testing",
   "description": "Checking the selected hadith, whether it is fabricated or authentic",
   "version": "0.6",
   "manifest_version": 3,
