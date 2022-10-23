@@ -9,12 +9,14 @@ const shareButton = document.querySelectorAll('#share-button');
 const prev = document.getElementById('prev');
 const pageCounter = document.querySelector('#page-counter span');
 const hadithCounter = document.querySelector('#hadith-counter span');
+const loader = document.getElementById('loader');
 
 let currPage = 1;
 let numberOfHadith;
 let currText = '';
 
 const searchForHadithByText = async (text, page = 1) => {
+  setLoader();
   const url = `https://dorar.net/dorar_api.json?skey=${text}&page=${page}`;
   const data = await convertToJSON(url);
   return data;
@@ -67,6 +69,7 @@ const updateContent = (allHadith) => {
   });
 
   cards.innerHTML = allCardsDiv.join('');
+  hideLoader();
 };
 const shareIt = (hadith) => {
   if (hadith) {
@@ -93,10 +96,20 @@ const updateHadithCounter = () => {
 };
 
 const showMessage = (text) => {
+  hideLoader();
   const message = document.getElementById('message');
   message.innerHTML = text;
   updatePageCounter();
   updateHadithCounter();
+};
+
+const setLoader = () => {
+  loader.className = 'center';
+  cards.innerHTML = '';
+};
+
+const hideLoader = () => {
+  loader.className = 'loader-hide';
 };
 
 // It will only run once (when the window is rendering for the first time)

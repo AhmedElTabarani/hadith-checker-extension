@@ -65,8 +65,19 @@ h1 {
 }
 
 .card {
-  border-bottom: 3px solid #0070f3;
-  padding: 1em;
+  margin: 0.5rem;
+  padding: 1rem;
+  padding-bottom: 1.5rem;
+  width: 90%;
+  background: white;
+  box-shadow: 0px 0px 0px grey;
+  transition: box-shadow 0.2 ease-out;
+  box-shadow: 0.8px 0.9px 3px grey;
+}
+
+.card:hover {
+  box-shadow: 1px 8px 20px grey;
+  transition: box-shadow 0.2 ease-in;
 }
 
 .hadith-text {
@@ -78,11 +89,49 @@ h1 {
   padding: 1em 0;
 }
 
-.hadith-info>p {
+.hadith-info > p {
   line-height: 20px;
   font-size: 14px;
 }
 
-.hadith-info>p>span {
+.hadith-info > p > span {
   font-weight: 600;
 }
+
+/* loader css */
+
+.loader {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #1f2b3d;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.loader-hide {
+  display: none;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+/* loader css */
