@@ -101,12 +101,12 @@ a:hover {
   padding: 1em 0;
 }
 
-.hadith-info > p {
+.hadith-info>p {
   line-height: 20px;
   font-size: 14px;
 }
 
-.hadith-info > p > span {
+.hadith-info>p>span {
   font-weight: 600;
 }
 
@@ -146,4 +146,116 @@ a:hover {
   margin: 2rem;
 }
 
+.horizontal-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+}
+
 /* loader css */
+/* share it */
+/*social media share Buttons*/
+.center-share {
+  text-align: center;
+}
+
+.facebook a {
+  background: #3a579a;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.facebook a:hover {
+  background: #314a83;
+}
+
+.twitter a {
+  background: #00abf0;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.twitter a:hover {
+  background: #0092cc;
+}
+
+.pinterest a {
+  background: #cd1c1f;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.pinterest a:hover {
+  background: #ae181a;
+}
+
+
+.telegram a {
+  background: #00abf0;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.telegram a:hover {
+  background: #0092cc;
+}
+
+.linkedin a {
+  background: #0A66C2;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.linkedin a:hover {
+  background: #054c92;
+}
+
+.email a {
+  background: #2b647a;
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  margin: 0 2px 6px;
+  border-radius: 50%;
+}
+
+.email a:hover {
+  background: #1f495a;
+}
+
+/* share it */
