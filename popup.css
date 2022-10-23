@@ -13,6 +13,18 @@ h1 {
   padding: 15px;
 }
 
+a {
+  display: block;
+  text-decoration: none;
+  padding: 0.85rem;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+a:hover {
+  color: #0160cd;
+}
+
 .group-btn {
   display: flex;
   align-items: center;

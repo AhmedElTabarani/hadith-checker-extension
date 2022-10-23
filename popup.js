@@ -64,7 +64,9 @@ const updateContent = (allHadith) => {
         </div>`;
   });
 
-  cards.innerHTML = allCardsDiv.join('');
+  cards.innerHTML =
+    allCardsDiv.join('') +
+    `<a href='https://dorar.net/hadith/search?q=${currText}&' target='_blank'>البحث في موقع الدرر السَنية</a>`;
   hideLoader();
 };
 
