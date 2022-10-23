@@ -8,6 +8,7 @@ const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 const pageCounter = document.querySelector('#page-counter span');
 const hadithCounter = document.querySelector('#hadith-counter span');
+const loader = document.getElementById('loader');
 
 let currPage = 1;
 let numberOfHadith;
@@ -81,10 +82,12 @@ const showMessage = (text) => {
 
 // It will only run once (when the window is rendering for the first time)
 chrome.storage.local.get('text', async ({ text }) => {
+  loader.className = 'center';
   const allHadith = await searchForHadithByText(text);
   currText = text;
   numberOfHadith = allHadith.length;
   if (numberOfHadith === 0) {
+    loader.className = 'loader-head';
     showMessage(
       '<span>لا يوجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>',
     );
@@ -93,6 +96,7 @@ chrome.storage.local.get('text', async ({ text }) => {
   updatePageCounter();
   updateHadithCounter();
   updateContent(allHadith);
+  loader.className = 'loader-head';
 });
 
 next.addEventListener('click', async (e) => {
