@@ -65,8 +65,18 @@ h1 {
 }
 
 .card {
-  border-bottom: 3px solid #0070f3;
-  padding: 1em;
+  margin: 0.5rem;
+  padding: 1rem;
+  width: 90%;
+  background: white;
+  box-shadow: 0px 0px 0px grey;
+  transition: box-shadow .6s ease-out;
+  box-shadow: .8px .9px 3px grey;
+}
+
+.card:hover {
+  box-shadow: 1px 8px 20px grey;
+  transition: box-shadow .6s ease-in;
 }
 
 .hadith-text {
