@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <script src="./thirdparty/he.min.js"></script>
-    <script src="./popup.js" defer type="module"></script>
-    <link
-      href="http://fonts.cdnfonts.com/css/neo-sans-arabic"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./popup.css" />
-    <title>Hadith Checker</title>
-  </head>
-  <body>
-    <main>
-      <h1>التأكد من الأحاديث</h1>
-      <p id="page-counter">الصفحة رقم: <span></span></p>
-      <p id="hadith-counter">عدد النتائج: <span></span></p>
-      <section class="cards"></section>
-      <div class="group-btn">
-        <button id="next" class="nice-btn">الصفحة التالية</button>
-        <button id="prev" class="nice-btn">الصفحة السابقة</button>
-      </div>
-      <p id="message"></p>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="./thirdparty/he.min.js"></script>
+  <script src="./popup.js" defer type="module"></script>
+  <link href="http://fonts.cdnfonts.com/css/neo-sans-arabic" rel="stylesheet" />
+  <link rel="stylesheet" href="./popup.css" />
+  <title>Hadith Checker</title>
+</head>
+
+<body>
+  <main>
+    <h1>التأكد من الأحاديث</h1>
+    <p id="page-counter">الصفحة رقم: <span></span></p>
+    <p id="hadith-counter">عدد النتائج: <span></span></p>
+    <div id="loader" class="loader-hide">
+      <div class="loader"></div>
+    </div>
+    <section class="cards"></section>
+    <div class="group-btn">
+      <button id="next" class="nice-btn">الصفحة التالية</button>
+      <button id="prev" class="nice-btn">الصفحة السابقة</button>
+    </div>
+    <p id="message"></p>
+  </main>
+</body>
+
 </html>

@@ -34,9 +34,11 @@ h1 {
 .nice-btn:hover {
   transform: scale(1.1);
 }
+
 .nice-btn:active {
   background-color: #0160cd;
 }
+
 #page-counter,
 #hadith-counter {
   color: #0070f3;
@@ -57,6 +59,7 @@ h1 {
   align-items: center;
   flex-direction: column;
 }
+
 .cards {
   padding: 2em;
 }
@@ -74,10 +77,50 @@ h1 {
 .hadith-info {
   padding: 1em 0;
 }
-.hadith-info > p {
+
+.hadith-info>p {
   line-height: 20px;
   font-size: 14px;
 }
-.hadith-info > p > span {
+
+.hadith-info>p>span {
   font-weight: 600;
 }
+
+/* loader css */
+
+.loader {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #1f2b3d;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.loader-hide {
+  display: none;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+/* loader css */
