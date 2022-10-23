@@ -67,16 +67,17 @@ h1 {
 .card {
   margin: 0.5rem;
   padding: 1rem;
+  padding-bottom: 1.5rem;
   width: 90%;
   background: white;
   box-shadow: 0px 0px 0px grey;
-  transition: box-shadow .6s ease-out;
-  box-shadow: .8px .9px 3px grey;
+  transition: box-shadow 0.2 ease-out;
+  box-shadow: 0.8px 0.9px 3px grey;
 }
 
 .card:hover {
   box-shadow: 1px 8px 20px grey;
-  transition: box-shadow .6s ease-in;
+  transition: box-shadow 0.2 ease-in;
 }
 
 .hadith-text {
