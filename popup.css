@@ -134,6 +134,14 @@ h1 {
   margin: 2rem;
 }
 
+.horizontal-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+}
+
 /* loader css */
 /* share it */
 /*social media share Buttons*/
@@ -206,8 +214,8 @@ h1 {
   background: #0092cc;
 }
 
-.whatsapp a {
-  background: #34af23;
+.linkedin a {
+  background: #0A66C2;
   color: white;
   display: inline-block;
   font-size: 20px;
@@ -218,8 +226,8 @@ h1 {
   border-radius: 50%;
 }
 
-.whatsapp a:hover {
-  background: #1e7013;
+.linkedin a:hover {
+  background: #054c92;
 }
 
 .email a {
