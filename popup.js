@@ -13,6 +13,7 @@ const loader = document.getElementById('loader');
 let currPage = 1;
 let numberOfHadith;
 let currText = '';
+let dorarSearchLink = '';
 
 const searchForHadithByText = async (text, page = 1) => {
   setLoader();
@@ -52,21 +53,22 @@ const updateContent = (allHadith) => {
       grade,
     } = _hadith;
 
-    return `<div class="card">
-             <p class="hadith-text">${hadith}</p>
-             <div class="hadith-info">
-                <p class="hadith-rawi"><span>الراوي:</span> ${el_rawi}</p>
-                <p class="hadith-mohdith"><span>المتحدث:</span> ${el_mohdith}</p>
-                <p class="hadith-source"><span>المصدر:</span> ${source}</p>
-                <p class="hadith-number"><span>رقم الحديث أو الصفحة:</span> ${number_or_page}</p>
-                <p class="hadith-grade"><span>صحة الحديث:</span> ${grade}</p>
-             </div>
+    return `
+        <div class="card">
+          <p class="hadith-text">${hadith}</p>
+          <div class="hadith-info">
+            <p class="hadith-rawi"><span>الراوي:</span> ${el_rawi}</p>
+            <p class="hadith-mohdith"><span>المحدث:</span> ${el_mohdith}</p>
+            <p class="hadith-source"><span>المصدر:</span> ${source}</p>
+            <p class="hadith-number"><span>رقم الحديث أو الصفحة:</span> ${number_or_page}</p>
+            <p class="hadith-grade"><span>صحة الحديث:</span> ${grade}</p>
+          </div>
         </div>`;
   });
 
   cards.innerHTML =
     allCardsDiv.join('') +
-    `<a href='https://dorar.net/hadith/search?q=${currText}&' target='_blank'>البحث في موقع الدرر السَنية</a>`;
+    `<a class='dorar-search-link' href=${dorarSearchLink} target='_blank'>البحث في موقع الدرر السَنية</a>`;
   hideLoader();
 };
 
@@ -98,6 +100,9 @@ const hideLoader = () => {
 chrome.storage.local.get('text', async ({ text }) => {
   const allHadith = await searchForHadithByText(text);
   currText = text;
+  dorarSearchLink = encodeURI(
+    `https://dorar.net/hadith/search?q=${currText}`,
+  );
   numberOfHadith = allHadith.length;
   if (numberOfHadith === 0) {
     showMessage(
