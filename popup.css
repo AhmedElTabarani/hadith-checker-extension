@@ -57,6 +57,19 @@ a:hover {
   transition: 0.2s ease;
 }
 
+.copy-btn {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.copy-btn:disabled,
+.copy-btn:disabled:active {
+  background-color: gray;
+}
+.copy-btn:disabled:hover {
+  transform: none;
+}
+
 .nice-btn:hover {
   transform: scale(1.1);
 }

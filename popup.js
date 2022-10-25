@@ -54,7 +54,8 @@ const updateContent = (allHadith) => {
     } = _hadith;
 
     return `
-        <div class="card">
+      <div class="card">
+        <div>
           <p class="hadith-text">${hadith}</p>
           <div class="hadith-info">
             <p class="hadith-rawi"><span>الراوي:</span> ${el_rawi}</p>
@@ -63,12 +64,37 @@ const updateContent = (allHadith) => {
             <p class="hadith-number"><span>رقم الحديث أو الصفحة:</span> ${number_or_page}</p>
             <p class="hadith-grade"><span>صحة الحديث:</span> ${grade}</p>
           </div>
-        </div>`;
+        </div>
+        <button class="copy-btn nice-btn" type="button">نسخ الحديث</button>
+      </div>`;
   });
 
   cards.innerHTML =
     allCardsDiv.join('') +
     `<a class='dorar-search-link' href=${dorarSearchLink} target='_blank'>البحث في موقع الدرر السَنية</a>`;
+
+  const copyButtons = document.getElementsByClassName('copy-btn');
+  for (let btn of copyButtons) {
+    btn.addEventListener('click', (e) => {
+      const content = e.target.previousElementSibling;
+      const text =
+        content.innerText +
+        '\n\n' +
+        `البحث في موقع الدرر السَنية: ${dorarSearchLink}`;
+
+      btn.disabled = true;
+      navigator.clipboard.writeText(text).then(
+        () => {
+          btn.disabled = false;
+          console.log('Copying to clipboard was successful!');
+        },
+        (err) => {
+          console.error('Could not copy text: ', err);
+        },
+      );
+    });
+  }
+
   hideLoader();
 };
 
@@ -106,7 +132,7 @@ chrome.storage.local.get('text', async ({ text }) => {
   numberOfHadith = allHadith.length;
   if (numberOfHadith === 0) {
     showMessage(
-      '<span>لا يوجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>',
+      '<span>لا توجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>',
     );
     return;
   }
@@ -122,7 +148,7 @@ next.addEventListener('click', async (e) => {
     currPage + 1,
   );
   if (allHadith.length === 0) {
-    showMessage('<span>لا يوجد نتائج أُخرى</span>');
+    showMessage('<span>لا توجد نتائج أُخرى</span>');
     return;
   }
   currPage += 1;
