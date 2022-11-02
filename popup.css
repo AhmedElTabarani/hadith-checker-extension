@@ -154,6 +154,13 @@ a:hover {
   line-height: 36px;
 }
 
+hr {
+  border: grey 1px solid;
+  border-radius: 1px;
+  margin: 10px 0;
+  opacity: 0.5;
+}
+
 .hadith-info {
   padding: 1em 0;
 }
