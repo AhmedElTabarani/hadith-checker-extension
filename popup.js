@@ -57,6 +57,7 @@ const updateContent = (allHadith) => {
       <div class="card">
         <div>
           <p class="hadith-text">${hadith}</p>
+          <hr/>
           <div class="hadith-info">
             <p class="hadith-rawi"><span>الراوي:</span> ${el_rawi}</p>
             <p class="hadith-mohdith"><span>المحدث:</span> ${el_mohdith}</p>
