@@ -43,12 +43,15 @@
   background: #0366d6;
 }
 
-h1 {
+header {
   text-align: center;
-  color: #0070f3;
   background-color: #f6f8fa;
   border-bottom: 1px solid #e5e7eb;
   padding: 15px;
+}
+
+h1 {
+  color: #0070f3;
 }
 
 a {
@@ -173,6 +176,13 @@ hr {
 
 .hadith-info > p > span {
   font-weight: 500;
+}
+
+footer {
+  text-align: center;
+  background-color: #f6f8fa;
+  border-top: 1px solid #e5e7eb;
+  padding: 15px;
 }
 
 /* loader css */
