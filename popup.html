@@ -22,12 +22,30 @@
       <h1>التأكد من الأحاديث</h1>
     </header>
     <main>
+      <div class="tab">
+        <button
+          class="tab-links tab-btn active"
+          data-tabId="main-tab"
+        >
+          الأحاديث
+        </button>
+        <button class="tab-links tab-btn" data-tabId="bukhari-tab">
+          البحث في صحيح البخاري
+        </button>
+        <button class="tab-links tab-btn" data-tabId="muslim-tab">
+          البحث في صحيح مسلم
+        </button>
+      </div>
       <p id="page-counter">الصفحة رقم: <span></span></p>
       <p id="hadith-counter">عدد النتائج: <span></span></p>
       <div id="loader" class="loader-hide">
         <div class="loader"></div>
       </div>
-      <section class="cards"></section>
+
+      <div id="main-tab" class="tab-content"></div>
+      <div id="bukhari-tab" class="tab-content"></div>
+      <div id="muslim-tab" class="tab-content"></div>
+
       <div class="group-btn">
         <button id="next" class="nice-btn">الصفحة التالية</button>
         <button id="prev" class="nice-btn">الصفحة السابقة</button>

@@ -1,3 +1,16 @@
+* {
+  font-family: Vazirmatn RD;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  --main-color: #0070f3;
+  --main-color-tr: #0070ffa1;
+  --main-color-dark: #0050ac;
+  --ele-bg: #f6f8fa;
+  --ele-bg-dark: #e5e7eb;
+}
+
 @font-face {
   font-family: Kitab;
   src: url(https://fonts.nuqayah.com/kitab-base.woff2?v3);
@@ -37,26 +50,26 @@
   width: 3px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #0070f3;
+  background: var(--main-color);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0366d6;
+  background: var(--main-color-dark);
 }
 
 header {
   text-align: center;
-  background-color: #f6f8fa;
-  border-bottom: 1px solid #e5e7eb;
+  background-color: var(--ele-bg);
+  border-bottom: 1px solid var(--ele-bg-dark);
   padding: 15px;
 }
 
 h1 {
-  color: #0070f3;
+  color: var(--main-color);
 }
 
 a {
   text-decoration: none;
-  color: #0070f3;
+  color: var(--main-color);
 }
 
 a.dorar-search-link {
@@ -67,7 +80,7 @@ a.dorar-search-link {
 }
 
 a:hover {
-  color: #0366d6;
+  color: var(--main-color-dark);
 }
 
 .group-btn {
@@ -79,8 +92,8 @@ a:hover {
 }
 
 .nice-btn {
-  color: white;
-  background-color: #0070f3;
+  color: var(--ele-bg);
+  background-color: var(--main-color);
   font-size: 1.5em;
   border-radius: 15px;
   margin: 0.25em 1.5em;
@@ -95,7 +108,7 @@ a:hover {
 
 .copy-btn:disabled,
 .copy-btn:disabled:active {
-  background-color: gray;
+  background-color: var(--ele-bg-dark);
 }
 .copy-btn:disabled:hover {
   transform: none;
@@ -106,12 +119,12 @@ a:hover {
 }
 
 .nice-btn:active {
-  background-color: #0366d6;
+  background-color: var(--main-color-dark);
 }
 
 #page-counter,
 #hadith-counter {
-  color: #0070f3;
+  color: var(--main-color);
   font-size: 1.5em;
   font-weight: bold;
   padding: 0 2em;
@@ -121,7 +134,7 @@ a:hover {
 #message {
   display: flex;
   padding: 0 1em;
-  color: #0070f3;
+  color: var(--main-color);
   font-size: 3em;
   font-weight: 700;
   line-height: 60px;
@@ -140,18 +153,18 @@ a:hover {
   padding: 1rem;
   margin-bottom: 1rem;
   width: 90%;
-  background: white;
-  box-shadow: 0px 0px 0px grey;
+  background: var(--ele-bg);
+  box-shadow: 0px 0px 0px var(--ele-bg-dark);
   transition: box-shadow 0.2 ease-out;
-  box-shadow: 0.8px 0.9px 3px grey;
+  box-shadow: 0.8px 0.9px 3px var(--ele-bg-dark);
 }
 
 .card:hover {
-  box-shadow: 1px 8px 20px grey;
+  box-shadow: 1px 8px 20px var(--ele-bg-dark);
   transition: box-shadow 0.2 ease-in;
 }
 
-.hadith-text {
+.hadith {
   font-family: kitab;
   font-size: 18px;
   font-weight: 600;
@@ -159,7 +172,7 @@ a:hover {
 }
 
 hr {
-  border: grey 1px solid;
+  border: var(--ele-bg-dark) 1px solid;
   border-radius: 1px;
   margin: 10px 0;
   opacity: 0.5;
@@ -169,19 +182,41 @@ hr {
   padding: 1em 0;
 }
 
-.hadith-info > p {
+.hadith-info > span {
   font-size: 16px;
   line-height: 24px;
+  display: block;
 }
 
-.hadith-info > p > span {
+.info-subtitle {
   font-weight: 500;
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid var(--ele-bg-dark);
+  background-color: var(--ele-bg);
+}
+
+.tab button {
+  background-color: inherit;
+  float: right;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+.tab button.active {
+  background-color: var(--main-color);
+  color: var(--ele-bg);
 }
 
 footer {
   text-align: center;
-  background-color: #f6f8fa;
-  border-top: 1px solid #e5e7eb;
+  background-color: var(--ele-bg);
+  border-top: 1px solid var(--ele-bg-dark);
   padding: 15px;
 }
 
@@ -190,9 +225,9 @@ footer {
 .loader {
   width: 30px;
   height: 30px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
+  border: 3px solid var(--ele-bg-dark);
   border-radius: 50%;
-  border-top-color: #0366d6;
+  border-top-color: var(--main-color-dark);
   animation: spin 1s ease-in-out infinite;
   -webkit-animation: spin 1s ease-in-out infinite;
 }

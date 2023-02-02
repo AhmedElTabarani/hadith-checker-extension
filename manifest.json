@@ -1,7 +1,7 @@
 {
   "name": "Hadith Checker",
   "description": "Checking the selected hadith, whether it is fabricated or authentic",
-  "version": "0.8",
+  "version": "0.9",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"
