@@ -1,11 +1,7 @@
-import {
-  getAllHadith,
-  getAllHadithInfo,
-} from './utils/extractHadithInfo.js';
+import { searchForHadith } from './utils/searchForHadith.js';
+import { convertHTMLHadithToJSON } from './utils/convertHTMLHadithToJSON.js';
 
-let currTabCards = document.getElementById('main-tab');
-const bukhariTabCards = document.getElementById('bukhari-tab');
-const muslimTabCards = document.getElementById('muslim-tab');
+const content = document.getElementById('content');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 const pageCounter = document.querySelector('#page-counter span');
@@ -18,51 +14,44 @@ let numberOfHadith;
 let currText = '';
 let dorarSearchLink = '';
 
-const fetchHTML = async (url) => {
-  const res = await fetch(encodeURI(url));
-  const data = await res.json();
-  return data;
+const getQuery = () => {
+  const query = {};
+  const dataTab = {
+    'main-tab': {
+      bookIds: [0],
+    },
+    'bukhari-tab': {
+      bookIds: [6216],
+    },
+    'muslim-tab': {
+      bookIds: [3088],
+    },
+  };
+
+  query.books = dataTab[currTabId].bookIds
+    .map((id) => `s[]=${id}`)
+    .join('&');
+
+  return query;
 };
 
-const selectDataBaseOfTabId = {
-  'main-tab': {
-    bookIds: [0],
-  },
-  'bukhari-tab': {
-    bookIds: [6216],
-  },
-  'muslim-tab': {
-    bookIds: [3088],
-  },
-};
-
-const searchForHadith = async () => {
+const getHadith = async () => {
   setLoader();
-  const bookIds = selectDataBaseOfTabId[currTabId].bookIds;
-  const booksQuery = bookIds.map((id) => `s[]=${id}`).join('&');
-
-  const url = `https://dorar.net/dorar_api.json?skey=${currText}&${booksQuery}&page=${currPage}`;
-  const res = await fetchHTML(url);
-  const html = he.decode(res.ahadith.result);
-  const data = await convertToJSON(html);
-  return data;
-};
-
-const convertToJSON = async (html) => {
-  try {
-    const allHadith = getAllHadith(html);
-    const allHadithInfo = getAllHadithInfo(html);
-
-    const result = allHadith.map((hadith, index) => {
-      return {
-        ...hadith,
-        ...allHadithInfo[index],
-      };
-    });
-    return result;
-  } catch (err) {
-    console.error(err);
+  const query = getQuery();
+  const html = await searchForHadith(currText, currPage, query);
+  const data = convertHTMLHadithToJSON(html);
+  numberOfHadith = data.length;
+  if (numberOfHadith === 0) {
+    showMessage(
+      `<span>لا توجد أي نتائج، حاول أن تحدد نصًا أخر، أو عدد كلمات أكثر</span>
+      <span>أو أن تحدد نص عربي تعتقد أنه حديث</span>
+      <br/>`,
+    );
+    return;
   }
+  updateContent(data);
+  hideLoader();
+  return data;
 };
 
 const updateContent = (allHadith) => {
@@ -93,12 +82,15 @@ const updateContent = (allHadith) => {
       </div>`;
   });
 
-  currTabCards.innerHTML = `
+  content.innerHTML = `
   <section class="cards">
     ${allCardsDiv.join('')}
     <a class='dorar-search-link' href=${dorarSearchLink} target='_blank'>البحث في موقع الدرر السَنية</a>;
   </section>
   `;
+
+  updatePageCounter();
+  updateHadithCounter();
 
   const copyButtons = document.getElementsByClassName('copy-btn');
   for (let btn of copyButtons) {
@@ -121,8 +113,6 @@ const updateContent = (allHadith) => {
       );
     });
   }
-
-  hideLoader();
 };
 
 const updatePageCounter = () => {
@@ -136,13 +126,11 @@ const showMessage = (text) => {
   hideLoader();
   const message = document.getElementById('message');
   message.innerHTML = text;
-  updatePageCounter();
-  updateHadithCounter();
 };
 
 const setLoader = () => {
   loader.className = 'center';
-  currTabCards.innerHTML = '';
+  content.innerHTML = '';
 };
 
 const hideLoader = () => {
@@ -152,53 +140,31 @@ const hideLoader = () => {
 // It will only run once (when the window is rendering for the first time)
 chrome.storage.local.get('text', async ({ text }) => {
   currText = text;
-  const allHadith = await searchForHadith();
   dorarSearchLink = `https://dorar.net/hadith/search?q=${currText}`;
-  numberOfHadith = allHadith.length;
-  if (numberOfHadith === 0) {
-    showMessage(
-      '<span>لا توجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>',
-    );
-    return;
-  }
-  updatePageCounter();
-  updateHadithCounter();
-  updateContent(allHadith);
+
+  await getHadith();
 });
 
 next.addEventListener('click', async (e) => {
   e.preventDefault();
+  console.log(currPage);
   currPage += 1;
-  const allHadith = await searchForHadith();
-  numberOfHadith = allHadith.length;
-  if (numberOfHadith === 0) {
+  const allHadith = await getHadith();
+  if (!allHadith) {
     currPage -= 1;
-    showMessage('<span>لا توجد نتائج أُخرى</span>');
     return;
   }
-  updateContent(allHadith);
-  updatePageCounter();
-  updateHadithCounter();
 });
 prev.addEventListener('click', async (e) => {
   e.preventDefault();
   if (currPage === 1) return;
   currPage -= 1;
-  const allHadith = await searchForHadith();
-  numberOfHadith = allHadith.length;
-  updateContent(allHadith);
-  updatePageCounter();
-  updateHadithCounter();
+  await getHadith();
 });
 
 Array.from(document.getElementsByClassName('tab-btn')).forEach(
   (tabBtn) => {
     tabBtn.addEventListener('click', async (e) => {
-      const tabContent =
-        document.getElementsByClassName('tab-content');
-      for (let i = 0; i < tabContent.length; i++) {
-        tabContent[i].style.display = 'none';
-      }
       const ele = e.target;
 
       Array.from(
@@ -209,20 +175,7 @@ Array.from(document.getElementsByClassName('tab-btn')).forEach(
           : tabLink.classList.remove('active'),
       );
       currTabId = ele.dataset.tabid;
-      currTabCards = document.getElementById(currTabId);
-      currTabCards.style.display = 'block';
-
-      const allHadith = await searchForHadith();
-      numberOfHadith = allHadith.length;
-      if (numberOfHadith === 0) {
-        showMessage(
-          '<span>لا توجد أي نتائج، حاول أن تحدد عدد كلمات أكثر</span><br/><span>أو أن تحدد نص عربي تعتقد أنه حديث</span>',
-        );
-        return;
-      }
-      updateContent(allHadith);
-      updatePageCounter();
-      updateHadithCounter();
+      await getHadith();
     });
   },
 );
