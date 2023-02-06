@@ -274,3 +274,25 @@ footer {
 }
 
 /* loader css */
+/*new code*/
+.settings-box {
+  background-color: transparent;
+  height: 30px;
+  transition: 0.3s;
+  overflow: hidden;
+}
+.settings-box.open {
+  height: 229px;}
+.settings-box .toggle-settings {
+  background-color: #FFF;
+  text-align: center;
+  cursor: pointer;
+  width: 30px;
+  margin-right: 27px;
+}
+.settings-box .toggle-settings .fa-gear {
+  width: 30px;
+  padding: 8px 0;
+  transition: all 0.5s ease;
+}
+/*end new  code*/

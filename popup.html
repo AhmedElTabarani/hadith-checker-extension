@@ -13,6 +13,7 @@
       href="http://fonts.cdnfonts.com/css/neo-sans-arabic"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
     <link rel="stylesheet" href="./popup.css" />
     <title>Hadith Checker</title>
   </head>
@@ -23,7 +24,7 @@
     </header>
     <main>
       <div class="tab">
-        <button
+        <button 
           class="tab-links tab-btn active"
           data-tabId="main-tab"
         >
@@ -38,7 +39,10 @@
       </div>
       <!-- todo: make a button to extend the setting -->
       <!-- todo: make a button to apply the setting -->
-      <div class="setting">
+      <div class="settings-box">
+        <div class="toggle-settings">
+          <i class="fa fa-gear"></i>
+        </div>
         <div class="hadith-degree">
           <label>درجة الحديث</label>
 
@@ -87,6 +91,7 @@
             >
           </div>
         </div>
+        </div>
       </div>
       <p id="page-counter">الصفحة رقم: <span></span></p>
       <p id="hadith-counter">عدد النتائج: <span></span></p>
@@ -110,5 +115,6 @@
         <img src="./icons/GitHub-Mark-32px.png" />
       </a>
     </footer>
+    <script src="showbox.js"></script>
   </body>
 </html>
