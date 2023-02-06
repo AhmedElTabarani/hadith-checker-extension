@@ -122,6 +122,23 @@ a:hover {
   background-color: var(--main-color-dark);
 }
 
+.hadith-degree {
+  font-size: 18px;
+  padding-right: 2em;
+  padding-top: 0.5em;
+}
+
+.hadith-degree > label {
+  color: var(--main-color);
+  font-weight: 500;
+}
+.hadith-degree-checkbox {
+  padding: 0.5em 0;
+}
+.hadith-degree-checkbox > label {
+  padding-right: 0.5em;
+}
+
 #page-counter,
 #hadith-counter {
   color: var(--main-color);

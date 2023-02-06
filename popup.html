@@ -36,6 +36,58 @@
           البحث في صحيح مسلم
         </button>
       </div>
+      <!-- todo: make a button to extend the setting -->
+      <!-- todo: make a button to apply the setting -->
+      <div class="setting">
+        <div class="hadith-degree">
+          <label>درجة الحديث</label>
+
+          <div class="hadith-degree-checkbox">
+            <input
+              type="checkbox"
+              value="1"
+              class="degreeCheckbox"
+              name="d[]"
+            />
+            <label for="degree-1"
+              >أحاديث حكم المحدثون عليها بالصحة</label
+            >
+          </div>
+          <div class="hadith-degree-checkbox">
+            <input
+              type="checkbox"
+              value="2"
+              class="degreeCheckbox"
+              name="d[]"
+            />
+            <label for="degree-2"
+              >أحاديث حكم المحدثون على أسانيدها بالصحة</label
+            >
+          </div>
+          <div class="hadith-degree-checkbox">
+            <input
+              type="checkbox"
+              value="3"
+              class="degreeCheckbox"
+              name="d[]"
+            />
+            <label for="degree-3"
+              >أحاديث حكم المحدثون عليها بالضعف</label
+            >
+          </div>
+          <div class="hadith-degree-checkbox">
+            <input
+              type="checkbox"
+              value="4"
+              class="degreeCheckbox"
+              name="d[]"
+            />
+            <label for="degree-4"
+              >أحاديث حكم المحدثون على أسانيدها بالضعف</label
+            >
+          </div>
+        </div>
+      </div>
       <p id="page-counter">الصفحة رقم: <span></span></p>
       <p id="hadith-counter">عدد النتائج: <span></span></p>
       <div id="loader" class="loader-hide">

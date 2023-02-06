@@ -7,6 +7,8 @@ const prev = document.getElementById('prev');
 const pageCounter = document.querySelector('#page-counter span');
 const hadithCounter = document.querySelector('#hadith-counter span');
 const loader = document.getElementById('loader');
+const degreeCheckbox =
+  document.getElementsByClassName('degreeCheckbox');
 
 let currPage = 1;
 let currTabId = 'main-tab';
@@ -14,6 +16,9 @@ let numberOfHadith;
 let currText = '';
 let dorarSearchLink = '';
 
+let currDegrees = [false, false, false, false];
+
+// TODO: can convert it to class ?
 const getQuery = () => {
   const query = {};
   const dataTab = {
@@ -30,6 +35,11 @@ const getQuery = () => {
 
   query.books = dataTab[currTabId].bookIds
     .map((id) => `s[]=${id}`)
+    .join('&');
+
+  query.degrees = currDegrees
+    .map((d, i) => (d ? `d[]=${i + 1}` : d))
+    .filter((d) => d !== false)
     .join('&');
 
   return query;
@@ -54,6 +64,7 @@ const getHadith = async () => {
   return data;
 };
 
+// tODO: refactor this function or divide it or do anything to it !!
 const updateContent = (allHadith) => {
   const allCardsDiv = allHadith.map((_hadith) => {
     const {
@@ -138,10 +149,22 @@ const hideLoader = () => {
 };
 
 // It will only run once (when the window is rendering for the first time)
-chrome.storage.local.get('text', async ({ text }) => {
+chrome.storage.session.get('text', async ({ text }) => {
   currText = text;
   dorarSearchLink = `https://dorar.net/hadith/search?q=${currText}`;
 
+  const { degrees } = await chrome.storage.sync.get('degrees');
+  currDegrees = degrees || currDegrees;
+
+  // TODO: move it to a function
+  Array.from(degreeCheckbox).forEach((checkbox, i) => {
+    checkbox.checked = currDegrees[i];
+    checkbox.addEventListener('click', async (e) => {
+      const value = +e.target.value;
+      currDegrees[value - 1] = !currDegrees[value - 1];
+      await chrome.storage.sync.set({ degrees: currDegrees });
+    });
+  });
   await getHadith();
 });
 
@@ -162,6 +185,7 @@ prev.addEventListener('click', async (e) => {
   await getHadith();
 });
 
+// tODO: can make it better ?
 Array.from(document.getElementsByClassName('tab-btn')).forEach(
   (tabBtn) => {
     tabBtn.addEventListener('click', async (e) => {
