@@ -149,7 +149,7 @@ const hideLoader = () => {
 };
 
 // It will only run once (when the window is rendering for the first time)
-chrome.storage.session.get('text', async ({ text }) => {
+chrome.storage.local.get('text', async ({ text }) => {
   currText = text;
   dorarSearchLink = `https://dorar.net/hadith/search?q=${currText}`;
 
@@ -170,7 +170,6 @@ chrome.storage.session.get('text', async ({ text }) => {
 
 next.addEventListener('click', async (e) => {
   e.preventDefault();
-  console.log(currPage);
   currPage += 1;
   const allHadith = await getHadith();
   if (!allHadith) {
