@@ -277,22 +277,146 @@ footer {
 /*new code*/
 .settings-box {
   background-color: transparent;
-  height: 30px;
+  height: 46px;
   transition: 0.3s;
   overflow: hidden;
 }
 .settings-box.open {
-  height: 229px;}
+  height: 90vh;}
+  @media (max-width: 768px) {
+    .settings-box.open {
+      height: 100%;}
+  }
 .settings-box .toggle-settings {
   background-color: #FFF;
   text-align: center;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
   cursor: pointer;
-  width: 30px;
-  margin-right: 27px;
+  width: 40px;
+  align-items: center;
+  display: inline-block;
+  height: 34px;
 }
 .settings-box .toggle-settings .fa-gear {
   width: 30px;
   padding: 8px 0;
   transition: all 0.5s ease;
+}
+.settings-box .search{
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #fff;
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.settings-box .search:focus{
+  outline: #0070f3;
+}
+.settings-box .search-zone{
+  padding-top: 10px;
+  line-height: 1.8;
+}
+.settings-box .container-main-wearch{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.box{
+  padding: 32px;
+}
+.select-box {
+  position: relative;
+  display: flex;
+  width: 250px;
+  flex-direction: column;
+}
+.select-box .options-container {
+  background: white;
+  width: 100%;
+  opacity: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  order: 1;
+  color: rgb(56, 52, 52);
+}
+.select-box .option, .selected {
+  padding: 12px 24px;
+  cursor: pointer;
+}
+.select-box .option .radio {
+  display: none;
+}
+.selected {
+  background: white;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+  color: rgb(56, 52, 52);
+  position: relative;
+  order: 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;}
+.selected:after{  
+  content: '\f106';
+    position: absolute;
+    right: 20px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    color: black;
+    transform: rotate(180deg);
+    transition: all .4s;
+  
+}  
+.select-box .option:hover {
+  background: #F1FFF3;;
+  border-radius: 5px;
+  color: #3363f1;
+ 
+}
+.select-box .option input:hover{
+    font-weight: 700px;
+}
+.search-box input {
+  width: 100%;
+  padding: 16px 16px;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  position: absolute;
+  opacity: 0;
+  outline: 3px solid black;
+  outline-offset: -10px;
+  z-index: 100;
+ 
+  border: none;
+}
+.select-box .options-container >{
+   margin-top: 45px;
+}
+.select-box .options-container.active {
+  max-height: 300px;
+  opacity: 1;
+  margin-top: 40px;
+  overflow-y: scroll;
+  transition: all 0.4s;
+  }
+.select-box .options-container.active ~ .selected::after {
+  transform: rotateY(180deg);
+  /* top: -6px; */
+}
+.select-box .options-container::-webkit-scrollbar {
+  width: 7px;
+  background: #888;
+  border-radius:  8px ;
+  height: 1px;
+}
+.select-box .options-container::-webkit-scrollbar-thumb {
+  background: #464749;
+  border-radius: 8px 8px 8px 8px;
+
+}
+.select-box .options-container.active ~ .search-box input {
+  opacity: 1;
+  pointer-events: auto;
 }
 /*end new  code*/
