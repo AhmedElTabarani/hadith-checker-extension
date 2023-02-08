@@ -282,10 +282,12 @@ footer {
   overflow: hidden;
 }
 .settings-box.open {
-  height: 90vh;}
+  height: 90vh;
+}
   @media (max-width: 768px) {
     .settings-box.open {
-      height: 100%;}
+      height: 100%;
+}
   }
 .settings-box .toggle-settings {
   background-color: #FFF;
@@ -297,6 +299,7 @@ footer {
   align-items: center;
   display: inline-block;
   height: 34px;
+
 }
 .settings-box .toggle-settings .fa-gear {
   width: 30px;
@@ -419,4 +422,3 @@ footer {
   opacity: 1;
   pointer-events: auto;
 }
-/*end new  code*/

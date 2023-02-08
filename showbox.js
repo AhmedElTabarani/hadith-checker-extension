@@ -4,7 +4,6 @@ document.querySelector(".toggle-settings .fa-gear").onclick = function () {
     document.querySelector(".settings-box").classList.toggle("open");
     
   };
-  
 const selectedm = document.querySelector(".mohdethen .selected");
 const optionsContainerm = document.querySelector(".mohdethen .options-container");
 const searchBoxm = document.querySelector(".mohdethen .search-box input");
