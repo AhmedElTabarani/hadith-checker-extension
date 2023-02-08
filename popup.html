@@ -8,12 +8,16 @@
       content="width=device-width, initial-scale=1.0"
     />
     <script src="./thirdparty/he.min.js"></script>
+    <script src="./filter-options.js" defer></script>
     <script src="./popup.js" defer type="module"></script>
     <link
       href="http://fonts.cdnfonts.com/css/neo-sans-arabic"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
     <link rel="stylesheet" href="./popup.css" />
     <title>Hadith Checker</title>
   </head>
@@ -24,7 +28,7 @@
     </header>
     <main>
       <div class="tab">
-        <button 
+        <button
           class="tab-links tab-btn active"
           data-tabId="main-tab"
         >
@@ -37,154 +41,150 @@
           البحث في صحيح مسلم
         </button>
       </div>
-      <!-- todo: make a button to extend the setting -->
-      <!-- todo: make a button to apply the setting -->
       <div class="settings-box">
         <div class="toggle-settings">
           <i class="fa fa-gear"></i>
         </div>
         <div class="container-main-wearch">
-        <div class="search-zone">
-          <label>نطاق البحث</label>
-          <div>
-            <input type="radio" id="t-all" name="t" value="*" />
-            <label for="t-all">جميع الأحاديث</label>
+          <div class="search-zone">
+            <label>نطاق البحث</label>
+            <div>
+              <input type="radio" d="t-all" name="t" value="*" />
+              <label for="t-all">جميع الأحاديث</label>
+            </div>
+            <div>
+              <input type="radio" id="t-0" value="0" name="t" />
+              <label for="t-0">الأحاديث المرفوعة</label>
+            </div>
+            <div>
+              <input type="radio" id="t-1" value="1" name="t" />
+              <label for="t-1">الأحاديث القدسية</label>
+            </div>
+            <div>
+              <input type="radio" id="t-2" value="2" name="t" />
+              <label for="t-2">آثار الصحابة</label>
+            </div>
+            <div>
+              <input type="radio" id="t-3" value="3" name="t" />
+              <label for="t-3">شروح الأحاديث</label>
+            </div>
           </div>
-          <div>
-            <input id="t-0" value="0" type="radio" name="t" />
-            <label for="t-0">الأحاديث المرفوعة</label>
-          </div>
-          <div>
-            <input id="t-1" value="1" type="radio" name="t" />
-            <label for="t-1">الأحاديث القدسية</label>
-          </div>
-          <div>
-            <input id="t-2" value="2" type="radio" name="t" />
-            <label for="t-2">آثار الصحابة</label>
-          </div>
-          <div>
-            <input id="t-3" value="3" type="radio" name="t" />
-            <label for="t-3">شروح الأحاديث</label>
-          </div>
-        </div>
-        <div class="hadith-degree">
-          <label>درجة الحديث</label>
+          <div class="hadith-degree">
+            <label>درجة الحديث</label>
 
-          <div class="hadith-degree-checkbox">
-            <input
-              type="checkbox"
-              value="1"
-              class="degreeCheckbox"
-              name="d[]"
-            />
-            <label for="degree-1"
-              >أحاديث حكم المحدثون عليها بالصحة</label
-            >
-          </div>
-          <div class="hadith-degree-checkbox">
-            <input
-              type="checkbox"
-              value="2"
-              class="degreeCheckbox"
-              name="d[]"
-            />
-            <label for="degree-2"
-              >أحاديث حكم المحدثون على أسانيدها بالصحة</label
-            >
-          </div>
-          <div class="hadith-degree-checkbox">
-            <input
-              type="checkbox"
-              value="3"
-              class="degreeCheckbox"
-              name="d[]"
-            />
-            <label for="degree-3"
-              >أحاديث حكم المحدثون عليها بالضعف</label
-            >
-          </div>
-          <div class="hadith-degree-checkbox">
-            <input
-              type="checkbox"
-              value="4"
-              class="degreeCheckbox"
-              name="d[]"
-            />
-            <label for="degree-4"
-              >أحاديث حكم المحدثون على أسانيدها بالضعف</label
-            >
-          </div>
-        </div>
-        <div class="chose">
-          <div class="box mohdethen ">
-            <div class="select-box ">
-            <div class="options-container ">
-              <div class="option">
-                <input type="radio" class="radio" />
-                <label for="0">الجميع</label>
-              </div>
-              <div class="option">
-                <input type="radio" class="radio"  />
-                <label for="94">سعيد بن المسيب</label>
-              </div>
-              <div class="option">
-                <input type="radio" class="radio"  />
-                <label for="131">أيوب السختياني</label>
-              </div>
-              <div class="option">
-                <input type="radio"class="radio"  />
-                <label for="151">أبو حنيفة</label>
-              </div>
-              <div class="option">
-                <input type="radio" class="radio"  />
-                <label for="151">بن جريج</label>
-              </div>     
+            <div class="hadith-degree-checkbox">
+              <input
+                type="checkbox"
+                value="1"
+                id="degree-1"
+                class="degreeCheckbox"
+                name="d[]"
+              />
+              <label for="degree-1"
+                >أحاديث حكم المحدثون عليها بالصحة</label
+              >
             </div>
-            <div class="selected ">
-              ابحث في المحدثين ..
+            <div class="hadith-degree-checkbox">
+              <input
+                type="checkbox"
+                value="2"
+                id="degree-2"
+                class="degreeCheckbox"
+                name="d[]"
+              />
+              <label for="degree-2"
+                >أحاديث حكم المحدثون على أسانيدها بالصحة</label
+              >
             </div>
-            <div class="search-box ">
-              <input type="text" placeholder="Search.." />
+            <div class="hadith-degree-checkbox">
+              <input
+                type="checkbox"
+                value="3"
+                id="degree-3"
+                class="degreeCheckbox"
+                name="d[]"
+              />
+              <label for="degree-3"
+                >أحاديث حكم المحدثون عليها بالضعف</label
+              >
+            </div>
+            <div class="hadith-degree-checkbox">
+              <input
+                type="checkbox"
+                value="4"
+                id="degree-4"
+                class="degreeCheckbox"
+                name="d[]"
+              />
+              <label for="degree-4"
+                >أحاديث حكم المحدثون على أسانيدها بالضعف</label
+              >
             </div>
           </div>
+          <div class="chose">
+            <div class="box mohdethen">
+              <div class="select-box">
+                <div class="options-container">
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="0">الجميع</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="94">سعيد بن المسيب</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="131">أيوب السختياني</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="151">أبو حنيفة</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="151">بن جريج</label>
+                  </div>
+                </div>
+                <div class="selected">ابحث في المحدثين ..</div>
+                <div class="search-box">
+                  <input type="text" placeholder="Search.." />
+                </div>
+              </div>
+            </div>
           </div>
-</div>
-<div class="chose">
-  <div class="box book ">
-    <div class="select-box ">
-    <div class="options-container ">
-      <div class="option">
-        <input type="radio" class="radio" />
-        <label for="0">الجميع</label>
-      </div>
-      <div class="option">
-        <input type="radio" class="radio"  />
-        <label for="94">سعيد بن المسيب</label>
-      </div>
-      <div class="option">
-        <input type="radio" class="radio"  />
-        <label for="131">أيوب السختياني</label>
-      </div>
-      <div class="option">
-        <input type="radio"class="radio"  />
-        <label for="151">أبو حنيفة</label>
-      </div>
-      <div class="option">
-        <input type="radio" class="radio"  />
-        <label for="151">بن جريج</label>
-      </div>     
-    </div>
-    <div class="selected ">
-      ابحث في المحدثين ..
-    </div>
-    <div class="search-box ">
-      <input type="text" placeholder="Search.." />
-    </div>
-  </div>
-  </div>
-</div>
-      </div>
-
+          <div class="chose">
+            <div class="box book">
+              <div class="select-box">
+                <div class="options-container">
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="0">الجميع</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="94">سعيد بن المسيب</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="131">أيوب السختياني</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="151">أبو حنيفة</label>
+                  </div>
+                  <div class="option">
+                    <input type="radio" class="radio" />
+                    <label for="151">بن جريج</label>
+                  </div>
+                </div>
+                <div class="selected">ابحث في الكتب ..</div>
+                <div class="search-box">
+                  <input type="text" placeholder="Search.." />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <p id="page-counter">الصفحة رقم: <span></span></p>
@@ -209,6 +209,5 @@
         <img src="./icons/GitHub-Mark-32px.png" />
       </a>
     </footer>
-    <script src="showbox.js"></script>
   </body>
 </html>
