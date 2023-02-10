@@ -1,6 +1,6 @@
 //import
-import { allBooks } from "./allBooks";
-import { allMohdith } from "./allMohdith"; 
+import { allBooks } from "./utils/allBooks.js";
+import { allMohdith } from "./utils/allMohdith.js"; 
 //show setting box
 document.querySelector('.toggle-settings .fa-gear').onclick =
   function () {

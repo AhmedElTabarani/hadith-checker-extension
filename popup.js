@@ -1,6 +1,5 @@
 import { searchForHadith } from './utils/searchForHadith.js';
 import { convertHTMLHadithToJSON } from './utils/convertHTMLHadithToJSON.js';
-
 const content = document.getElementById('content');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');

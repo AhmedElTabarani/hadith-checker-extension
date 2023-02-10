@@ -286,7 +286,7 @@ footer {
 }
 @media (max-width: 768px) {
   .settings-box.open {
-    height: 100% !important;
+    height: 100vh!important;
   }
 }
 .settings-box .toggle-settings {
@@ -324,11 +324,14 @@ footer {
   padding-right: 24px;
 }
 .search-zone>label{
-  color: #0070f3;
-  font-weight: bold;
+  color: var(--main-color);
+  font-weight: 500;
 }
 .search-zone{
-  line-height: 2;
+  line-height: 1.6;
+  font-size: 18px;
+  padding-right: 2em;
+  padding-top: 0.5em;
 }
 .vscomp-wrapper{
   margin: 6px;
@@ -352,9 +355,11 @@ footer {
   border: none;
   color: #fff;
   padding: 10px 15px;
-  float: left;
-  margin-left: 60px;
+  /* float: left; */
+  display: block;
+  /* margin-left: 60px; */
   border-radius: 8px;
+  margin: 27px;
   font-size: 14px;
   cursor: pointer;
 }
