@@ -85,7 +85,7 @@ document
   .querySelector('#search-zone')
   .addEventListener('change', function () {
     searchZoneSelected = {
-      id:'t[]',
+      id:'t',
       values:this.value
     };
   });
