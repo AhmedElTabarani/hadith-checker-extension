@@ -24,7 +24,8 @@ VirtualSelect.init({
   ele: '#search-zone',
   options: searchZone,
   search: false,
-  multiple: false,
+  multiple: true,
+  maxValues:1,
   dropboxWidth: '250px',
   textDirection: 'rtl',
   keepAlwaysOpen: true,
@@ -68,19 +69,25 @@ document
   .querySelector('#book')
   .addEventListener('change', function () {
     mohdithSelected = {
-      id: 'm[]',
+      id: 's[]',
       values: this.value,
     };
   });
 document
   .querySelector('#hadith-degree')
   .addEventListener('change', function () {
-    hadithDegreeSelected = this.value;
+    hadithDegreeSelected = {
+      id:'d[]',
+      values:this.value
+    };
   });
 document
   .querySelector('#search-zone')
   .addEventListener('change', function () {
-    searchZoneSelected = this.value;
+    searchZoneSelected = {
+      id:'t[]',
+      values:this.value
+    };
   });
 // submit form
 let form = document.getElementById('myForm');

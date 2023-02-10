@@ -284,9 +284,14 @@ footer {
 .settings-box.open {
   height: 65vh;
 }
-@media (max-width: 768px) {
+@media (max-width: 1357px) {
   .settings-box.open {
     height: 100vh!important;
+  }
+} 
+@media (max-width: 768px) {
+  .settings-box.open {
+    height:130vh!important;
   }
 } 
 .settings-box .toggle-settings {
@@ -324,7 +329,22 @@ footer {
   flex-wrap: wrap;
   padding-top: 11px;
   padding-right: 24px;
+  overflow: hidden;
 }
+/* @media (max-width: 1039px)and(min-width:765px) {
+  .settings-box .container-main-search {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 11px;
+    padding-right: 24px;
+    justify-content: center;
+  }
+}  */
+@media (max-width: 749px) {
+  .chose{
+    padding: 0px;
+  }
+} 
 .search-zone>label{
   color: var(--main-color);
   font-weight: 500;
