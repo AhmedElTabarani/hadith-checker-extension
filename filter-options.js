@@ -23,7 +23,7 @@ VirtualSelect.init({
 VirtualSelect.init({
   ele: '#search-zone',
   options: searchZone,
-  search: false,
+  search: false, 
   multiple: true,
   maxValues:1,
   dropboxWidth: '250px',
@@ -38,9 +38,10 @@ VirtualSelect.init({
   multiple: true,
   placeholder: 'ابحث في الكتب',
   searchPlaceholderText: 'ابحث',
-  dropboxWidth: '203px',
+  dropboxWidth: '100%',
   textDirection: 'rtl',
-});
+  popupDropboxBreakpoint:"3000px"
+});   
 //select mohdith
 VirtualSelect.init({
   ele: '#mohdith',
@@ -49,8 +50,9 @@ VirtualSelect.init({
   multiple: true,
   placeholder: 'ابحث في المحدثين',
   searchPlaceholderText: 'ابحث',
-  dropboxWidth: '203px',
+  dropboxWidth: '100%',
   textDirection: 'rtl',
+  popupDropboxBreakpoint:"3000px"
 });
 //get selected value
 let bookSelected = '';

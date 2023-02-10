@@ -282,21 +282,30 @@ footer {
   overflow: scroll;
 }
 .settings-box.open {
-  height: 65vh;
+  height: 68vh;
+  overflow: hidden;
 }
 @media (max-width: 1357px) {
   .settings-box.open {
-    height: 100vh!important;
+    height: 82vh!important;
+    overflow:  hidden;
   }
 } 
+/* @media (max-width: 648px) {
+.hadith-degree{
+  flex: 1;
+  display: flex;
+}
+}  */
 @media (max-width: 768px) {
   .settings-box.open {
-    height:130vh!important;
+    height: 124vh!important;
+    overflow: hidden !important;
   }
 } 
 .settings-box .toggle-settings {
   background-color: #fff;
-  text-align: center;
+  text-align: center; 
   border-radius: 10px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
   cursor: pointer;
@@ -340,10 +349,15 @@ footer {
     justify-content: center;
   }
 }  */
-@media (max-width: 749px) {
+@media (max-width: 679px) {
   .chose{
-    padding: 0px;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    width: 50%;
   }
+  .vscomp-wrapper {
+    width: 165px !important;
+}
 } 
 .search-zone>label{
   color: var(--main-color);
