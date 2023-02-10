@@ -51,86 +51,19 @@
         <div class="container-main-search">
           <div class="search-zone">
             <label>نطاق البحث</label>
-            <div>
-              <input type="radio" d="t-all" name="t" value="*" />
-              <label for="t-all">جميع الأحاديث</label>
-            </div>
-            <div>
-              <input type="radio" id="t-0" value="0" name="t" />
-              <label for="t-0">الأحاديث المرفوعة</label>
-            </div>
-            <div>
-              <input type="radio" id="t-1" value="1" name="t" />
-              <label for="t-1">الأحاديث القدسية</label>
-            </div>
-            <div>
-              <input type="radio" id="t-2" value="2" name="t" />
-              <label for="t-2">آثار الصحابة</label>
-            </div>
-            <div>
-              <input type="radio" id="t-3" value="3" name="t" />
-              <label for="t-3">شروح الأحاديث</label>
-            </div>
+            <div id="search-zone"></div>
           </div>
           <div class="hadith-degree">
             <label>درجة الحديث</label>
-
-            <div class="hadith-degree-checkbox">
-              <input
-                type="checkbox"
-                value="1"
-                id="degree-1"
-                class="degreeCheckbox"
-                name="d[]"
-              />
-              <label for="degree-1"
-                >أحاديث حكم المحدثون عليها بالصحة</label
-              >
-            </div>
-            <div class="hadith-degree-checkbox">
-              <input
-                type="checkbox"
-                value="2"
-                id="degree-2"
-                class="degreeCheckbox"
-                name="d[]"
-              />
-              <label for="degree-2"
-                >أحاديث حكم المحدثون على أسانيدها بالصحة</label
-              >
-            </div>
-            <div class="hadith-degree-checkbox">
-              <input
-                type="checkbox"
-                value="3"
-                id="degree-3"
-                class="degreeCheckbox"
-                name="d[]"
-              />
-              <label for="degree-3"
-                >أحاديث حكم المحدثون عليها بالضعف</label
-              >
-            </div>
-            <div class="hadith-degree-checkbox">
-              <input
-                type="checkbox"
-                value="4"
-                id="degree-4"
-                class="degreeCheckbox"
-                name="d[]"
-              />
-              <label for="degree-4"
-                >أحاديث حكم المحدثون على أسانيدها بالضعف</label
-              >
-            </div>
+            <div id="hadith-degree"></div>
           </div>
           <div class="chose">
+            <label>الكتب</label>
             <div id="book"></div>
-            <p class="validbook"></p>
           </div>
           <div class="chose">
+            <label>المحدثين</label>
             <div id="mohdith"></div>
-            <p class="validmohdith"></p>
           </div>
         </div>
         <button type="submit" class="search-btn" >بحث</button>
