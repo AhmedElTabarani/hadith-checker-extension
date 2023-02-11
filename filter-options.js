@@ -94,7 +94,7 @@ document
   .addEventListener('change', function () {
     bookSelected = {
       id: 'm[]',
-      values: this.value,
+      value: this.value,
     };
   });
 document
@@ -102,7 +102,7 @@ document
   .addEventListener('change', function () {
     mohdithSelected = {
       id: 's[]',
-      values: this.value,
+      value: this.value,
     };
   });
 document
@@ -110,7 +110,7 @@ document
   .addEventListener('change', function () {
     hadithDegreeSelected = {
       id:'d[]',
-      values:this.value
+      value:this.value
     };
   });
 document
@@ -118,7 +118,7 @@ document
   .addEventListener('change', function () {
     searchZoneSelected = {
       id:'t',
-      values:this.value
+      value:this.value
     };
   });
   document
@@ -126,7 +126,7 @@ document
   .addEventListener('change', function () {
     rawiSelected = {
       id: 'rawi[]',
-      values: this.value,
+      value: this.value,
     };
   });
   document
@@ -134,7 +134,7 @@ document
   .addEventListener('change', function () {
     searchMethodSelected = {
       id: 'st',
-      values: this.value,
+      value: this.value,
     };
   });
   document
@@ -143,7 +143,7 @@ document
     console.log(this.value);
     ignoreWordSelected = {
       id: 'xclude',
-      values: this.value,
+      value: this.value,
     };
   });
 // submit form
