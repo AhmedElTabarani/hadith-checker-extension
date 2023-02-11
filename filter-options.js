@@ -3,6 +3,8 @@ import { allBooks } from './utils/allBooks.js';
 import { allMohdith } from './utils/allMohdith.js';
 import { hadithDegree } from './utils/hadithDegree.js';
 import { searchZone } from './utils/searchZone.js';
+import { Elrawi } from './utils/Elrawi.js';
+import { searchMethod } from './utils/searchMethod.js';
 //show setting box
 document.querySelector('.toggle-settings .fa-gear').onclick =
   function () {
@@ -24,11 +26,11 @@ VirtualSelect.init({
   ele: '#search-zone',
   options: searchZone,
   search: false, 
-  multiple: true,
-  maxValues:1,
-  dropboxWidth: '250px',
+  multiple: false,
+  dropboxWidth: '100%',
+  placeholder: 'اختر نطاق البحث',
   textDirection: 'rtl',
-  keepAlwaysOpen: true,
+  popupDropboxBreakpoint:"3000px"
 });
 //select books
 VirtualSelect.init({
@@ -54,11 +56,39 @@ VirtualSelect.init({
   textDirection: 'rtl',
   popupDropboxBreakpoint:"3000px"
 });
+//select Elrawi
+VirtualSelect.init({
+  ele: '#rawi',
+  options: Elrawi,
+  search: true,
+  multiple: true,
+  placeholder: 'ابحث في الرواه',
+  searchPlaceholderText: 'ابحث',
+  dropboxWidth: '100%',
+  textDirection: 'rtl',
+  popupDropboxBreakpoint:"3000px"
+});
+//select search method
+VirtualSelect.init({
+  ele: '#search-method',
+  options: searchMethod,
+  search: false,
+  multiple: false,
+  placeholder: 'تحديد طريقة البحث',
+  searchPlaceholderText: 'ابحث',
+  dropboxWidth: '100%',
+  textDirection: 'rtl',
+  popupDropboxBreakpoint:"3000px"
+});
+
 //get selected value
 let bookSelected = '';
 let mohdithSelected = '';
 let searchZoneSelected = '';
 let hadithDegreeSelected = '';
+let rawiSelected = '';
+let searchMethodSelected = '';
+let ignoreWordSelected = '';
 document
   .querySelector('#mohdith')
   .addEventListener('change', function () {
@@ -91,6 +121,31 @@ document
       values:this.value
     };
   });
+  document
+  .querySelector('#rawi')
+  .addEventListener('change', function () {
+    rawiSelected = {
+      id: 'rawi[]',
+      values: this.value,
+    };
+  });
+  document
+  .querySelector('#search-method')
+  .addEventListener('change', function () {
+    searchMethodSelected = {
+      id: 'st',
+      values: this.value,
+    };
+  });
+  document
+  .querySelector('#notget')
+  .addEventListener('change', function () {
+    console.log(this.value);
+    ignoreWordSelected = {
+      id: 'xclude',
+      values: this.value,
+    };
+  });
 // submit form
 let form = document.getElementById('myForm');
 const handleSubmit = (e) => {
@@ -99,5 +154,8 @@ const handleSubmit = (e) => {
   console.log(bookSelected);
   console.log(searchZoneSelected)
   console.log(hadithDegreeSelected)
+  console.log(rawiSelected)
+  console.log(searchMethodSelected)
+  console.log(ignoreWordSelected)
 };
 form.addEventListener('submit', handleSubmit);

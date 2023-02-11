@@ -125,9 +125,11 @@ a:hover {
 .hadith-degree {
   font-size: 18px;
   padding-right: 2em;
-  padding-top: 0.5em;
+  padding-top: 0.5em; 
 }
-
+label {
+  display: block;
+}
 .hadith-degree > label {
   color: var(--main-color);
   font-weight: 500;
@@ -282,12 +284,12 @@ footer {
   overflow: scroll;
 }
 .settings-box.open {
-  height: 68vh;
+  height: 79vh;
   overflow: hidden;
 }
 @media (max-width: 1357px) {
   .settings-box.open {
-    height: 82vh!important;
+    height: 100vh!important;
     overflow:  hidden;
   }
 } 
@@ -299,7 +301,7 @@ footer {
 }  */
 @media (max-width: 768px) {
   .settings-box.open {
-    height: 124vh!important;
+    height: 100vh!important;
     overflow: hidden !important;
   }
 } 
@@ -410,7 +412,6 @@ footer {
   border: none !important;
   border-radius: 14px;
   width: max-content !important;
-  height: 250px !important;
   overflow: visible;
 }
 .hadith-degree .vscomp-option-text,.search-zone .vscomp-option-text {
@@ -443,4 +444,49 @@ footer {
 .chose{
   padding-right: 2em;
   padding-top: 0.5em;
+}
+#notget{
+  display: block;
+  margin-top: 16px;
+  margin-right: 8px;
+  margin-bottom: 11px;
+  width: 88%;
+  border: none;
+  padding: 15px 10px;
+  border-radius: 14px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+}
+#notget:focus{
+  outline: none;
+}
+.searchone{
+  display: flex;
+  flex-direction: column;
+  width: 386px;
+  border-left: 1px solid #ddd;
+}
+.searchone .chose{
+  width: 80%;
+}
+.searchone .vscomp-wrapper{
+  width: 100%;
+}
+.searchtwo{
+  display: flex;
+  flex: 1;
+  padding-right: 29px;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .searchtwo{
+    padding-right: 0px;
+  }
+  .searchone{
+    width: 100% !important;
+  }
+}
+@media (max-width: 1000px) {
+  .searchone{
+    width: 100% !important;
+  }
 }
