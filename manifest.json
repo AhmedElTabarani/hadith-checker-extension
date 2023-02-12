@@ -1,6 +1,6 @@
 {
-  "name": "Hadith Checker",
-  "description": "Checking the selected hadith, whether it is fabricated or authentic",
+  "name": "التحقق من الأحاديث",
+  "description": "إضافة للمتصفح تستطيع من خلالها أن تتفقد الأحاديث هل هي موضوعة أو صحيحة",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
