@@ -28,6 +28,7 @@ const getHadith = async (query = '') => {
     showMessage(
       `<span>لا توجد أي نتائج، حاول أن تحدد نصًا أخر، أو عدد كلمات أكثر</span>
       <span>أو أن تحدد نص عربي تعتقد أنه حديث</span>
+      <span>أو أن تغير اختيارات البحث</span>
       <br/>`,
     );
     return;
