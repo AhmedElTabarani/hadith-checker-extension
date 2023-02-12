@@ -96,6 +96,7 @@ a:hover {
   background-color: var(--main-color);
   font-size: 1.5em;
   border-radius: 15px;
+  border: none;
   margin: 0.25em 1.5em;
   padding: 0.25em 1.5em;
   transition: 0.2s ease;
@@ -104,6 +105,7 @@ a:hover {
 .copy-btn {
   margin: 0;
   font-size: 1rem;
+  border: none ;
 }
 
 .copy-btn:disabled,
@@ -120,6 +122,25 @@ a:hover {
 
 .nice-btn:active {
   background-color: var(--main-color-dark);
+}
+
+.hadith-degree {
+  font-size: 18px;
+  padding-right: 2em;
+  padding-top: 0.5em; 
+}
+label {
+  display: block;
+}
+.hadith-degree > label {
+  color: var(--main-color);
+  font-weight: 500;
+}
+.hadith-degree-checkbox {
+  padding: 0.5em 0;
+}
+.hadith-degree-checkbox > label {
+  padding-right: 0.5em;
 }
 
 #page-counter,
@@ -257,3 +278,217 @@ footer {
 }
 
 /* loader css */
+/*new code*/
+.settings-box {
+  background-color: transparent;
+  height: 70px;
+  transition: 0.3s;
+  overflow: scroll;
+}
+.settings-box.open {
+  height: 79vh;
+  overflow: hidden;
+}
+@media (max-width: 1357px) {
+  .settings-box.open {
+    height: 100vh!important;
+    overflow:  hidden;
+  }
+} 
+/* @media (max-width: 648px) {
+.hadith-degree{
+  flex: 1;
+  display: flex;
+}
+}  */
+@media (max-width: 768px) {
+  .settings-box.open {
+    height: 100vh!important;
+    overflow: hidden !important;
+  }
+} 
+.settings-box .toggle-settings {
+  background-color: #fff;
+  text-align: center; 
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+  cursor: pointer;
+  width: 40px;
+  align-items: center;
+  display: inline-block;
+  height: 34px;
+  margin: 8px;
+}
+.settings-box .toggle-settings .fa-gear {
+  width: 30px;
+  padding: 8px 0;
+  transition: all 0.5s ease;
+  font-size: 16px;
+}
+.settings-box .search {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #fff;
+  margin: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.settings-box .search:focus {
+  outline: #0070f3;
+}
+
+.settings-box .container-main-search {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 11px;
+  padding-right: 24px;
+  overflow: hidden;
+}
+/* @media (max-width: 1039px)and(min-width:765px) {
+  .settings-box .container-main-search {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 11px;
+    padding-right: 24px;
+    justify-content: center;
+  }
+}  */
+@media (max-width: 679px) {
+  .chose{
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    width: 50%;
+  }
+  .vscomp-wrapper {
+    width: 180px !important;
+}
+} 
+.search-zone>label{
+  color: var(--main-color);
+  font-weight: 500;
+}
+.search-zone{
+  font-size: 18px;
+  padding-right: 2em;
+  padding-top: 0.5em;
+}
+.vscomp-wrapper{
+  margin: 6px;
+  width: 206px;
+  padding: 6px;
+  text-align: center;
+  border-radius: 14px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+}
+.vscomp-toggle-button{
+  border: none !important;;
+}
+.vscomp-wrapper.focused .vscomp-toggle-button, .vscomp-wrapper:focus .vscomp-toggle-button {
+  box-shadow:none !important
+}
+.vscomp-dropbox-container, .pop-comp-wrapper, .position-bottom{
+  transform: translate3d(1px, 56px, 0px) !important;
+}
+.search-btn{
+  background-color: #0070f3;
+  border: none;
+  color: #fff;
+  padding: 10px 15px;
+  /* float: left; */
+  display: block;
+  /* margin-left: 60px; */
+  border-radius: 8px;
+  margin: 27px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.vscomp-wrapper.has-select-all .vscomp-toggle-all-button {
+  display: none !important;
+}
+.hadith-degree .vscomp-dropbox-container, .hadith-degree .pop-comp-wrapper, .hadith-degree .position-bottom,.search-zone .vscomp-dropbox-container, .search-zone .pop-comp-wrapper, .search-zone .position-bottom{
+  transform: translate3d(30px, -26px, 0px) !important;
+}
+.hadith-degree .vscomp-wrapper.keep-always-open .vscomp-dropbox,.search-zone .vscomp-wrapper.keep-always-open .vscomp-dropbox {
+  transition-duration: 0s;
+  box-shadow:none!important;
+  border: none !important;
+  border-radius: 14px;
+  width: max-content !important;
+  overflow: visible;
+}
+.hadith-degree .vscomp-option-text,.search-zone .vscomp-option-text {
+  overflow: visible !important;
+  font-size: 17px;
+}
+.hadith-degree .vscomp-search-container,.search-zone .vscomp-search-container {
+  display: none !important;
+}
+.hadith-degree .vscomp-wrapper.keep-always-open.focused,.hadith-degree .vscomp-wrapper.keep-always-open:focus,.hadith-degree .vscomp-wrapper.keep-always-open:hover
+,.search-zone .vscomp-wrapper.keep-always-open.focused,.search-zone .vscomp-wrapper.keep-always-open:focus,.search-zone .vscomp-wrapper.keep-always-open:hover
+{
+  box-shadow:none !important;
+}
+.hadith-degree .vscomp-wrapper,.search-zone .vscomp-wrapper{
+  box-shadow:none !important;
+}
+.hadith-degree .vscomp-wrapper.text-direction-rtl.keep-always-open .vscomp-clear-button,
+.search-zone .vscomp-wrapper.text-direction-rtl.keep-always-open .vscomp-clear-button
+ {
+  display: none;
+}
+.chose label{
+  margin-right: 14px;
+  color: var(--main-color);
+  padding-top: 0.5em;
+  font-size: 18px;
+  font-weight: 500;
+}
+.chose{
+  padding-right: 2em;
+  padding-top: 0.5em;
+}
+#notget{
+  display: block;
+  margin-top: 16px;
+  margin-right: 8px;
+  margin-bottom: 11px;
+  width: 88%;
+  border: none;
+  padding: 15px 10px;
+  border-radius: 14px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
+}
+#notget:focus{
+  outline: none;
+}
+.searchone{
+  display: flex;
+  flex-direction: column;
+  width: 386px;
+  border-left: 1px solid #ddd;
+}
+.searchone .chose{
+  width: 80%;
+}
+.searchone .vscomp-wrapper{
+  width: 100%;
+}
+.searchtwo{
+  display: flex;
+  flex: 1;
+  padding-right: 29px;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .searchtwo{
+    padding-right: 0px;
+  }
+  .searchone{
+    width: 100% !important;
+  }
+}
+@media (max-width: 1000px) {
+  .searchone{
+    width: 100% !important;
+  }
+}

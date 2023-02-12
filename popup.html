@@ -8,10 +8,17 @@
       content="width=device-width, initial-scale=1.0"
     />
     <script src="./thirdparty/he.min.js"></script>
+    <script src="./filter-options.js" defer type="module"></script>
     <script src="./popup.js" defer type="module"></script>
     <link
       href="http://fonts.cdnfonts.com/css/neo-sans-arabic"
       rel="stylesheet"
+    />
+    <link rel="stylesheet" href="thirdparty/virtual-select.min.css" />
+    <script src="thirdparty/virtual-select.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     />
     <link rel="stylesheet" href="./popup.css" />
     <title>Hadith Checker</title>
@@ -36,12 +43,58 @@
           البحث في صحيح مسلم
         </button>
       </div>
+      <div class="settings-box">
+        <form id="option-form">
+          <div class="toggle-settings">
+            <i class="fa fa-gear"></i>
+          </div>
+          <div class="container-main-search">
+            <div class="searchone">
+              <div class="hadith-degree">
+                <label>درجة الحديث</label>
+                <div id="hadith-degree"></div>
+              </div>
+              <div class="chose">
+                <label>كلمة أو جملة تريد استبعادها من البحث</label>
+                <input
+                  id="notget"
+                  type="text"
+                  placeholder="ادخل كلمه او جمله"
+                />
+              </div>
+              <div class="chose">
+                <label>نطاق البحث</label>
+                <div id="search-zone"></div>
+              </div>
+            </div>
+
+            <div class="searchtwo">
+              <div class="chose">
+                <label>الكتاب</label>
+                <div id="book"></div>
+              </div>
+              <div class="chose">
+                <label>المحدث</label>
+                <div id="mohdith"></div>
+              </div>
+              <div class="chose">
+                <label>الراوي</label>
+                <div id="rawi"></div>
+              </div>
+              <div class="chose">
+                <label>طريقة البحث</label>
+                <div id="search-method"></div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="search-btn">بحث</button>
+        </form>
+      </div>
       <p id="page-counter">الصفحة رقم: <span></span></p>
       <p id="hadith-counter">عدد النتائج: <span></span></p>
       <div id="loader" class="loader-hide">
         <div class="loader"></div>
       </div>
-
       <div id="content"></div>
 
       <div class="group-btn">

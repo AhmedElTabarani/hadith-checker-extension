@@ -1,43 +1,26 @@
 import { searchForHadith } from './utils/searchForHadith.js';
 import { convertHTMLHadithToJSON } from './utils/convertHTMLHadithToJSON.js';
-
 const content = document.getElementById('content');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 const pageCounter = document.querySelector('#page-counter span');
 const hadithCounter = document.querySelector('#hadith-counter span');
 const loader = document.getElementById('loader');
+const settings = document.querySelector('.settings-box');
 
 let currPage = 1;
 let currTabId = 'main-tab';
 let numberOfHadith;
 let currText = '';
 let dorarSearchLink = '';
+let currQuery = '';
 
-const getQuery = () => {
-  const query = {};
-  const dataTab = {
-    'main-tab': {
-      bookIds: [0],
-    },
-    'bukhari-tab': {
-      bookIds: [6216],
-    },
-    'muslim-tab': {
-      bookIds: [3088],
-    },
-  };
-
-  query.books = dataTab[currTabId].bookIds
-    .map((id) => `s[]=${id}`)
-    .join('&');
-
-  return query;
-};
-
-const getHadith = async () => {
+const getHadith = async (query = '') => {
   setLoader();
-  const query = getQuery();
+
+  if (currTabId === 'bukhari-tab') query = 's[]=6216';
+  else if (currTabId === 'muslim-tab') query = 's[]=3088';
+
   const html = await searchForHadith(currText, currPage, query);
   const data = convertHTMLHadithToJSON(html);
   numberOfHadith = data.length;
@@ -48,12 +31,14 @@ const getHadith = async () => {
       <br/>`,
     );
     return;
-  }
+  } else showMessage('');
+
   updateContent(data);
   hideLoader();
   return data;
 };
 
+// tODO: refactor this function or divide it or do anything to it !!
 const updateContent = (allHadith) => {
   const allCardsDiv = allHadith.map((_hadith) => {
     const {
@@ -138,18 +123,30 @@ const hideLoader = () => {
 };
 
 // It will only run once (when the window is rendering for the first time)
-chrome.storage.local.get('text', async ({ text }) => {
+chrome.storage.local.get('text', ({ text }) => {
   currText = text;
   dorarSearchLink = `https://dorar.net/hadith/search?q=${currText}`;
 
-  await getHadith();
+  chrome.storage.local.get('options', async ({ options }) => {
+    const query = Object.values(options)
+      .filter((option) => option.value.length > 0)
+      .map((option) => {
+        if (Array.isArray(option.value))
+          return option.value
+            .map((value) => `${option.id}=${value}`)
+            .join('&');
+        else return `${option.id}=${option.value}`;
+      })
+      .join('&');
+    currQuery = query;
+    await getHadith(query);
+  });
 });
 
 next.addEventListener('click', async (e) => {
   e.preventDefault();
-  console.log(currPage);
   currPage += 1;
-  const allHadith = await getHadith();
+  const allHadith = await getHadith(currQuery);
   if (!allHadith) {
     currPage -= 1;
     return;
@@ -159,9 +156,10 @@ prev.addEventListener('click', async (e) => {
   e.preventDefault();
   if (currPage === 1) return;
   currPage -= 1;
-  await getHadith();
+  await getHadith(currQuery);
 });
 
+// tODO: can make it better ?
 Array.from(document.getElementsByClassName('tab-btn')).forEach(
   (tabBtn) => {
     tabBtn.addEventListener('click', async (e) => {
@@ -175,7 +173,11 @@ Array.from(document.getElementsByClassName('tab-btn')).forEach(
           : tabLink.classList.remove('active'),
       );
       currTabId = ele.dataset.tabid;
-      await getHadith();
+
+      if (currTabId !== 'main-tab') settings.style.display = 'none';
+      else settings.style.display = 'block';
+
+      await getHadith(currQuery);
     });
   },
 );
