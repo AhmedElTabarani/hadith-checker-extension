@@ -3,7 +3,7 @@ export const allMohdith = [
   { value: '94', label: 'سعيد بن المسيب' },
   { value: '131', label: 'أيوب السختياني' },
   { value: '150', label: 'أبو حنيفة' },
-  { value: '151', label: 'ابن جريج' }, 
+  { value: '151', label: 'ابن جريج' },
   { value: '153', label: 'معمر بن راشد الأزدي' },
   { value: '160', label: 'شعبة بن الحجاج' },
   { value: '161', label: 'سفيان الثوري' },
@@ -195,5 +195,5 @@ export const allMohdith = [
   { value: '1420', label: 'الألباني' },
   { value: '1421', label: 'ابن عثيمين' },
   { value: '1422', label: 'الوادعي' },
-  { value: '1438', label: 'شعيب الأرناووط' }
+  { value: '1438', label: 'شعيب الأرناووط' },
 ];

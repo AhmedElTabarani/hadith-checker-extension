@@ -6,47 +6,21 @@ const prev = document.getElementById('prev');
 const pageCounter = document.querySelector('#page-counter span');
 const hadithCounter = document.querySelector('#hadith-counter span');
 const loader = document.getElementById('loader');
-const degreeCheckbox =
-  document.getElementsByClassName('degreeCheckbox');
+const settings = document.querySelector('.settings-box');
 
 let currPage = 1;
 let currTabId = 'main-tab';
 let numberOfHadith;
 let currText = '';
 let dorarSearchLink = '';
+let currQuery = '';
 
-let currDegrees = [false, false, false, false];
-
-// TODO: can convert it to class ?
-const getQuery = () => {
-  const query = {};
-  const dataTab = {
-    'main-tab': {
-      bookIds: [0],
-    },
-    'bukhari-tab': {
-      bookIds: [6216],
-    },
-    'muslim-tab': {
-      bookIds: [3088],
-    },
-  };
-
-  query.books = dataTab[currTabId].bookIds
-    .map((id) => `s[]=${id}`)
-    .join('&');
-
-  query.degrees = currDegrees
-    .map((d, i) => (d ? `d[]=${i + 1}` : d))
-    .filter((d) => d !== false)
-    .join('&');
-
-  return query;
-};
-
-const getHadith = async () => {
+const getHadith = async (query = '') => {
   setLoader();
-  const query = getQuery();
+
+  if (currTabId === 'bukhari-tab') query = 's[]=6216';
+  else if (currTabId === 'muslim-tab') query = 's[]=3088';
+
   const html = await searchForHadith(currText, currPage, query);
   const data = convertHTMLHadithToJSON(html);
   numberOfHadith = data.length;
@@ -57,7 +31,8 @@ const getHadith = async () => {
       <br/>`,
     );
     return;
-  }
+  } else showMessage('');
+
   updateContent(data);
   hideLoader();
   return data;
@@ -148,29 +123,30 @@ const hideLoader = () => {
 };
 
 // It will only run once (when the window is rendering for the first time)
-chrome.storage.local.get('text', async ({ text }) => {
+chrome.storage.local.get('text', ({ text }) => {
   currText = text;
   dorarSearchLink = `https://dorar.net/hadith/search?q=${currText}`;
 
-  const { degrees } = await chrome.storage.sync.get('degrees');
-  currDegrees = degrees || currDegrees;
-
-  // TODO: move it to a function
-  Array.from(degreeCheckbox).forEach((checkbox, i) => {
-    checkbox.checked = currDegrees[i];
-    checkbox.addEventListener('click', async (e) => {
-      const value = +e.target.value;
-      currDegrees[value - 1] = !currDegrees[value - 1];
-      await chrome.storage.sync.set({ degrees: currDegrees });
-    });
+  chrome.storage.local.get('options', async ({ options }) => {
+    const query = Object.values(options)
+      .filter((option) => option.value.length > 0)
+      .map((option) => {
+        if (Array.isArray(option.value))
+          return option.value
+            .map((value) => `${option.id}=${value}`)
+            .join('&');
+        else return `${option.id}=${option.value}`;
+      })
+      .join('&');
+    currQuery = query;
+    await getHadith(query);
   });
-  await getHadith();
 });
 
 next.addEventListener('click', async (e) => {
   e.preventDefault();
   currPage += 1;
-  const allHadith = await getHadith();
+  const allHadith = await getHadith(currQuery);
   if (!allHadith) {
     currPage -= 1;
     return;
@@ -180,7 +156,7 @@ prev.addEventListener('click', async (e) => {
   e.preventDefault();
   if (currPage === 1) return;
   currPage -= 1;
-  await getHadith();
+  await getHadith(currQuery);
 });
 
 // tODO: can make it better ?
@@ -197,7 +173,11 @@ Array.from(document.getElementsByClassName('tab-btn')).forEach(
           : tabLink.classList.remove('active'),
       );
       currTabId = ele.dataset.tabid;
-      await getHadith();
+
+      if (currTabId !== 'main-tab') settings.style.display = 'none';
+      else settings.style.display = 'block';
+
+      await getHadith(currQuery);
     });
   },
 );
