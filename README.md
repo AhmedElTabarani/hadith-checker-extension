@@ -4,11 +4,28 @@
 
 ## طريقة الاستعمال
 
-فقط حدد النص وإضغط على الزر الأيمن للفأرة ثم اختار خيار `Check this hadith` ثم ستخرج لك نافذة بها `15` نتيجة بحث
+فقط حدد النص وإضغط على الزر الأيمن للفأرة ثم اختار خيار `التحقق من الحديث` ثم ستخرج لك نافذة بها `15` نتيجة بحث
 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/69223584/188214056-3f2cb353-8350-483b-9cfe-3192883371df.png)
+![image](https://user-images.githubusercontent.com/69223584/218287950-2363ff60-a450-429a-9cfb-c932ef32e7a8.png)
+
+</div>
+
+تستطيع اختيار البحث في صحيح البخاري فقط أو صحيح مسلم فقط   
+
+<div align="center">
+
+![image2](https://user-images.githubusercontent.com/69223584/218287955-4e645152-3574-43f9-b5d0-7b55a1cdcb54.png)
+
+</div>
+
+تستطيع تصفية وتغير اختيارات البحث كما يحلو لك  
+
+<div align="center">
+
+![image3](https://user-images.githubusercontent.com/69223584/218287960-d156784d-0350-4dfb-a29e-7c4e321aa817.png)
+
 </div>
 
 ## رابط الإضافة على متجر جوجل
