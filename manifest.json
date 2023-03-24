@@ -1,7 +1,7 @@
 {
-  "name": "التحقق من الأحاديث",
+  "name": "التحقق من الأحاديث | Hadith Checker",
   "description": "إضافة للمتصفح تستطيع من خلالها أن تتفقد الأحاديث هل هي موضوعة أو صحيحة",
-  "version": "1.0",
+  "version": "1.0.1",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js"

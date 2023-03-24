@@ -18,17 +18,15 @@ let currQuery = '';
 const getHadith = async (query = '') => {
   setLoader();
 
-  if (currTabId === 'bukhari-tab') query = 's[]=6216';
-  else if (currTabId === 'muslim-tab') query = 's[]=3088';
+  if (currTabId === 'bukhari-tab') query = 's[]=6216&st=p'; // بحث مطابق في صحيح البخاري فقط
+  else if (currTabId === 'muslim-tab') query = 's[]=3088&st=p'; // بحث مطابق في صحيح مسلم فقط
 
   const html = await searchForHadith(currText, currPage, query);
   const data = convertHTMLHadithToJSON(html);
   numberOfHadith = data.length;
   if (numberOfHadith === 0) {
     showMessage(
-      `<span>لا توجد أي نتائج، حاول أن تحدد نصًا أخر، أو عدد كلمات أكثر</span>
-      <span>أو أن تحدد نص عربي تعتقد أنه حديث</span>
-      <span>أو أن تغير اختيارات البحث</span>
+      `<span>لا توجد أي نتائج</span>
       <br/>`,
     );
     return;
@@ -116,11 +114,12 @@ const showMessage = (text) => {
 
 const setLoader = () => {
   loader.className = 'center';
-  content.innerHTML = '';
+  content.style.display = 'none';
 };
 
 const hideLoader = () => {
   loader.className = 'loader-hide';
+  content.style.display = 'block';
 };
 
 // It will only run once (when the window is rendering for the first time)
@@ -160,7 +159,7 @@ prev.addEventListener('click', async (e) => {
   await getHadith(currQuery);
 });
 
-// tODO: can make it better ?
+// Switching tabs
 Array.from(document.getElementsByClassName('tab-btn')).forEach(
   (tabBtn) => {
     tabBtn.addEventListener('click', async (e) => {
@@ -174,10 +173,10 @@ Array.from(document.getElementsByClassName('tab-btn')).forEach(
           : tabLink.classList.remove('active'),
       );
       currTabId = ele.dataset.tabid;
-
       if (currTabId !== 'main-tab') settings.style.display = 'none';
       else settings.style.display = 'block';
 
+      content.innerHTML = '';
       await getHadith(currQuery);
     });
   },

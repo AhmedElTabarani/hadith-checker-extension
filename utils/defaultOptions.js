@@ -21,7 +21,7 @@ export const defaultOptions = {
   },
   searchMethodSelected: {
     id: 'st',
-    value: 'a',
+    value: 'w', // البحث بجميع الكلمات
   },
   ignoreWordSelected: {
     id: 'xclude',
