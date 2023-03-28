@@ -3,9 +3,14 @@
   "description": "إضافة للمتصفح تستطيع من خلالها أن تتفقد الأحاديث هل هي موضوعة أو صحيحة",
   "version": "1.0.1",
   "manifest_version": 3,
+  "action":{
+    "default_popup": "search-window.html",
+    "default_icon": "./icons/icons32.png"
+  },
   "background": {
     "service_worker": "background.js"
   },
+
   "permissions": ["contextMenus", "storage", "unlimitedStorage"],
   "host_permissions": ["https://dorar.net/"],
   "icons": {
