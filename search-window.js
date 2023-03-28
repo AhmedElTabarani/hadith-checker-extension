@@ -1,12 +1,12 @@
 //for search window
-document.querySelector(
-  '.searchwindow .toggle-settings .fa-gear',
-).onclick = function () {
-  chrome.windows.create({
-    url: chrome.runtime.getURL('popup.html'),
-    type: 'popup',
-  });
-};
+// document.querySelector(
+//   '.searchwindow .toggle-settings .fa-gear',
+// ).onclick = function () {
+//   chrome.windows.create({
+//     url: chrome.runtime.getURL('popup.html'),
+//     type: 'popup',
+//   });
+// };
 //search window
 const searchbar = document.querySelector('#searchbar');
 const btnSearch = document.querySelector('#search-window-btn');
