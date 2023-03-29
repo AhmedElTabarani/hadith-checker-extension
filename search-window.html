@@ -10,6 +10,7 @@
     <script src="./thirdparty/he.min.js"></script>
     <script src="./filter-options.js" defer type="module"></script>
     <script src="./popup.js" defer type="module"></script>
+    <script src="./search-window.js" defer type="module"></script>
     <link
       href="http://fonts.cdnfonts.com/css/neo-sans-arabic"
       rel="stylesheet"
@@ -25,26 +26,16 @@
   </head>
 
   <body>
-    <header>
-      <h1>التحقق من الأحاديث</h1>
-    </header>
-    <main class="main">
-      <div class="tab">
-        <button
-          class="tab-links tab-btn active"
-          data-tabId="main-tab"
-        >
-          الأحاديث
-        </button>
-        <button class="tab-links tab-btn" data-tabId="bukhari-tab">
-          البحث في صحيح البخاري
-        </button>
-        <button class="tab-links tab-btn" data-tabId="muslim-tab">
-          البحث في صحيح مسلم
-        </button>
-      </div>
-      <div class="settings-box">
-        <form id="option-form">
+
+    <main class="searchwindow">
+      <header>
+        <h1>التحقق من الأحاديث</h1>
+      </header>
+      <input id="searchbar" class="searchbar"  type="text" placeholder="ابحث..."/>
+      <p class="err"></p>
+      <button id="search-window-btn" class="search-btn btnn" >ابحث عن حديث</button>
+      <!-- <div class="settings-box">
+        <form id="option-form-searchbar">
           <div class="toggle-settings">
             <i class="fa fa-gear"></i>
           </div>
@@ -89,27 +80,10 @@
           </div>
           <button type="submit" class="search-btn">بحث</button>
         </form>
-      </div>
-      <p id="page-counter">الصفحة رقم: <span></span></p>
-      <p id="hadith-counter">عدد النتائج: <span></span></p>
-      <div id="loader" class="loader-hide">
+      </div> -->
+      <!-- <div id="loader" class="loader-hide">
         <div class="loader"></div>
-      </div>
-      <div id="content"></div>
-
-      <div class="group-btn">
-        <button id="next" class="nice-btn">الصفحة التالية</button>
-        <button id="prev" class="nice-btn">الصفحة السابقة</button>
-      </div>
-      <p id="message"></p>
+      </div> -->
     </main>
-    <footer>
-      <a
-        href="https://github.com/AhmedElTabarani/hadith-checker-extension"
-        target="_blank"
-      >
-        <img src="./icons/GitHub-Mark-32px.png" />
-      </a>
-    </footer>
   </body>
 </html>

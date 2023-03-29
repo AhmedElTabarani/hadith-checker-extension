@@ -61,6 +61,7 @@ header {
   background-color: var(--ele-bg);
   border-bottom: 1px solid var(--ele-bg-dark);
   padding: 15px;
+  width: 100%;
 }
 
 h1 {
@@ -286,7 +287,7 @@ footer {
   overflow: scroll;
 }
 .settings-box.open {
-  height: 79vh;
+  height: 83vh;
   overflow: hidden;
 }
 @media (max-width: 1357px) {
@@ -492,3 +493,28 @@ footer {
     width: 100% !important;
   }
 }
+/*nsearch bar*/
+.searchbar{display: block;
+  margin-top: 16px;
+  margin-right: 8px;
+  margin-bottom: 11px;
+  width: 88%;
+  border: none;
+  padding: 15px 10px;
+  border-radius: 14px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;}
+  .searchbar:focus{
+    outline: #0050ac;
+  }
+  .searchwindow{
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+ .btnn
+  {    width: 80%;}
+  .err{
+    color: red;
+  }

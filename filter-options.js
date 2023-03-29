@@ -13,7 +13,7 @@ chrome.storage.local.get('options', async ({ options }) => {
     options = defaultOptions;
   }
 
-  document.querySelector('.toggle-settings .fa-gear').onclick =
+  document.querySelector('.main .toggle-settings .fa-gear').onclick =
     function () {
       this.classList.toggle('fa-spin');
       document
@@ -85,6 +85,7 @@ chrome.storage.local.get('options', async ({ options }) => {
     popupDropboxBreakpoint: '3000px',
     textDirection: 'rtl',
   });
+
 
   //select Elrawi
   VirtualSelect.init({
@@ -187,3 +188,4 @@ chrome.storage.local.get('options', async ({ options }) => {
     });
   });
 });
+
