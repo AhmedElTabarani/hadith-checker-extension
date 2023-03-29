@@ -12,6 +12,14 @@
 
 </div>
 
+يمكنك أيضًا الضغط على الأيقونة لتستطيع أن تبحث عن أي حديث تريده بشكل مباشر
+
+<div align="center">
+
+![image](https://user-images.githubusercontent.com/69223584/228408873-9f5d3e0a-8c20-4866-bccc-bdd4c3e5d66b.png)
+
+</div>
+
 تستطيع اختيار البحث في صحيح البخاري فقط أو صحيح مسلم فقط   
 
 <div align="center">
