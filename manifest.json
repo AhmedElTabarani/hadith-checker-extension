@@ -3,7 +3,7 @@
   "description": "إضافة للمتصفح تستطيع من خلالها أن تتفقد الأحاديث هل هي موضوعة أو صحيحة",
   "version": "1.0.1",
   "manifest_version": 3,
-  "action":{
+  "action": {
     "default_popup": "search-window.html",
     "default_icon": "./icons/icons32.png"
   },

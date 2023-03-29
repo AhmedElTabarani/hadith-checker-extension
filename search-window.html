@@ -7,16 +7,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <script src="./thirdparty/he.min.js"></script>
-    <script src="./filter-options.js" defer type="module"></script>
-    <script src="./popup.js" defer type="module"></script>
     <script src="./search-window.js" defer type="module"></script>
     <link
       href="http://fonts.cdnfonts.com/css/neo-sans-arabic"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="thirdparty/virtual-select.min.css" />
-    <script src="thirdparty/virtual-select.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
@@ -26,64 +21,20 @@
   </head>
 
   <body>
-
     <main class="searchwindow">
       <header>
         <h1>التحقق من الأحاديث</h1>
       </header>
-      <input id="searchbar" class="searchbar"  type="text" placeholder="ابحث..."/>
+      <input
+        id="searchbar"
+        class="searchbar"
+        type="text"
+        placeholder="البحث عن حديث..."
+      />
       <p class="err"></p>
-      <button id="search-window-btn" class="search-btn btnn" >ابحث عن حديث</button>
-      <!-- <div class="settings-box">
-        <form id="option-form-searchbar">
-          <div class="toggle-settings">
-            <i class="fa fa-gear"></i>
-          </div>
-          <div class="container-main-search">
-            <div class="searchone">
-              <div class="hadith-degree">
-                <label>درجة الحديث</label>
-                <div id="hadith-degree"></div>
-              </div>
-              <div class="chose">
-                <label>كلمة أو جملة تريد استبعادها من البحث</label>
-                <input
-                  id="notget"
-                  type="text"
-                  placeholder="ادخل كلمه او جمله"
-                />
-              </div>
-              <div class="chose">
-                <label>نطاق البحث</label>
-                <div id="search-zone"></div>
-              </div>
-            </div>
-
-            <div class="searchtwo">
-              <div class="chose">
-                <label>الكتاب</label>
-                <div id="book"></div>
-              </div>
-              <div class="chose">
-                <label>المحدث</label>
-                <div id="mohdith"></div>
-              </div>
-              <div class="chose">
-                <label>الراوي</label>
-                <div id="rawi"></div>
-              </div>
-              <div class="chose">
-                <label>طريقة البحث</label>
-                <div id="search-method"></div>
-              </div>
-            </div>
-          </div>
-          <button type="submit" class="search-btn">بحث</button>
-        </form>
-      </div> -->
-      <!-- <div id="loader" class="loader-hide">
-        <div class="loader"></div>
-      </div> -->
+      <button id="search-window-btn" class="search-btn btnn">
+        بحث
+      </button>
     </main>
   </body>
 </html>
