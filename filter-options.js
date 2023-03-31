@@ -122,50 +122,62 @@ chrome.storage.local.get('options', async ({ options }) => {
 
   document
     .querySelector('#hadith-degree')
-    .addEventListener('change', function () {
+    .addEventListener('change', function (e) {
+      let selectedOptions = e.target.getSelectedOptions();
       options.hadithDegreeSelected = {
         id: 'd[]',
         value: this.value,
+        labels: selectedOptions
       };
     });
   document
     .querySelector('#search-zone')
-    .addEventListener('change', function () {
+    .addEventListener('change', function (e) {
+      let selectedOptions = e.target.getSelectedOptions();
       options.searchZoneSelected = {
         id: 't',
         value: this.value,
+        labels: selectedOptions
       };
     });
   document
     .querySelector('#book')
-    .addEventListener('change', function () {
+    .addEventListener('change', function (e) {
+      let selectedOptions = e.target.getSelectedOptions();
       options.bookSelected = {
         id: 's[]',
         value: this.value,
+        labels: selectedOptions
       };
     });
   document
     .querySelector('#mohdith')
-    .addEventListener('change', function () {
+    .addEventListener('change', function (e) {
+      let selectedOptions = e.target.getSelectedOptions();
       options.mohdithSelected = {
         id: 'm[]',
         value: this.value,
+        labels: selectedOptions
       };
     });
   document
     .querySelector('#rawi')
-    .addEventListener('change', function () {
+    .addEventListener('change', function (e) {
+      let selectedOptions = e.target.getSelectedOptions();
       options.rawiSelected = {
         id: 'rawi[]',
         value: this.value,
+        labels: selectedOptions
       };
     });
   document
     .querySelector('#search-method')
-    .addEventListener('change', function () {
+    .addEventListener('change', function (e) {
+      let selectedOptions = e.target.getSelectedOptions();
       options.searchMethodSelected = {
         id: 'st',
         value: this.value,
+        labels: selectedOptions
       };
     });
   document
