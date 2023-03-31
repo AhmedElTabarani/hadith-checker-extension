@@ -1,4 +1,4 @@
-export const Elrawi = [
+export const allRawi = [
   { value: '0', label: 'الجميع' },
   { value: '1', label: 'ابن أبي ذئب' },
   {

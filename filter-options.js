@@ -1,10 +1,10 @@
 //import
-import { allBooks } from './utils/allBooks.js';
-import { allMohdith } from './utils/allMohdith.js';
-import { hadithDegree } from './utils/hadithDegree.js';
-import { searchZone } from './utils/searchZone.js';
-import { Elrawi } from './utils/Elrawi.js';
-import { searchMethod } from './utils/searchMethod.js';
+import { allBooks } from './utils/data/allBooks.js';
+import { allMohdith } from './utils/data/allMohdith.js';
+import { hadithDegree } from './utils/data/hadithDegree.js';
+import { searchZone } from './utils/data/searchZone.js';
+import { allRawi } from './utils/data/allRawi.js';
+import { searchMethod } from './utils/data/searchMethod.js';
 import { defaultOptions } from './utils/defaultOptions.js';
 
 chrome.storage.local.get('options', async ({ options }) => {
@@ -87,10 +87,10 @@ chrome.storage.local.get('options', async ({ options }) => {
   });
 
 
-  //select Elrawi
+  //select allRawi
   VirtualSelect.init({
     ele: '#rawi',
-    options: Elrawi,
+    options: allRawi,
     selectedValue: options.rawiSelected.value,
     search: true,
     multiple: true,
@@ -176,8 +176,6 @@ chrome.storage.local.get('options', async ({ options }) => {
         value: this.value,
       };
     });
-
-  //select ignore word method
 
   // submit form
   const form = document.getElementById('option-form');
