@@ -390,7 +390,7 @@ footer {
 .vscomp-dropbox-container, .pop-comp-wrapper, .position-bottom{
   transform: translate3d(1px, 56px, 0px) !important;
 }
-.search-btn{
+.search-btn, .reset-option-btn{
   background-color: #0070f3;
   border: none;
   color: #fff;

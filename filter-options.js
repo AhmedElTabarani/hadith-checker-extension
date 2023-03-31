@@ -86,7 +86,6 @@ chrome.storage.local.get('options', async ({ options }) => {
     textDirection: 'rtl',
   });
 
-
   //select allRawi
   VirtualSelect.init({
     ele: '#rawi',
@@ -127,7 +126,7 @@ chrome.storage.local.get('options', async ({ options }) => {
       options.hadithDegreeSelected = {
         id: 'd[]',
         value: this.value,
-        labels: selectedOptions
+        labels: selectedOptions,
       };
     });
   document
@@ -137,7 +136,7 @@ chrome.storage.local.get('options', async ({ options }) => {
       options.searchZoneSelected = {
         id: 't',
         value: this.value,
-        labels: selectedOptions
+        labels: selectedOptions,
       };
     });
   document
@@ -147,7 +146,7 @@ chrome.storage.local.get('options', async ({ options }) => {
       options.bookSelected = {
         id: 's[]',
         value: this.value,
-        labels: selectedOptions
+        labels: selectedOptions,
       };
     });
   document
@@ -157,7 +156,7 @@ chrome.storage.local.get('options', async ({ options }) => {
       options.mohdithSelected = {
         id: 'm[]',
         value: this.value,
-        labels: selectedOptions
+        labels: selectedOptions,
       };
     });
   document
@@ -167,7 +166,7 @@ chrome.storage.local.get('options', async ({ options }) => {
       options.rawiSelected = {
         id: 'rawi[]',
         value: this.value,
-        labels: selectedOptions
+        labels: selectedOptions,
       };
     });
   document
@@ -177,7 +176,7 @@ chrome.storage.local.get('options', async ({ options }) => {
       options.searchMethodSelected = {
         id: 'st',
         value: this.value,
-        labels: selectedOptions
+        labels: selectedOptions,
       };
     });
   document
@@ -199,3 +198,10 @@ chrome.storage.local.get('options', async ({ options }) => {
   });
 });
 
+document
+  .getElementById('reset-option-btn')
+  .addEventListener('click', () => {
+    chrome.storage.local.set({ options: defaultOptions }, () => {
+      window.location.reload();
+    });
+  });
