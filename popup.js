@@ -1,5 +1,11 @@
 import { searchForHadith } from './utils/searchForHadith.js';
 import { convertHTMLHadithToJSON } from './utils/convertHTMLHadithToJSON.js';
+import { convertOptionsToQueryString } from './utils/convertOptionsToQueryString.js';
+import {
+  bukhariOptions,
+  muslimOptions,
+} from './utils/defaultOptions.js';
+
 const content = document.getElementById('content');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
@@ -18,8 +24,10 @@ let currQuery = '';
 const getHadith = async (query = '') => {
   setLoader();
 
-  if (currTabId === 'bukhari-tab') query = 's[]=6216&st=p'; // بحث مطابق في صحيح البخاري فقط
-  else if (currTabId === 'muslim-tab') query = 's[]=3088&st=p'; // بحث مطابق في صحيح مسلم فقط
+  if (currTabId === 'bukhari-tab')
+    query = convertOptionsToQueryString(bukhariOptions);
+  else if (currTabId === 'muslim-tab')
+    query = convertOptionsToQueryString(muslimOptions);
 
   const html = await searchForHadith(currText, currPage, query);
   const data = convertHTMLHadithToJSON(html);
@@ -37,7 +45,6 @@ const getHadith = async (query = '') => {
   return data;
 };
 
-// tODO: refactor this function or divide it or do anything to it !!
 const updateContent = (allHadith) => {
   const allCardsDiv = allHadith.map((_hadith) => {
     const {
@@ -128,16 +135,7 @@ chrome.storage.local.get('text', ({ text }) => {
   dorarSearchLink = `https://dorar.net/hadith/search?q=${currText}`;
 
   chrome.storage.local.get('options', async ({ options }) => {
-    const query = Object.values(options)
-      .filter((option) => option.value.length > 0)
-      .map((option) => {
-        if (Array.isArray(option.value))
-          return option.value
-            .map((value) => `${option.id}=${value}`)
-            .join('&');
-        else return `${option.id}=${option.value}`;
-      })
-      .join('&');
+    const query = convertOptionsToQueryString(options);
     currQuery = query;
     await getHadith(query);
   });
