@@ -1,49 +1,20 @@
-import { searchForHadith } from './utils/searchForHadith.js';
-import { convertHTMLHadithToJSON } from './utils/convertHTMLHadithToJSON.js';
 import { convertOptionsToQueryString } from './utils/convertOptionsToQueryString.js';
-import {
-  bukhariOptions,
-  muslimOptions,
-} from './utils/defaultOptions.js';
+import { getHadith } from './utils/getHadith.js';
+import { showMessage } from './utils/sendMessage.js';
+import { updateHadithCounter } from './utils/updateHadithCounter.js';
+import { updatePageCounter } from './utils/updatePageCounter.js';
 
 const content = document.getElementById('content');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
-const pageCounter = document.querySelector('#page-counter span');
-const hadithCounter = document.querySelector('#hadith-counter span');
 const loader = document.getElementById('loader');
 const settings = document.querySelector('.settings-box');
 
 let currPage = 1;
-let currTabId = 'main-tab';
-let numberOfHadith;
 let currText = '';
 let dorarSearchLink = '';
 let currQuery = '';
-
-const getHadith = async (query = '') => {
-  setLoader();
-
-  if (currTabId === 'bukhari-tab')
-    query = convertOptionsToQueryString(bukhariOptions);
-  else if (currTabId === 'muslim-tab')
-    query = convertOptionsToQueryString(muslimOptions);
-
-  const html = await searchForHadith(currText, currPage, query);
-  const data = convertHTMLHadithToJSON(html);
-  numberOfHadith = data.length;
-  if (numberOfHadith === 0) {
-    showMessage(
-      `<span>لا توجد أي نتائج</span>
-      <br/>`,
-    );
-    return;
-  } else showMessage('');
-
-  updateContent(data);
-  hideLoader();
-  return data;
-};
+let currTabId = 'main-id';
 
 const updateContent = (allHadith) => {
   const allCardsDiv = allHadith.map((_hadith) => {
@@ -80,9 +51,6 @@ const updateContent = (allHadith) => {
   </section>
   `;
 
-  updatePageCounter();
-  updateHadithCounter();
-
   const copyButtons = document.getElementsByClassName('copy-btn');
   for (let btn of copyButtons) {
     btn.addEventListener('click', (e) => {
@@ -106,19 +74,6 @@ const updateContent = (allHadith) => {
   }
 };
 
-const updatePageCounter = () => {
-  pageCounter.innerText = currPage;
-};
-const updateHadithCounter = () => {
-  hadithCounter.innerText = numberOfHadith;
-};
-
-const showMessage = (text) => {
-  hideLoader();
-  const message = document.getElementById('message');
-  message.innerHTML = text;
-};
-
 const setLoader = () => {
   loader.className = 'center';
   content.style.display = 'none';
@@ -137,24 +92,89 @@ chrome.storage.local.get('text', ({ text }) => {
   chrome.storage.local.get('options', async ({ options }) => {
     const query = convertOptionsToQueryString(options);
     currQuery = query;
-    await getHadith(query);
+    setLoader();
+    const data = await getHadith(
+      query,
+      currText,
+      currPage,
+      currTabId,
+    );
+
+    updatePageCounter(currPage);
+    updateHadithCounter(data.length);
+
+    if (data.length === 0) {
+      showMessage(
+        `
+        <span>لا توجد أي نتائج</span>
+        <span>حاول تحديد نص أخر او جزء أصغر من الحديث</span>
+        <br/>
+        `,
+      );
+      hideLoader();
+      return;
+    }
+    updateContent(data);
+    showMessage('');
+    hideLoader();
   });
 });
 
 next.addEventListener('click', async (e) => {
   e.preventDefault();
   currPage += 1;
-  const allHadith = await getHadith(currQuery);
-  if (!allHadith) {
+  setLoader();
+  const data = await getHadith(
+    currQuery,
+    currText,
+    currPage,
+    currTabId,
+  );
+
+  updatePageCounter(currPage);
+
+  if (data.length === 0) {
     currPage -= 1;
+    showMessage(
+      `
+      <span>أنت في الصفحة الأخيرة</span>
+      <span>لا توجد أي نتائج أخرى</span>
+      <br/>
+      `,
+    );
+    hideLoader();
+    updatePageCounter(currPage);
     return;
   }
+  updateHadithCounter(data.length);
+  updateContent(data);
+  showMessage('');
+  hideLoader();
 });
 prev.addEventListener('click', async (e) => {
   e.preventDefault();
-  if (currPage === 1) return;
+  if (currPage === 1) {
+    showMessage(
+      `
+      <span>أنت في الصفحة الأولى بالفعل</span>
+      <br/>
+      `,
+    );
+    return;
+  }
   currPage -= 1;
-  await getHadith(currQuery);
+  setLoader();
+  const data = await getHadith(
+    currQuery,
+    currText,
+    currPage,
+    currTabId,
+  );
+  updatePageCounter(currPage);
+  updateHadithCounter(data.length);
+  updateContent(data);
+  showMessage('');
+  hideLoader();
 });
 
 // Switching tabs
@@ -175,7 +195,29 @@ Array.from(document.getElementsByClassName('tab-btn')).forEach(
       else settings.style.display = 'block';
 
       content.innerHTML = '';
-      await getHadith(currQuery);
+      setLoader();
+      const data = await getHadith(
+        currQuery,
+        currText,
+        currPage,
+        currTabId,
+      );
+      updatePageCounter(currPage);
+      updateHadithCounter(data.length);
+      if (data.length === 0) {
+        showMessage(
+          `
+          <span>لا توجد أي نتائج في هذا القسم</span>
+          <span>اختر قسم أخر</span>
+          <br/>
+          `,
+        );
+        hideLoader();
+        return;
+      }
+      updateContent(data);
+      showMessage('');
+      hideLoader();
     });
   },
 );
