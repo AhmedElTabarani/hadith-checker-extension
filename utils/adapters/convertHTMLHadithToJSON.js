@@ -1,7 +1,7 @@
 import {
   getAllHadith,
   getAllHadithInfo,
-} from './extractHadithInfo.js';
+} from '../extractHadithInfo.js';
 
 export const convertHTMLHadithToJSON = (html) => {
   try {

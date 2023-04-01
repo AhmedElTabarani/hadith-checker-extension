@@ -1,4 +1,4 @@
-import { convertOptionsToQueryString } from './utils/convertOptionsToQueryString.js';
+import { convertOptionsToQueryString } from './utils/adapters/convertOptionsToQueryString.js';
 import { getHadith } from './utils/getHadith.js';
 import { showMessage } from './utils/sendMessage.js';
 import { updateHadithCounter } from './utils/updateHadithCounter.js';
@@ -94,9 +94,9 @@ chrome.storage.local.get('text', ({ text }) => {
     currQuery = query;
     setLoader();
     const data = await getHadith(
-      query,
       currText,
       currPage,
+      query,
       currTabId,
     );
 
@@ -125,9 +125,9 @@ next.addEventListener('click', async (e) => {
   currPage += 1;
   setLoader();
   const data = await getHadith(
-    currQuery,
     currText,
     currPage,
+    currQuery,
     currTabId,
   );
 
@@ -165,9 +165,9 @@ prev.addEventListener('click', async (e) => {
   currPage -= 1;
   setLoader();
   const data = await getHadith(
-    currQuery,
     currText,
     currPage,
+    currQuery,
     currTabId,
   );
   updatePageCounter(currPage);
@@ -197,9 +197,9 @@ Array.from(document.getElementsByClassName('tab-btn')).forEach(
       content.innerHTML = '';
       setLoader();
       const data = await getHadith(
-        currQuery,
         currText,
         currPage,
+        currQuery,
         currTabId,
       );
       updatePageCounter(currPage);
