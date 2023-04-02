@@ -284,10 +284,10 @@ footer {
   background-color: transparent;
   height: 70px;
   transition: 0.3s;
-  overflow: scroll;
+  overflow: hidden;
 }
 .settings-box.open {
-  height: 83vh;
+  height: 93vh;
   overflow: hidden;
 }
 @media (max-width: 1357px) {
