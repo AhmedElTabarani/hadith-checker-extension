@@ -8,7 +8,8 @@
     "default_icon": "./icons/icons32.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
 
   "permissions": ["contextMenus", "storage", "unlimitedStorage"],

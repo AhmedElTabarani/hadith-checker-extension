@@ -1,3 +1,5 @@
+import { saveToStorage } from './utils/adapters/saveToStorage.js';
+
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     title: 'التحقق من الحديث | Check Hadith',
@@ -7,10 +9,9 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
-  chrome.storage.local.set({ text: info.selectionText }, async () => {
-    await chrome.windows.create({
-      url: chrome.runtime.getURL('popup.html'),
-      type: 'popup',
-    });
+  await saveToStorage({ text: info.selectionText });
+  await chrome.windows.create({
+    url: chrome.runtime.getURL('popup.html'),
+    type: 'popup',
   });
 });

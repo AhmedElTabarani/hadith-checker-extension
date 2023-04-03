@@ -1,15 +1,15 @@
-// search window
+import { saveToStorage } from './utils/adapters/saveToStorage.js';
+
 const searchbar = document.querySelector('#searchbar');
 const btnSearch = document.querySelector('#search-window-btn');
-btnSearch.addEventListener('click', () => {
+btnSearch.addEventListener('click', async () => {
   if (searchbar.value === '') {
     document.querySelector('.err').innerHTML = 'هذا الحقل مطلوب';
     return;
   }
-  chrome.storage.local.set({ text: searchbar.value }, async () => {
-    await chrome.windows.create({
-      url: chrome.runtime.getURL('popup.html'),
-      type: 'popup',
-    });
+  await saveToStorage({ text: searchbar.value });
+  await chrome.windows.create({
+    url: chrome.runtime.getURL('popup.html'),
+    type: 'popup',
   });
 });

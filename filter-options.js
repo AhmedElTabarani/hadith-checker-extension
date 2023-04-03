@@ -6,10 +6,12 @@ import { searchZone } from './utils/data/searchZone.js';
 import { allRawi } from './utils/data/allRawi.js';
 import { searchMethod } from './utils/data/searchMethod.js';
 import { defaultOptions } from './utils/options/defaultOptions.js';
+import { loadFromStorage } from './utils/adapters/loadFromStorage.js';
+import { saveToStorage } from './utils/adapters/saveToStorage.js';
 
-chrome.storage.local.get('options', async ({ options }) => {
+loadFromStorage('options').then(async (options) => {
   if (!options) {
-    await chrome.storage.local.set({ options: defaultOptions });
+    await saveToStorage({ options: defaultOptions });
     options = defaultOptions;
   }
 
@@ -200,8 +202,7 @@ chrome.storage.local.get('options', async ({ options }) => {
 
 document
   .getElementById('reset-option-btn')
-  .addEventListener('click', () => {
-    chrome.storage.local.set({ options: defaultOptions }, () => {
-      window.location.reload();
-    });
+  .addEventListener('click', async () => {
+    await saveToStorage({ options: defaultOptions });
+    window.location.reload();
   });

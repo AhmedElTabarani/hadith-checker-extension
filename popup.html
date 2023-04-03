@@ -29,20 +29,38 @@
       <h1>التحقق من الأحاديث</h1>
     </header>
     <main class="main">
-      <div class="tab">
-        <button
-          class="tab-links tab-btn active"
-          data-tabId="main-tab"
-        >
-          الأحاديث
-        </button>
-        <button class="tab-links tab-btn" data-tabId="bukhari-tab">
-          البحث في صحيح البخاري
-        </button>
-        <button class="tab-links tab-btn" data-tabId="muslim-tab">
-          البحث في صحيح مسلم
-        </button>
-      </div>
+      <nav class="tab">
+        <ul class="tab-list">
+          <li>
+            <button
+              class="tab-btn active"
+              data-tabId="main-tab"
+              aria-label="View Hadith"
+            >
+              الأحاديث
+            </button>
+          </li>
+          <li>
+            <button
+              class="tab-btn"
+              data-tabId="bukhari-tab"
+              aria-label="Search Sahih Al-Bukhari"
+            >
+              البحث في صحيح البخاري
+            </button>
+          </li>
+          <li>
+            <button
+              class="tab-btn"
+              data-tabId="muslim-tab"
+              aria-label="Search Sahih Muslim"
+            >
+              البحث في صحيح مسلم
+            </button>
+          </li>
+        </ul>
+      </nav>
+
       <div class="settings-box">
         <form id="option-form">
           <div class="toggle-settings">
@@ -99,6 +117,9 @@
         <div class="loader"></div>
       </div>
       <div id="content"></div>
+      <a class="dorar-search-link" href="" target="_blank"
+        >البحث في موقع الدرر السَنية</a
+      >;
 
       <div class="group-btn">
         <button id="next" class="nice-btn">الصفحة التالية</button>
