@@ -4,7 +4,7 @@
   "version": "1.1",
   "manifest_version": 3,
   "action": {
-    "default_popup": "search-window.html",
+    "default_popup": "/public/html/search-window.html",
     "default_icon": "./icons/icons32.png"
   },
   "background": {

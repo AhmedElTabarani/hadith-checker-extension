@@ -1,4 +1,4 @@
-import { saveToStorage } from './utils/adapters/saveToStorage.js';
+import { saveToStorage } from '../../utils/adapters/saveToStorage.js';
 
 const searchbar = document.querySelector('#searchbar');
 const btnSearch = document.querySelector('#search-window-btn');
@@ -9,7 +9,7 @@ btnSearch.addEventListener('click', async () => {
   }
   await saveToStorage({ text: searchbar.value });
   await chrome.windows.create({
-    url: chrome.runtime.getURL('popup.html'),
+    url: chrome.runtime.getURL('index.html'),
     type: 'popup',
   });
 });
