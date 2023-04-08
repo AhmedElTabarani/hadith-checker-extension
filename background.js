@@ -2,7 +2,7 @@ import { saveToStorage } from './utils/adapters/saveToStorage.js';
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    title: 'التحقق من الحديث | Check Hadith',
+    title: 'التحقق من الحديث',
     id: 'check-hadith',
     contexts: ['selection'],
   });
