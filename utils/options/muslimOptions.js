@@ -1,6 +1,7 @@
 export const muslimOptions = {
   bookSelected: {
     id: 's[]',
+    key: 'الكتاب',
     value: ['3088'],
     labels: [
       {
@@ -11,6 +12,7 @@ export const muslimOptions = {
   },
   searchMethodSelected: {
     id: 'st',
+    key: 'طريقة البحث',
     value: 'p',
     labels: {
       value: 'p',

@@ -127,6 +127,7 @@ loadFromStorage('options').then(async (options) => {
       let selectedOptions = e.target.getSelectedOptions();
       options.hadithDegreeSelected = {
         id: 'd[]',
+        key: 'درجة الحديث',
         value: this.value,
         labels: selectedOptions,
       };
@@ -137,6 +138,7 @@ loadFromStorage('options').then(async (options) => {
       let selectedOptions = e.target.getSelectedOptions();
       options.searchZoneSelected = {
         id: 't',
+        key: 'نطاق الحديث',
         value: this.value,
         labels: selectedOptions,
       };
@@ -147,6 +149,7 @@ loadFromStorage('options').then(async (options) => {
       let selectedOptions = e.target.getSelectedOptions();
       options.bookSelected = {
         id: 's[]',
+        key: 'الكتاب',
         value: this.value,
         labels: selectedOptions,
       };
@@ -157,6 +160,7 @@ loadFromStorage('options').then(async (options) => {
       let selectedOptions = e.target.getSelectedOptions();
       options.mohdithSelected = {
         id: 'm[]',
+        key: 'المحدث',
         value: this.value,
         labels: selectedOptions,
       };
@@ -167,6 +171,7 @@ loadFromStorage('options').then(async (options) => {
       let selectedOptions = e.target.getSelectedOptions();
       options.rawiSelected = {
         id: 'rawi[]',
+        key: 'الراوي',
         value: this.value,
         labels: selectedOptions,
       };
@@ -177,6 +182,7 @@ loadFromStorage('options').then(async (options) => {
       let selectedOptions = e.target.getSelectedOptions();
       options.searchMethodSelected = {
         id: 'st',
+        key: 'طريقة البحث',
         value: this.value,
         labels: selectedOptions,
       };
@@ -186,6 +192,7 @@ loadFromStorage('options').then(async (options) => {
     .addEventListener('change', function () {
       options.ignoreWordSelected = {
         id: 'xclude',
+        key: 'كلمة أو جملة مستبعدة',
         value: this.value,
       };
     });

@@ -1,6 +1,7 @@
 export const bukhariOptions = {
   bookSelected: {
     id: 's[]',
+    key: 'الكتاب',
     value: ['6216'],
     labels: [
       {
@@ -11,6 +12,7 @@ export const bukhariOptions = {
   },
   searchMethodSelected: {
     id: 'st',
+    key: 'طريقة البحث',
     value: 'p',
     labels: {
       value: 'p',

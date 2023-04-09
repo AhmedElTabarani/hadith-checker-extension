@@ -1,6 +1,7 @@
 export const defaultOptions = {
   bookSelected: {
     id: 's[]',
+    key: 'الكتاب',
     value: ['0'],
     labels: [
       {
@@ -11,6 +12,7 @@ export const defaultOptions = {
   },
   hadithDegreeSelected: {
     id: 'd[]',
+    key: 'درجة الحديث',
     value: ['0'],
     labels: [
       {
@@ -21,10 +23,12 @@ export const defaultOptions = {
   },
   ignoreWordSelected: {
     id: 'xclude',
+    key: 'كلمة أو جملة مستبعدة',
     value: '',
   },
   mohdithSelected: {
     id: 'm[]',
+    key: 'المحدث',
     value: ['0'],
     labels: [
       {
@@ -35,6 +39,7 @@ export const defaultOptions = {
   },
   rawiSelected: {
     id: 'rawi[]',
+    key: 'الراوي',
     value: ['0'],
     labels: [
       {
@@ -45,6 +50,7 @@ export const defaultOptions = {
   },
   searchMethodSelected: {
     id: 'st',
+    key: 'طريقة البحث',
     value: 'w',
     labels: {
       value: 'w',
@@ -53,6 +59,7 @@ export const defaultOptions = {
   },
   searchZoneSelected: {
     id: 't',
+    key: 'نطاق الحديث',
     value: '*',
     labels: {
       value: '*',
