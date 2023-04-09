@@ -360,7 +360,7 @@ footer {
   }
 }  */
 @media (max-width: 679px) {
-  .chose {
+  .option {
     padding-right: 0px !important;
     padding-top: 0px !important;
     width: 50%;
@@ -461,14 +461,14 @@ footer {
   .vscomp-clear-button {
   display: none;
 }
-.chose label {
+.option label {
   margin-right: 14px;
   color: var(--main-color);
   padding-top: 0.5em;
   font-size: 18px;
   font-weight: 500;
 }
-.chose {
+.option {
   padding-right: 2em;
   padding-top: 0.5em;
 }
@@ -492,7 +492,7 @@ footer {
   width: 386px;
   border-left: 1px solid #ddd;
 }
-.searchone .chose {
+.searchone .option {
   width: 80%;
 }
 .searchone .vscomp-wrapper {
