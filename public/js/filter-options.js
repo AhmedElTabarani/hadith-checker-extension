@@ -1,4 +1,3 @@
-//import
 import { allBooks } from '../../utils/data/allBooks.js';
 import { allMohdith } from '../../utils/data/allMohdith.js';
 import { hadithDegree } from '../../utils/data/hadithDegree.js';
@@ -23,7 +22,6 @@ loadFromStorage('options').then(async (options) => {
         .classList.toggle('open');
     };
 
-  //select hadithDegree
   VirtualSelect.init({
     ele: '#hadith-degree',
     options: hadithDegree,
@@ -37,7 +35,6 @@ loadFromStorage('options').then(async (options) => {
     textDirection: 'rtl',
   });
 
-  //select searchZone
   VirtualSelect.init({
     ele: '#search-zone',
     options: searchZone,
@@ -50,7 +47,6 @@ loadFromStorage('options').then(async (options) => {
     textDirection: 'rtl',
   });
 
-  //select books
   VirtualSelect.init({
     ele: '#book',
     options: allBooks,
@@ -69,7 +65,6 @@ loadFromStorage('options').then(async (options) => {
     textDirection: 'rtl',
   });
 
-  //select mohdith
   VirtualSelect.init({
     ele: '#mohdith',
     options: allMohdith,
@@ -88,7 +83,6 @@ loadFromStorage('options').then(async (options) => {
     textDirection: 'rtl',
   });
 
-  //select allRawi
   VirtualSelect.init({
     ele: '#rawi',
     options: allRawi,
@@ -107,7 +101,6 @@ loadFromStorage('options').then(async (options) => {
     textDirection: 'rtl',
   });
 
-  //select search method
   VirtualSelect.init({
     ele: '#search-method',
     selectedValue: options.searchMethodSelected.value,
@@ -197,7 +190,6 @@ loadFromStorage('options').then(async (options) => {
       };
     });
 
-  // submit form
   const form = document.getElementById('option-form');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
