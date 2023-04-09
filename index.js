@@ -22,14 +22,15 @@ let currTabId = 'main-id';
 loadFromStorage('text').then(async (text) => {
   currText = text;
 
-  dorarSearchLink.setAttribute(
-    'href',
-    `https://dorar.net/hadith/search?q=${currText}`,
-  );
-
   const options = await loadFromStorage('options');
   const query = convertOptionsToQueryString(options);
   currQuery = query;
+
+  dorarSearchLink.setAttribute(
+    'href',
+    `https://dorar.net/hadith/search?q=${currText}&${currQuery}`,
+  );
+
   setLoader();
   const data = await getHadith(currText, currPage, query, currTabId);
 
