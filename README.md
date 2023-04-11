@@ -2,7 +2,11 @@
 
 إضافة للمتصفح تستطيع من خلالها أن تتفقد الأحاديث هل هي موضوعة أو صحيحة
 
+<div align="center">
+
 ![cover](https://user-images.githubusercontent.com/69223584/231058081-05616aa9-81c6-4896-984d-de4b7a6522d8.png)
+
+</div>
 
 
 ## طريقة الاستعمال
@@ -19,7 +23,7 @@
 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/69223584/228408873-9f5d3e0a-8c20-4866-bccc-bdd4c3e5d66b.png)
+![image0](https://user-images.githubusercontent.com/69223584/231255789-247ad8a1-3857-4f7d-a6e2-8c7d0d79a303.png)
 
 </div>
 
