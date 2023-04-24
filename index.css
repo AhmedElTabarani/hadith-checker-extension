@@ -187,6 +187,29 @@ label {
   transition: box-shadow 0.2 ease-in;
 }
 
+#popup-card {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  overflow: auto;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.sharh {
+  font-family: kitab;
+  font-size: 18px;
+  padding: 10px;
+  padding-right: 50px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
 .hadith {
   font-family: kitab;
   font-size: 18px;

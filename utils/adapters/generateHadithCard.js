@@ -7,6 +7,7 @@ export const generateHadithCard = (hadithObj) => {
     number_or_page,
     grade,
     hasSharh,
+    sharh,
   } = hadithObj;
 
   const card = document.createElement('div');
@@ -30,7 +31,7 @@ export const generateHadithCard = (hadithObj) => {
   if (hasSharh) {
     const sharhId = hadithObj.sharh.id;
     cardContent += `<button class="sharh-btn nice-btn" type="button" value="${sharhId}">شرح الحديث</button>`;
-  }
+  } else if (sharh) cardContent += `<hr><h2>شرح الحديث:</h2><p class="sharh">${sharh}</p>`;
 
   card.innerHTML = cardContent;
   return card.outerHTML;
