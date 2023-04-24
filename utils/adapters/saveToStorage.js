@@ -1,4 +1,4 @@
-export const saveToStorage = (objectToSave) =>
+export const saveToStorage = (key, value) =>
   new Promise((resolve, reject) =>
-    chrome.storage.local.set(objectToSave, resolve),
+    chrome.storage.local.set({[key] : value}, resolve),
   );

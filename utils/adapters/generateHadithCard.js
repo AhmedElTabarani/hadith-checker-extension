@@ -6,12 +6,13 @@ export const generateHadithCard = (hadithObj) => {
     source,
     number_or_page,
     grade,
+    hasSharh,
   } = hadithObj;
 
   const card = document.createElement('div');
   card.classList.add('card');
 
-  const cardContent = `
+  let cardContent = `
     <div>
       <p class="hadith">${hadith}</p>
       <hr/>
@@ -25,6 +26,11 @@ export const generateHadithCard = (hadithObj) => {
     </div>
     <button class="copy-btn nice-btn" type="button">نسخ الحديث</button>
   `;
+
+  if (hasSharh) {
+    const sharhId = hadithObj.sharh.id;
+    cardContent += `<button class="sharh-btn nice-btn" type="button" value="${sharhId}">شرح الحديث</button>`;
+  }
 
   card.innerHTML = cardContent;
   return card.outerHTML;

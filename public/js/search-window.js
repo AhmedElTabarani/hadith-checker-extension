@@ -7,7 +7,7 @@ btnSearch.addEventListener('click', async () => {
     document.querySelector('.err').innerHTML = 'هذا الحقل مطلوب';
     return;
   }
-  await saveToStorage({ text: searchbar.value });
+  await saveToStorage('text', searchbar.value);
   await chrome.windows.create({
     url: chrome.runtime.getURL('index.html'),
     type: 'popup',
