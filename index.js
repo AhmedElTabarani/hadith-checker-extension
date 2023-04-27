@@ -1,11 +1,13 @@
 import { convertOptionsToQueryString } from './utils/adapters/convertOptionsToQueryString.js';
 import { loadFromStorage } from './utils/adapters/loadFromStorage.js';
+import { saveToStorage } from './utils/adapters/saveToStorage.js';
 import { getHadith } from './utils/getHadith.js';
 import { showMessage } from './utils/sendMessage.js';
 import { updateHadithCounter } from './utils/updateHadithCounter.js';
 import { updatePageCounter } from './utils/updatePageCounter.js';
 import { updateContent } from './utils/updateContent.js';
 import { setLoader, hideLoader } from './utils/loader.js';
+import { defaultOptions } from './utils/options/defaultOptions.js';
 
 const content = document.getElementById('content');
 const next = document.getElementById('next');
@@ -22,7 +24,11 @@ let currTabId = 'main-id';
 loadFromStorage('text').then(async (text) => {
   currText = text;
 
-  const options = await loadFromStorage('options');
+  let options = await loadFromStorage('options');
+  if (!options) {
+    await saveToStorage({ options: defaultOptions });
+    options = defaultOptions;
+  }
   const query = convertOptionsToQueryString(options);
   currQuery = query;
 
