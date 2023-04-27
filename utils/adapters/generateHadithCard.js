@@ -25,13 +25,19 @@ export const generateHadithCard = (hadithObj) => {
         <span class="hadith-grade"><span class="info-subtitle">صحة الحديث:</span> ${grade}</span>
       </div>
     </div>
-    <button class="copy-btn nice-btn" type="button">نسخ الحديث</button>
   `;
+
+  // TODO: Refactor this code
+
+  // Bug: copy button not working in popup, so we disable copy button in popup right now
+  if (typeof sharh !== 'string')
+    cardContent += `<button class="copy-btn nice-btn" type="button">نسخ الحديث</button>`;
 
   if (hasSharh) {
     const sharhId = hadithObj.sharh.id;
     cardContent += `<button class="sharh-btn nice-btn" type="button" value="${sharhId}">شرح الحديث</button>`;
-  } else if (sharh) cardContent += `<hr><h2>شرح الحديث:</h2><p class="sharh">${sharh}</p>`;
+  } else if (sharh)
+    cardContent += `<hr><h2>شرح الحديث:</h2><p class="sharh">${sharh}</p>`;
 
   card.innerHTML = cardContent;
   return card.outerHTML;
