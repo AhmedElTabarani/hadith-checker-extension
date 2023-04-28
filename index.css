@@ -104,15 +104,9 @@ a:hover {
   font-size: 1.5em;
   border-radius: 15px;
   border: none;
-  margin: 0.25em 1.5em;
+  margin: 0.5em;
   padding: 0.25em 1.5em;
   transition: 0.2s ease;
-}
-
-.copy-btn {
-  margin: 0;
-  font-size: 1rem;
-  border: none;
 }
 
 .copy-btn:disabled,
@@ -142,7 +136,7 @@ label {
   display: block;
 }
 
-.hadith-degree>label {
+.hadith-degree > label {
   color: var(--main-color);
   font-weight: 500;
 }
@@ -151,7 +145,7 @@ label {
   padding: 0.5em 0;
 }
 
-.hadith-degree-checkbox>label {
+.hadith-degree-checkbox > label {
   padding-right: 0.5em;
 }
 
@@ -214,7 +208,7 @@ label {
   transition: all 0.3s ease-in-out;
 }
 
-#popup-card>.card {
+#popup-card > .card {
   height: 80%;
   overflow: scroll;
   overflow-x: hidden;
@@ -268,7 +262,7 @@ hr {
   padding: 1em 0;
 }
 
-.hadith-info>span {
+.hadith-info > span {
   font-size: 16px;
   line-height: 24px;
   display: block;
@@ -348,7 +342,6 @@ footer {
   transition: all 0.3s ease-in-out;
 }
 
-
 .loader-hide {
   display: none;
 }
@@ -371,28 +364,8 @@ footer {
 }
 
 .settings-box.open {
-  height: 93vh;
-  overflow: hidden;
-}
-
-@media (max-width: 1357px) {
-  .settings-box.open {
-    height: 100vh !important;
-    overflow: hidden;
-  }
-}
-
-/* @media (max-width: 648px) {
-.hadith-degree{
-  flex: 1;
-  display: flex;
-}
-}  */
-@media (max-width: 768px) {
-  .settings-box.open {
-    height: 100vh !important;
-    overflow: hidden !important;
-  }
+  height: 100% !important;
+  overflow: hidden !important;
 }
 
 .settings-box .toggle-settings {
@@ -457,7 +430,7 @@ footer {
   }
 }
 
-.search-zone>label {
+.search-zone > label {
   color: var(--main-color);
   font-weight: 500;
 }
@@ -555,8 +528,12 @@ footer {
   box-shadow: none !important;
 }
 
-.hadith-degree .vscomp-wrapper.text-direction-rtl.keep-always-open .vscomp-clear-button,
-.search-zone .vscomp-wrapper.text-direction-rtl.keep-always-open .vscomp-clear-button {
+.hadith-degree
+  .vscomp-wrapper.text-direction-rtl.keep-always-open
+  .vscomp-clear-button,
+.search-zone
+  .vscomp-wrapper.text-direction-rtl.keep-always-open
+  .vscomp-clear-button {
   display: none;
 }
 

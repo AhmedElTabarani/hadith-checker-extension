@@ -6,14 +6,12 @@ export const generateHadithCard = (hadithObj) => {
     source,
     number_or_page,
     grade,
-    hasSharh,
-    sharh,
   } = hadithObj;
 
   const card = document.createElement('div');
   card.classList.add('card');
 
-  let cardContent = `
+  card.innerHTML = `
     <div>
       <p class="hadith">${hadith}</p>
       <hr/>
@@ -27,18 +25,16 @@ export const generateHadithCard = (hadithObj) => {
     </div>
   `;
 
-  // TODO: Refactor this code
+  // Add sharh button
+  const hasSharhMetadata = hadithObj.hasSharhMetadata;
+  if (hasSharhMetadata) {
+    const sharhMetadata = hadithObj.sharhMetadata;
+    const { isContainSharh } = sharhMetadata;
+    if (isContainSharh) {
+      const sharh = sharhMetadata.sharh;
+      card.innerHTML += `<hr/><h2>شرح الحديث:</h2><p class="sharh">${sharh}</p>`;
+    }
+  }
 
-  // Bug: copy button not working in popup, so we disable copy button in popup right now
-  if (typeof sharh !== 'string')
-    cardContent += `<button class="copy-btn nice-btn" type="button">نسخ الحديث</button>`;
-
-  if (hasSharh) {
-    const sharhId = hadithObj.sharh.id;
-    cardContent += `<button class="sharh-btn nice-btn" type="button" value="${sharhId}">شرح الحديث</button>`;
-  } else if (sharh)
-    cardContent += `<hr><h2>شرح الحديث:</h2><p class="sharh">${sharh}</p>`;
-
-  card.innerHTML = cardContent;
-  return card.outerHTML;
+  return card;
 };
