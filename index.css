@@ -209,7 +209,7 @@ label {
 }
 
 #popup-card > .card {
-  height: 80%;
+  height: 95%;
   overflow: scroll;
   overflow-x: hidden;
 }
