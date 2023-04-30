@@ -31,7 +31,5 @@ export const updateContent = async (allHadith) => {
     return card;
   });
 
-  content.appendChild(cards);
-
-  // addSharhButtonFunctionality('sharh-btn');
+  content.replaceChildren(cards);
 };

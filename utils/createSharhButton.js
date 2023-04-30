@@ -15,10 +15,10 @@ export const createSharhButton = (sharhId) => {
 
   btn.addEventListener('click', async (e) => {
     setPopupLoader();
-    popupCard.innerHTML = '';
     const result = await getSharhById(e.target.value);
     const card = generateHadithCard(result);
     hidePopupLoader();
+    popupCard.lastChild?.remove(); // remove old card
     popupCard.appendChild(card);
     body.classList.add('scroll-disable');
     popupCard.style.display = 'flex';
