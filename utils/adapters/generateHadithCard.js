@@ -7,6 +7,7 @@ export const generateHadithCard = (hadithObj) => {
     number_or_page,
     grade,
     explainGrade,
+    takhrij,
   } = hadithObj;
 
   const card = document.createElement('div');
@@ -25,6 +26,11 @@ export const generateHadithCard = (hadithObj) => {
         ${
           explainGrade
             ? `<span class="hadith-explain-grade"><span class="info-subtitle">توضيح حكم  صحة الحديث:</span> ${explainGrade}</span>`
+            : ''
+        }
+        ${
+          takhrij
+            ? `<span class="hadith-takhrij"><span class="info-subtitle">تخريج الحديث في الكتب الأخرى:</span> ${takhrij}</span>`
             : ''
         }
       </div>
