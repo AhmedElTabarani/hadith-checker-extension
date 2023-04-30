@@ -6,6 +6,7 @@ export const generateHadithCard = (hadithObj) => {
     source,
     number_or_page,
     grade,
+    explainGrade,
   } = hadithObj;
 
   const card = document.createElement('div');
@@ -21,6 +22,11 @@ export const generateHadithCard = (hadithObj) => {
         <span class="hadith-source"><span class="info-subtitle">المصدر:</span> ${source}</span>
         <span class="hadith-number"><span class="info-subtitle">رقم الحديث أو الصفحة:</span> ${number_or_page}</span>
         <span class="hadith-grade"><span class="info-subtitle">صحة الحديث:</span> ${grade}</span>
+        ${
+          explainGrade
+            ? `<span class="hadith-explain-grade"><span class="info-subtitle">توضيح حكم  صحة الحديث:</span> ${explainGrade}</span>`
+            : ''
+        }
       </div>
     </div>
   `;
