@@ -17,10 +17,7 @@ export const getHadith = async (
   const url = `https://dorar-hadith-api.cyclic.app/site/search?value=${text}&page=${page}&${query}&tab=specialist`;
 
   const result = await cache.get(url);
-  if (result) {
-    console.log('cache hit');
-    return result;
-  }
+  if (result) return result;
 
   const res = await fetch(encodeURI(url));
   const data = await res.json();

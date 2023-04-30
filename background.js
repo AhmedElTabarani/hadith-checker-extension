@@ -1,4 +1,5 @@
 import { saveToStorage } from './utils/adapters/saveToStorage.js';
+import * as cache from './utils/cache.js';
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
@@ -10,8 +11,12 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   await saveToStorage('text', info.selectionText);
-  await chrome.windows.create({
+  const popupWindow = await chrome.windows.create({
     url: chrome.runtime.getURL('index.html'),
     type: 'popup',
   });
+
+  chrome.windows.onRemoved.addListener(async (windowId) =>
+    windowId === popupWindow.id ? await cache.clear() : null,
+  );
 });
