@@ -66,4 +66,13 @@ export const defaultOptions = {
       label: 'جميع الأحاديث',
     },
   },
+  specialistSelected: {
+    id: 'specialist',
+    key: 'بحث للغير المتخصصين أم للمتخصصين',
+    value: 'true',
+    labels: {
+      value: 'true',
+      label: 'بحث للمتخصصين',
+    },
+  },
 };
