@@ -191,17 +191,16 @@ loadFromStorage('options').then(async (options) => {
     });
 
   const form = document.getElementById('option-form');
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    chrome.storage.local.set({ options: options }, () => {
-      window.location.reload();
-    });
+    await saveToStorage('options', options);
+    window.location.reload();
   });
 });
 
 document
   .getElementById('reset-option-btn')
   .addEventListener('click', async () => {
-    await saveToStorage({ options: defaultOptions });
+    await saveToStorage('options', defaultOptions);
     window.location.reload();
   });

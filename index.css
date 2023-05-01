@@ -18,6 +18,7 @@
     U+65C, U+660-66C, U+670-671, U+6CC, U+6D4, U+6D6-6ED, U+8F0-8F3,
     U+FD3E-FD3F;
 }
+
 @font-face {
   font-family: Kitab;
   src: url(https://fonts.nuqayah.com/kitab-base-b.woff2?v3);
@@ -26,12 +27,14 @@
     U+65C, U+660-66C, U+670-671, U+6CC, U+6D4, U+6D6-6ED, U+8F0-8F3,
     U+FD3E-FD3F;
 }
+
 @font-face {
   font-family: Kitab;
   src: url(https://fonts.nuqayah.com/kitab-phrases.woff2?v3);
   unicode-range: U+E100-E103, U+FD3E-FD45, U+FD47-FD4F, U+FDF2,
     U+FDFA-FDFB, U+FDFD-FDFF;
 }
+
 @font-face {
   font-family: Kitab;
   src: url(https://fonts.nuqayah.com/kitab-phrases.woff2?v3);
@@ -47,11 +50,13 @@
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 4px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--main-color);
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--main-color-dark);
 }
@@ -99,21 +104,16 @@ a:hover {
   font-size: 1.5em;
   border-radius: 15px;
   border: none;
-  margin: 0.25em 1.5em;
+  margin: 0.5em;
   padding: 0.25em 1.5em;
   transition: 0.2s ease;
-}
-
-.copy-btn {
-  margin: 0;
-  font-size: 1rem;
-  border: none;
 }
 
 .copy-btn:disabled,
 .copy-btn:disabled:active {
   background-color: var(--ele-bg-dark);
 }
+
 .copy-btn:disabled:hover {
   transform: none;
 }
@@ -131,16 +131,20 @@ a:hover {
   padding-right: 2em;
   padding-top: 0.5em;
 }
+
 label {
   display: block;
 }
+
 .hadith-degree > label {
   color: var(--main-color);
   font-weight: 500;
 }
+
 .hadith-degree-checkbox {
   padding: 0.5em 0;
 }
+
 .hadith-degree-checkbox > label {
   padding-right: 0.5em;
 }
@@ -185,6 +189,59 @@ label {
 .card:hover {
   box-shadow: 1px 8px 20px var(--ele-bg-dark);
   transition: box-shadow 0.2 ease-in;
+}
+
+#popup-card {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  overflow: auto;
+  padding: 20px;
+  place-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  transition: all 0.3s ease-in-out;
+}
+
+#popup-card > .card {
+  height: 95%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#exit-popup {
+  border-radius: 50px;
+  position: fixed;
+
+  z-index: 100;
+  top: 9px;
+  display: none;
+
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+#exit-popup:hover {
+  background-color: #ff0000;
+}
+
+.scroll-disable {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.sharh {
+  font-family: kitab;
+  font-size: 18px;
+  padding: 10px;
+  padding-right: 50px;
+  font-weight: 600;
+  line-height: 36px;
 }
 
 .hadith {
@@ -271,6 +328,20 @@ footer {
   }
 }
 
+#loader-popup {
+  position: fixed;
+  top: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  overflow: auto;
+  place-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
 .loader-hide {
   display: none;
 }
@@ -291,28 +362,12 @@ footer {
   transition: 0.3s;
   overflow: hidden;
 }
+
 .settings-box.open {
-  height: 93vh;
-  overflow: hidden;
+  height: 100% !important;
+  overflow: hidden !important;
 }
-@media (max-width: 1357px) {
-  .settings-box.open {
-    height: 100vh !important;
-    overflow: hidden;
-  }
-}
-/* @media (max-width: 648px) {
-.hadith-degree{
-  flex: 1;
-  display: flex;
-}
-}  */
-@media (max-width: 768px) {
-  .settings-box.open {
-    height: 100vh !important;
-    overflow: hidden !important;
-  }
-}
+
 .settings-box .toggle-settings {
   background-color: #fff;
   text-align: center;
@@ -325,12 +380,14 @@ footer {
   height: 34px;
   margin: 8px;
 }
+
 .settings-box .toggle-settings .fa-gear {
   width: 30px;
   padding: 8px 0;
   transition: all 0.5s ease;
   font-size: 16px;
 }
+
 .settings-box .search {
   padding: 10px;
   border-radius: 10px;
@@ -339,6 +396,7 @@ footer {
   margin: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
 .settings-box .search:focus {
   outline: #0070f3;
 }
@@ -350,6 +408,7 @@ footer {
   padding-right: 24px;
   overflow: hidden;
 }
+
 /* @media (max-width: 1039px)and(min-width:765px) {
   .settings-box .container-main-search {
     display: flex;
@@ -365,19 +424,23 @@ footer {
     padding-top: 0px !important;
     width: 50%;
   }
+
   .vscomp-wrapper {
     width: 180px !important;
   }
 }
+
 .search-zone > label {
   color: var(--main-color);
   font-weight: 500;
 }
+
 .search-zone {
   font-size: 18px;
   padding-right: 2em;
   padding-top: 0.5em;
 }
+
 .vscomp-wrapper {
   margin: 6px;
   width: 206px;
@@ -386,18 +449,22 @@ footer {
   border-radius: 14px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
 }
+
 .vscomp-toggle-button {
   border: none !important;
 }
+
 .vscomp-wrapper.focused .vscomp-toggle-button,
 .vscomp-wrapper:focus .vscomp-toggle-button {
   box-shadow: none !important;
 }
+
 .vscomp-dropbox-container,
 .pop-comp-wrapper,
 .position-bottom {
   transform: translate3d(1px, 56px, 0px) !important;
 }
+
 .search-btn,
 .reset-option-btn {
   background-color: #0070f3;
@@ -412,9 +479,11 @@ footer {
   font-size: 14px;
   cursor: pointer;
 }
+
 .vscomp-wrapper.has-select-all .vscomp-toggle-all-button {
   display: none !important;
 }
+
 .hadith-degree .vscomp-dropbox-container,
 .hadith-degree .pop-comp-wrapper,
 .hadith-degree .position-bottom,
@@ -423,6 +492,7 @@ footer {
 .search-zone .position-bottom {
   transform: translate3d(30px, -26px, 0px) !important;
 }
+
 .hadith-degree .vscomp-wrapper.keep-always-open .vscomp-dropbox,
 .search-zone .vscomp-wrapper.keep-always-open .vscomp-dropbox {
   transition-duration: 0s;
@@ -432,15 +502,18 @@ footer {
   width: max-content !important;
   overflow: visible;
 }
+
 .hadith-degree .vscomp-option-text,
 .search-zone .vscomp-option-text {
   overflow: visible !important;
   font-size: 17px;
 }
+
 .hadith-degree .vscomp-search-container,
 .search-zone .vscomp-search-container {
   display: none !important;
 }
+
 .hadith-degree .vscomp-wrapper.keep-always-open.focused,
 .hadith-degree .vscomp-wrapper.keep-always-open:focus,
 .hadith-degree .vscomp-wrapper.keep-always-open:hover,
@@ -449,10 +522,12 @@ footer {
 .search-zone .vscomp-wrapper.keep-always-open:hover {
   box-shadow: none !important;
 }
+
 .hadith-degree .vscomp-wrapper,
 .search-zone .vscomp-wrapper {
   box-shadow: none !important;
 }
+
 .hadith-degree
   .vscomp-wrapper.text-direction-rtl.keep-always-open
   .vscomp-clear-button,
@@ -461,6 +536,7 @@ footer {
   .vscomp-clear-button {
   display: none;
 }
+
 .option label {
   margin-right: 14px;
   color: var(--main-color);
@@ -468,10 +544,12 @@ footer {
   font-size: 18px;
   font-weight: 500;
 }
+
 .option {
   padding-right: 2em;
   padding-top: 0.5em;
 }
+
 #notget {
   display: block;
   margin-top: 16px;
@@ -483,40 +561,49 @@ footer {
   border-radius: 14px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
 }
+
 #notget:focus {
   outline: none;
 }
+
 .searchone {
   display: flex;
   flex-direction: column;
   width: 386px;
   border-left: 1px solid #ddd;
 }
+
 .searchone .option {
   width: 80%;
 }
+
 .searchone .vscomp-wrapper {
   width: 100%;
 }
+
 .searchtwo {
   display: flex;
   flex: 1;
   padding-right: 29px;
   flex-wrap: wrap;
 }
+
 @media (max-width: 768px) {
   .searchtwo {
     padding-right: 0px;
   }
+
   .searchone {
     width: 100% !important;
   }
 }
+
 @media (max-width: 1000px) {
   .searchone {
     width: 100% !important;
   }
 }
+
 /*nsearch bar*/
 .searchbar {
   display: block;
@@ -529,9 +616,11 @@ footer {
   border-radius: 14px;
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
 }
+
 .searchbar:focus {
   outline: #0050ac;
 }
+
 .searchwindow {
   width: 270px;
   display: flex;
@@ -539,9 +628,11 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
 .btnn {
   width: 80%;
 }
+
 .err {
   color: red;
 }
