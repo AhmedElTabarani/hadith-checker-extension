@@ -18,7 +18,7 @@ const dorarSearchLink = document.querySelector('.dorar-search-link');
 let currPage = 1;
 let currText = '';
 let currQuery = '';
-let currTabId = 'main-id';
+let currTabId = 'main-tab';
 
 // It will only run once (when the window is rendering for the first time)
 loadFromStorage('text').then(async (text) => {
@@ -26,7 +26,7 @@ loadFromStorage('text').then(async (text) => {
 
   let options = await loadFromStorage('options');
   if (!options) {
-    await saveToStorage({ options: defaultOptions });
+    await saveToStorage('options', defaultOptions);
     options = defaultOptions;
   }
   const query = convertOptionsToQueryString(options);
@@ -121,15 +121,20 @@ const tabButtons = Array.from(
 );
 
 const switchTab = async (e) => {
+  console.log('clicked');
   const clickedTabButton = e.target;
+
+  // Do nothing if clicked the same tab
+  if (clickedTabButton.dataset.tabid === currTabId) return;
+
   currTabId = clickedTabButton.dataset.tabid;
 
   // Update active tab button and inactive the rest
-  tabButtons.forEach((tabButton) => {
+  for (const tabButton of tabButtons) {
     if (tabButton === clickedTabButton)
       tabButton.classList.add('active');
     else tabButton.classList.remove('active');
-  });
+  }
 
   // Hide or show settings based on tab selection
   if (currTabId !== 'main-tab') settings.style.display = 'none';
