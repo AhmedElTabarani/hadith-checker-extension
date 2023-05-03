@@ -10,7 +10,7 @@ import { saveToStorage } from '../../utils/adapters/saveToStorage.js';
 
 loadFromStorage('options').then(async (options) => {
   if (!options) {
-    await saveToStorage({ options: defaultOptions });
+    await saveToStorage('options', defaultOptions);
     options = defaultOptions;
   }
 

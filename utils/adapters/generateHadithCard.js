@@ -1,10 +1,10 @@
 export const generateHadithCard = (hadithObj) => {
   const {
     hadith,
-    el_rawi,
-    el_mohdith,
-    source,
-    number_or_page,
+    rawi,
+    mohdith,
+    book,
+    numberOrPage,
     grade,
     explainGrade,
     takhrij,
@@ -18,14 +18,14 @@ export const generateHadithCard = (hadithObj) => {
       <p class="hadith">${hadith}</p>
       <hr/>
       <div class="hadith-info">
-        <span class="hadith-rawi"><span class="info-subtitle">الراوي:</span> ${el_rawi}</span>
-        <span class="hadith-mohdith"><span class="info-subtitle">المحدث:</span> ${el_mohdith}</span>
-        <span class="hadith-source"><span class="info-subtitle">المصدر:</span> ${source}</span>
-        <span class="hadith-number"><span class="info-subtitle">رقم الحديث أو الصفحة:</span> ${number_or_page}</span>
-        <span class="hadith-grade"><span class="info-subtitle">صحة الحديث:</span> ${grade}</span>
+        <span class="hadith-rawi"><span class="info-subtitle">الراوي:</span> ${rawi}</span>
+        <span class="hadith-mohdith"><span class="info-subtitle">المحدث:</span> ${mohdith}</span>
+        <span class="hadith-book"><span class="info-subtitle">الكتاب:</span> ${book}</span>
+        <span class="hadith-number"><span class="info-subtitle">رقم الحديث أو الصفحة:</span> ${numberOrPage}</span>
+        <span class="hadith-grade"><span class="info-subtitle">حكم المحدث:</span> ${grade}</span>
         ${
           explainGrade
-            ? `<span class="hadith-explain-grade"><span class="info-subtitle">توضيح حكم  صحة الحديث:</span> ${explainGrade}</span>`
+            ? `<span class="hadith-explain-grade"><span class="info-subtitle">توضيح حكم الحديث:</span> ${explainGrade}</span>`
             : ''
         }
         ${
