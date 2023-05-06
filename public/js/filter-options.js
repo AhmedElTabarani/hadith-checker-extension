@@ -8,11 +8,21 @@ import { defaultOptions } from '../../utils/options/defaultOptions.js';
 import { loadFromStorage } from '../../utils/adapters/loadFromStorage.js';
 import { saveToStorage } from '../../utils/adapters/saveToStorage.js';
 
+const hadithDegreeElement = document.querySelector('#hadith-degree');
+const searchZoneElement = document.querySelector('#search-zone');
+const bookElement = document.querySelector('#book');
+const mohdithElement = document.querySelector('#mohdith');
+const rawiElement = document.querySelector('#rawi');
+const searchMethodElement = document.querySelector('#search-method');
+const ignoreWordsElement = document.querySelector('#ignore-words');
+
 loadFromStorage('options').then(async (options) => {
   if (!options) {
     await saveToStorage('options', defaultOptions);
     options = defaultOptions;
   }
+
+  ignoreWordsElement.value = options.ignoreWordSelected.value;
 
   document.querySelector('.main .toggle-settings .fa-gear').onclick =
     function () {
@@ -114,81 +124,73 @@ loadFromStorage('options').then(async (options) => {
     textDirection: 'rtl',
   });
 
-  document
-    .querySelector('#hadith-degree')
-    .addEventListener('change', function (e) {
-      let selectedOptions = e.target.getSelectedOptions();
-      options.hadithDegreeSelected = {
-        id: 'd[]',
-        key: 'درجة الحديث',
-        value: this.value,
-        labels: selectedOptions,
-      };
-    });
-  document
-    .querySelector('#search-zone')
-    .addEventListener('change', function (e) {
-      let selectedOptions = e.target.getSelectedOptions();
-      options.searchZoneSelected = {
-        id: 't',
-        key: 'نطاق الحديث',
-        value: this.value,
-        labels: selectedOptions,
-      };
-    });
-  document
-    .querySelector('#book')
-    .addEventListener('change', function (e) {
-      let selectedOptions = e.target.getSelectedOptions();
-      options.bookSelected = {
-        id: 's[]',
-        key: 'الكتاب',
-        value: this.value,
-        labels: selectedOptions,
-      };
-    });
-  document
-    .querySelector('#mohdith')
-    .addEventListener('change', function (e) {
-      let selectedOptions = e.target.getSelectedOptions();
-      options.mohdithSelected = {
-        id: 'm[]',
-        key: 'المحدث',
-        value: this.value,
-        labels: selectedOptions,
-      };
-    });
-  document
-    .querySelector('#rawi')
-    .addEventListener('change', function (e) {
-      let selectedOptions = e.target.getSelectedOptions();
-      options.rawiSelected = {
-        id: 'rawi[]',
-        key: 'الراوي',
-        value: this.value,
-        labels: selectedOptions,
-      };
-    });
-  document
-    .querySelector('#search-method')
-    .addEventListener('change', function (e) {
-      let selectedOptions = e.target.getSelectedOptions();
-      options.searchMethodSelected = {
-        id: 'st',
-        key: 'طريقة البحث',
-        value: this.value,
-        labels: selectedOptions,
-      };
-    });
-  document
-    .querySelector('#notget')
-    .addEventListener('change', function () {
-      options.ignoreWordSelected = {
-        id: 'xclude',
-        key: 'كلمة أو جملة مستبعدة',
-        value: this.value,
-      };
-    });
+  hadithDegreeElement.addEventListener('change', function (e) {
+    let selectedOptions = e.target.getSelectedOptions();
+    options.hadithDegreeSelected = {
+      id: 'd[]',
+      key: 'درجة الحديث',
+      value: this.value,
+      labels: selectedOptions,
+    };
+  });
+
+  searchZoneElement.addEventListener('change', function (e) {
+    let selectedOptions = e.target.getSelectedOptions();
+    options.searchZoneSelected = {
+      id: 't',
+      key: 'نطاق الحديث',
+      value: this.value,
+      labels: selectedOptions,
+    };
+  });
+
+  bookElement.addEventListener('change', function (e) {
+    let selectedOptions = e.target.getSelectedOptions();
+    options.bookSelected = {
+      id: 's[]',
+      key: 'الكتاب',
+      value: this.value,
+      labels: selectedOptions,
+    };
+  });
+
+  mohdithElement.addEventListener('change', function (e) {
+    let selectedOptions = e.target.getSelectedOptions();
+    options.mohdithSelected = {
+      id: 'm[]',
+      key: 'المحدث',
+      value: this.value,
+      labels: selectedOptions,
+    };
+  });
+
+  rawiElement.addEventListener('change', function (e) {
+    let selectedOptions = e.target.getSelectedOptions();
+    options.rawiSelected = {
+      id: 'rawi[]',
+      key: 'الراوي',
+      value: this.value,
+      labels: selectedOptions,
+    };
+  });
+
+  searchMethodElement.addEventListener('change', function (e) {
+    let selectedOptions = e.target.getSelectedOptions();
+    options.searchMethodSelected = {
+      id: 'st',
+      key: 'طريقة البحث',
+      value: this.value,
+      labels: selectedOptions,
+    };
+  });
+
+  ignoreWordsElement.addEventListener('change', function () {
+    options.ignoreWordSelected = {
+      id: 'xclude',
+      key: 'كلمة أو جملة مستبعدة',
+      value: this.value,
+    };
+  });
 
   const form = document.getElementById('option-form');
   form.addEventListener('submit', async (e) => {

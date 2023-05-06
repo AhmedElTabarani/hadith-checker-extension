@@ -550,7 +550,7 @@ footer {
   padding-top: 0.5em;
 }
 
-#notget {
+#ignore-words {
   display: block;
   margin-top: 16px;
   margin-right: 8px;
@@ -562,7 +562,7 @@ footer {
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 12px;
 }
 
-#notget:focus {
+#ignore-words:focus {
   outline: none;
 }
 
