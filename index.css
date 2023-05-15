@@ -5,6 +5,8 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   --main-color: #0070f3;
+  --main-disable-color: #868f9b;
+  --main-disable-color-dark: #676d75;
   --main-color-tr: #0070ffa1;
   --main-color-dark: #0050ac;
   --ele-bg: #f6f8fa;
@@ -158,6 +160,15 @@ label {
   margin-top: 1em;
 }
 
+#specialist-hadith,
+#non-specialist-hadith {
+  color: var(--main-color);
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0 2em;
+  margin-top: 1em;
+}
+
 #message {
   display: flex;
   padding: 0 1em;
@@ -198,6 +209,8 @@ label {
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 3em 0;
+  margin: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   overflow: auto;
@@ -208,8 +221,11 @@ label {
   transition: all 0.3s ease-in-out;
 }
 
+#popup-card > .cards {
+  height: 100%;
+}
+
 #popup-card > .card {
-  height: 95%;
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -256,6 +272,70 @@ hr {
   border-radius: 1px;
   margin: 10px 0;
   opacity: 0.5;
+}
+
+.toggle-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toggle-box p {
+  padding: 0 1em;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.toggle {
+  appearance: none;
+  display: none;
+  -webkit-appearance: none;
+}
+.toggle-switch {
+  background-color: var(--ele-bg-dark);
+  width: 78px;
+  height: 32px;
+  border-radius: 16px;
+  position: relative;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.toggle-switch::before {
+  content: '🡄';
+  font-weight: 900;
+  font-size: 1.5em;
+  width: 24px;
+  height: 24px;
+  background-color: var(--main-color);
+  position: absolute;
+  border-radius: 50%;
+  top: 4px;
+  left: 4px;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ele-bg-dark);
+}
+.toggle:checked + .toggle-switch {
+  background-color: var(--ele-bg-dark);
+}
+.toggle:checked + .toggle-switch::before {
+  content: '🡆';
+  font-weight: 900;
+  left: 50px;
+}
+
+button:disabled {
+  background-color: var(--main-disable-color);
+}
+
+button:disabled:hover {
+  transform: none;
+}
+
+button:disabled:active {
+  background-color: var(--main-disable-color);
 }
 
 .hadith-info {

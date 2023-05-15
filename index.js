@@ -5,40 +5,45 @@ import { getHadith } from './utils/getHadith.js';
 import { showMessage } from './utils/sendMessage.js';
 import { updateHadithCounter } from './utils/updateHadithCounter.js';
 import { updatePageCounter } from './utils/updatePageCounter.js';
+import { updateSpecialistHadithCounter } from './utils/updateSpecialistHadithCounter.js';
+import { updateNonSpecialistHadithCounter } from './utils/updateNonSpecialistHadithCounter.js';
 import { updateContent } from './utils/updateContent.js';
 import { setLoader, hideLoader } from './utils/loader.js';
-import { defaultOptions } from './utils/options/defaultOptions.js';
+import queryOptions from './controllers/queryOptions.controller.js';
 
 const content = document.getElementById('content');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 const settings = document.querySelector('.settings-box');
 const dorarSearchLink = document.querySelector('.dorar-search-link');
+const toggleSpecialist = document.querySelector(
+  '.toggle-box .toggle',
+);
 
 let currPage = 1;
 let currText = '';
-let currQuery = '';
 let currTabId = 'main-tab';
 
 // It will only run once (when the window is rendering for the first time)
 loadFromStorage('text').then(async (text) => {
   currText = text;
 
-  let options = await loadFromStorage('options');
-  if (!options) {
-    await saveToStorage('options', defaultOptions);
-    options = defaultOptions;
-  }
-  const query = convertOptionsToQueryString(options);
-  currQuery = query;
-
+  toggleSpecialist.checked = queryOptions.getOption('specialist');
   dorarSearchLink.setAttribute(
     'href',
-    `https://dorar.net/hadith/search?q=${currText}&${currQuery}`,
+    `https://dorar.net/hadith/search?q=${currText}`,
   );
 
   setLoader();
-  const data = await getHadith(currText, currPage, query, currTabId);
+  const { data, metadata } = await getHadith(
+    currText,
+    currPage,
+    currTabId,
+  );
+
+  const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
+  updateNonSpecialistHadithCounter(numberOfNonSpecialist);
+  updateSpecialistHadithCounter(numberOfSpecialist);
 
   updatePageCounter(currPage);
   updateHadithCounter(data.length);
@@ -63,12 +68,7 @@ next.addEventListener('click', async (e) => {
   e.preventDefault();
   currPage += 1;
   setLoader();
-  const data = await getHadith(
-    currText,
-    currPage,
-    currQuery,
-    currTabId,
-  );
+  const { data } = await getHadith(currText, currPage, currTabId);
 
   updatePageCounter(currPage);
 
@@ -103,12 +103,7 @@ prev.addEventListener('click', async (e) => {
   }
   currPage -= 1;
   setLoader();
-  const data = await getHadith(
-    currText,
-    currPage,
-    currQuery,
-    currTabId,
-  );
+  const { data } = await getHadith(currText, currPage, currTabId);
   updatePageCounter(currPage);
   updateHadithCounter(data.length);
   updateContent(data);
@@ -121,7 +116,6 @@ const tabButtons = Array.from(
 );
 
 const switchTab = async (e) => {
-  console.log('clicked');
   const clickedTabButton = e.target;
 
   // Do nothing if clicked the same tab
@@ -141,14 +135,19 @@ const switchTab = async (e) => {
   else settings.style.display = 'block';
 
   setLoader();
-  const data = await getHadith(
+  const { data, metadata } = await getHadith(
     currText,
     currPage,
-    currQuery,
     currTabId,
   );
+
+  const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
+  updateNonSpecialistHadithCounter(numberOfNonSpecialist);
+  updateSpecialistHadithCounter(numberOfSpecialist);
+
   updatePageCounter(currPage);
   updateHadithCounter(data.length);
+
   if (data.length === 0) {
     showMessage(
       `
@@ -161,6 +160,7 @@ const switchTab = async (e) => {
     content.innerHTML = '';
     return;
   }
+
   updateContent(data);
   showMessage('');
   hideLoader();
@@ -168,4 +168,38 @@ const switchTab = async (e) => {
 
 tabButtons.forEach((button) => {
   button.addEventListener('click', switchTab);
+});
+
+toggleSpecialist.addEventListener('click', async (e) => {
+  const value = e.target.checked;
+  queryOptions.updateOption('specialist', value);
+
+  setLoader();
+  const { data, metadata } = await getHadith(
+    currText,
+    currPage,
+    currTabId,
+  );
+
+  const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
+  updateNonSpecialistHadithCounter(numberOfNonSpecialist);
+  updateSpecialistHadithCounter(numberOfSpecialist);
+
+  updatePageCounter(currPage);
+  updateHadithCounter(data.length);
+
+  if (data.length === 0) {
+    showMessage(
+      `
+        <span>لا توجد أي نتائج</span>
+        <span>أختر فئة أحاديث أخرى</span>
+        <br/>
+        `,
+    );
+    hideLoader();
+    return;
+  }
+  updateContent(data);
+  showMessage('');
+  hideLoader();
 });

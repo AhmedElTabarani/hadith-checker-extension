@@ -1,6 +1,6 @@
-import { getSharhById } from './getSharhById.js';
-import { setPopupLoader, hidePopupLoader } from './loader.js';
-import { generateHadithCard } from './adapters/generateHadithCard.js';
+import { getSharhById } from '../getSharhById.js';
+import { setPopupLoader, hidePopupLoader } from '../loader.js';
+import { generateHadithCard } from '../adapters/generateHadithCard.js';
 
 const popupCard = document.getElementById('popup-card');
 const exitPopupCard = document.getElementById('exit-popup');
@@ -14,15 +14,22 @@ export const createSharhButton = (sharhId) => {
   btn.textContent = 'شرح الحديث';
 
   btn.addEventListener('click', async (e) => {
+    btn.disabled = true;
     setPopupLoader();
+
+    const cards = document.createElement('section');
+    cards.classList.add('cards');
+
     const result = await getSharhById(e.target.value);
     const card = generateHadithCard(result);
+    cards.appendChild(card);
+
     hidePopupLoader();
-    popupCard.lastChild?.remove(); // remove old card
-    popupCard.appendChild(card);
+    popupCard.replaceChildren(cards);
     body.classList.add('scroll-disable');
     popupCard.style.display = 'flex';
     exitPopupCard.style.display = 'block';
+    btn.disabled = false;
   });
 
   return btn;

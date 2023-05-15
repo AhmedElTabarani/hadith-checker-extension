@@ -1,78 +1,42 @@
 export const defaultOptions = {
-  bookSelected: {
+  book: {
     id: 's[]',
     key: 'الكتاب',
     value: ['0'],
-    labels: [
-      {
-        value: '0',
-        label: 'الجميع',
-      },
-    ],
   },
-  hadithDegreeSelected: {
+  hadithDegree: {
     id: 'd[]',
     key: 'درجة الحديث',
     value: ['0'],
-    labels: [
-      {
-        value: '0',
-        label: 'الجميع',
-      },
-    ],
   },
-  ignoreWordSelected: {
+  ignoreWords: {
     id: 'xclude',
     key: 'كلمة أو جملة مستبعدة',
     value: '',
   },
-  mohdithSelected: {
+  mohdith: {
     id: 'm[]',
     key: 'المحدث',
     value: ['0'],
-    labels: [
-      {
-        value: '0',
-        label: 'الجميع',
-      },
-    ],
   },
-  rawiSelected: {
+  rawi: {
     id: 'rawi[]',
     key: 'الراوي',
     value: ['0'],
-    labels: [
-      {
-        value: '0',
-        label: 'الجميع',
-      },
-    ],
   },
-  searchMethodSelected: {
+  searchMethod: {
     id: 'st',
     key: 'طريقة البحث',
     value: 'w',
-    labels: {
-      value: 'w',
-      label: 'جميع الكلمات',
-    },
   },
-  searchZoneSelected: {
+  searchZone: {
     id: 't',
     key: 'نطاق الحديث',
     value: '*',
-    labels: {
-      value: '*',
-      label: 'جميع الأحاديث',
-    },
   },
-  specialistSelected: {
+  specialist: {
     id: 'specialist',
     key: 'بحث للغير المتخصصين أم للمتخصصين',
     value: 'true',
-    labels: {
-      value: 'true',
-      label: 'بحث للمتخصصين',
-    },
   },
 };
