@@ -317,7 +317,7 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--ele-bg-dark);
+  color: white;
 }
 .toggle:checked + .toggle-switch {
   background-color: var(--ele-bg-dark);
