@@ -1,5 +1,7 @@
-import { createCopyButton } from './createCopyButton.js';
-import { createSharhButton } from './createSharhButton.js';
+import { createCopyButton } from './btn/createCopyButton.js';
+import { createSharhButton } from './btn/createSharhButton.js';
+import { createSimilarHadithButton } from './btn/createSimilarHadithButton.js';
+import { createAlternateHadithSahihButton } from './btn/createAlternateHadithSahihButton.js';
 import { generateHadithCard } from './adapters/generateHadithCard.js';
 
 const content = document.getElementById('content');
@@ -25,6 +27,22 @@ export const updateContent = async (allHadith) => {
         const sharhBtn = createSharhButton(sharhId);
         card.appendChild(sharhBtn);
       }
+    }
+
+    const hadithId = hadith.hadithId;
+    // Add similar hadith button
+    const hasSimilarHadith = hadith.hasSimilarHadith;
+    if (hasSimilarHadith) {
+      const similarHadithBtn = createSimilarHadithButton(hadithId);
+      card.appendChild(similarHadithBtn);
+    }
+
+    // Add alternate hadith button
+    const hasAlternateHadithSahih = hadith.hasAlternateHadithSahih;
+    if (hasAlternateHadithSahih) {
+      const alternateHadithBtn =
+        createAlternateHadithSahihButton(hadithId);
+      card.appendChild(alternateHadithBtn);
     }
 
     cards.appendChild(card);

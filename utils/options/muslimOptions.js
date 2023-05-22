@@ -1,22 +1,12 @@
 export const muslimOptions = {
-  bookSelected: {
+  book: {
     id: 's[]',
     key: 'الكتاب',
     value: ['3088'],
-    labels: [
-      {
-        value: '3088',
-        label: 'صحيح مسلم',
-      },
-    ],
   },
-  searchMethodSelected: {
+  searchMethod: {
     id: 'st',
     key: 'طريقة البحث',
     value: 'p',
-    labels: {
-      value: 'p',
-      label: 'بحث مطابق',
-    },
   },
 };

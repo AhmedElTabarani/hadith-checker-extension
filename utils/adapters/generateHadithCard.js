@@ -37,7 +37,7 @@ export const generateHadithCard = (hadithObj) => {
     </div>
   `;
 
-  // Add sharh button
+  // Add sharh
   const hasSharhMetadata = hadithObj.hasSharhMetadata;
   if (hasSharhMetadata) {
     const sharhMetadata = hadithObj.sharhMetadata;

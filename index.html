@@ -72,14 +72,14 @@
           </div>
           <div class="container-main-search">
             <div class="searchone">
-              <div class="hadith-degree">
+              <div class="option hadith-degree">
                 <label>درجة الحديث</label>
                 <div id="hadith-degree"></div>
               </div>
               <div class="option">
                 <label>كلمة أو جملة تريد استبعادها من البحث</label>
                 <input
-                  id="notget"
+                  id="ignore-words"
                   type="text"
                   placeholder="ادخل كلمه او جمله"
                 />
@@ -115,8 +115,20 @@
           الرجوع للاختيارات الافتراضية
         </button>
       </div>
+      <label class="toggle-box">
+        <p>أحاديث للمتخصصين</p>
+        <input class="toggle" type="checkbox" />
+        <div class="toggle-switch"></div>
+        <p>أحاديث لغير المتخصصين</p>
+      </label>
       <p id="page-counter">الصفحة رقم: <span></span></p>
       <p id="hadith-counter">عدد النتائج: <span></span></p>
+      <p id="specialist-hadith">
+        عدد الأحاديث للمتخصصين: <span></span>
+      </p>
+      <p id="non-specialist-hadith">
+        عدد الأحاديث لغير المتخصصين: <span></span>
+      </p>
       <div id="loader" class="loader-hide">
         <div class="loader"></div>
       </div>
