@@ -14,7 +14,43 @@ const rawiElement = document.querySelector('#rawi');
 const searchMethodElement = document.querySelector('#search-method');
 const ignoreWordsElement = document.querySelector('#ignore-words');
 
+const settings = document.querySelector('.toggle-settings');
+
 ignoreWordsElement.value = queryOptions.getOption('ignoreWords');
+
+queryOptions.isChanged()
+  ? settings.classList.add('red-dot')
+  : settings.classList.remove('red-dot');
+
+queryOptions.isChanged('ignoreWords', false)
+  ? ignoreWordsElement.parentElement.classList.add('red-dot')
+  : ignoreWordsElement.parentElement.classList.remove('red-dot');
+
+queryOptions.isChanged('hadithDegree', true)
+  ? hadithDegreeElement.parentElement.classList.add('red-dot')
+  : hadithDegreeElement.parentElement.classList.remove('red-dot');
+
+queryOptions.isChanged('searchZone', true)
+  ? searchZoneElement.parentElement.classList.add('red-dot')
+  : searchZoneElement.parentElement.classList.remove('red-dot');
+
+queryOptions.isChanged('book', true)
+  ? bookElement.parentElement.classList.add('red-dot')
+  : bookElement.parentElement.classList.remove('red-dot');
+
+queryOptions.isChanged('mohdith', true)
+  ? mohdithElement.parentElement.classList.add('red-dot')
+  : mohdithElement.parentElement.classList.remove('red-dot');
+
+queryOptions.isChanged('rawi', true)
+  ? rawiElement.parentElement.classList.add('red-dot')
+  : rawiElement.parentElement.classList.remove('red-dot');
+
+queryOptions.isChanged('searchMethod', false)
+  ? searchMethodElement.parentElement.classList.add('red-dot')
+  : searchMethodElement.parentElement.classList.remove('red-dot');
+
+
 
 document.querySelector('.main .toggle-settings .fa-gear').onclick =
   function () {
@@ -145,13 +181,13 @@ ignoreWordsElement.addEventListener('change', function () {
 const form = document.getElementById('option-form');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  await saveToStorage('options', queryOptions.getAllOptions());
+  await queryOptions.saveOptions();
   window.location.reload();
 });
 
 document
   .getElementById('reset-option-btn')
   .addEventListener('click', async () => {
-    await saveToStorage('options', queryOptions.getDefaultOptions());
+    await queryOptions.resetOptions();
     window.location.reload();
   });

@@ -1,6 +1,4 @@
-import { convertOptionsToQueryString } from './utils/adapters/convertOptionsToQueryString.js';
 import { loadFromStorage } from './utils/adapters/loadFromStorage.js';
-import { saveToStorage } from './utils/adapters/saveToStorage.js';
 import { getHadith } from './utils/getHadith.js';
 import { showMessage } from './utils/sendMessage.js';
 import { updateHadithCounter } from './utils/updateHadithCounter.js';
@@ -76,7 +74,7 @@ next.addEventListener('click', async (e) => {
     currPage -= 1;
     showMessage(
       `
-      <span>أنت في الصفحة الأخيرة</span>
+      <span>أنت في الصفحة الأخيرة بالفعل</span>
       <span>لا توجد أي نتائج أخرى</span>
       <br/>
       `,

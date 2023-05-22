@@ -278,6 +278,8 @@ hr {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 0 2em;
+  margin-top: 1em;
 }
 
 .toggle-box p {
@@ -489,15 +491,24 @@ footer {
   overflow: hidden;
 }
 
-/* @media (max-width: 1039px)and(min-width:765px) {
-  .settings-box .container-main-search {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 11px;
-    padding-right: 24px;
-    justify-content: center;
-  }
-}  */
+.red-dot::before {
+  content: '';
+  display: none;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.open .red-dot::before {
+  display: block;
+}
+
+.toggle-settings.red-dot::before {
+  display: block;
+}
+
 @media (max-width: 679px) {
   .option {
     padding-right: 0px !important;

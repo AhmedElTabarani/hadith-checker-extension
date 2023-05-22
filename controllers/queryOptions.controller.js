@@ -12,9 +12,6 @@ class QueryOptions {
       await saveToStorage('options', defaultOptions);
       this.options = defaultOptions;
     }
-
-    console.log(this.options);
-
     return this;
   }
 
@@ -32,6 +29,30 @@ class QueryOptions {
 
   getDefaultOptions = () => {
     return defaultOptions;
+  };
+
+  resetOptions = () => {
+    return saveToStorage('options', defaultOptions);
+  };
+
+  saveOptions = () => {
+    return saveToStorage('options', this.options);
+  };
+
+  isChanged = (key = 'all', useJsonStringify = true) => {
+    if (key === 'all')
+      return (
+        JSON.stringify(this.options) !==
+        JSON.stringify(defaultOptions)
+      );
+
+    if (useJsonStringify)
+      return (
+        JSON.stringify(this.options[key].value) !==
+        JSON.stringify(defaultOptions[key].value)
+      );
+
+    return this.options[key].value !== defaultOptions[key].value;
   };
 
   convertOptionsToQueryString = (tabId) => {
