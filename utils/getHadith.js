@@ -14,7 +14,7 @@ export const getHadith = async (
   if (result) return result;
 
   const res = await fetch(encodeURI(url));
-  const data = await res.json();
+  const { data } = await res.json();
 
   cache.set(url, data);
   return data;
