@@ -114,6 +114,7 @@ const tabButtons = Array.from(
 );
 
 const switchTab = async (e) => {
+  console.log('clicked');
   const clickedTabButton = e.target;
 
   // Do nothing if clicked the same tab
