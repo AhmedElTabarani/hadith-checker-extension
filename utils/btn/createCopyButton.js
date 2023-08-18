@@ -4,7 +4,9 @@ export const createCopyButton = () => {
   btn.setAttribute('type', 'button');
   btn.textContent = 'نسخ الحديث';
   btn.addEventListener('click', (e) => {
-    const content = e.target.previousElementSibling;
+    const card = e.target.parentElement;
+    const content = card.firstElementChild;
+    content.style.padding = '20px'
     const text = `\`\`\`${content.textContent}\`\`\``;
     btn.disabled = true;
     navigator.clipboard.writeText(text).then(
