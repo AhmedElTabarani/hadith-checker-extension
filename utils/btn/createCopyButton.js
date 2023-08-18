@@ -6,18 +6,28 @@ export const createCopyButton = () => {
   btn.addEventListener('click', (e) => {
     const card = e.target.parentElement;
     const content = card.firstElementChild;
-    content.style.padding = '20px'
-    const text = `\`\`\`${content.textContent}\`\`\``;
+    const oldPadding = content.style.padding;
+    content.style.padding = '20px';
+
+    const dorarLink = document.querySelector('.dorar-search-link');
+    const url = dorarLink.href;
+    const text = `\`\`\`${content.textContent}\`\`\`\nالمصدر: ${url}`;
+
     btn.disabled = true;
-    navigator.clipboard.writeText(text).then(
-      () => {
+    navigator.clipboard
+      .writeText(text)
+      .then(
+        () => {
+          console.log('Copying to clipboard was successful!');
+        },
+        (err) => {
+          console.error('Could not copy text: ', err);
+        },
+      )
+      .finally(() => {
         btn.disabled = false;
-        console.log('Copying to clipboard was successful!');
-      },
-      (err) => {
-        console.error('Could not copy text: ', err);
-      },
-    );
+        content.style.padding = oldPadding;
+      });
   });
   return btn;
 };
