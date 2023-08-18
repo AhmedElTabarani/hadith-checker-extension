@@ -3,6 +3,7 @@ import { createSharhButton } from './btn/createSharhButton.js';
 import { createSimilarHadithButton } from './btn/createSimilarHadithButton.js';
 import { createAlternateHadithSahihButton } from './btn/createAlternateHadithSahihButton.js';
 import { generateHadithCard } from './adapters/generateHadithCard.js';
+import { createCopyAsAnImageButton } from './btn/createCopyAsAnImageButton.js';
 
 const content = document.getElementById('content');
 
@@ -44,6 +45,10 @@ export const updateContent = async (allHadith) => {
         createAlternateHadithSahihButton(hadithId);
       card.appendChild(alternateHadithBtn);
     }
+
+    // Add copy as an image button
+    const copyAsAnImageButton = createCopyAsAnImageButton();
+    card.appendChild(copyAsAnImageButton);
 
     cards.appendChild(card);
     return card;

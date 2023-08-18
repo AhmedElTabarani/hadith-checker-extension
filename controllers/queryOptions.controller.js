@@ -1,4 +1,3 @@
-import { convertOptionsToQueryString } from '../utils/adapters/convertOptionsToQueryString.js';
 import { loadFromStorage } from '../utils/adapters/loadFromStorage.js';
 import { saveToStorage } from '../utils/adapters/saveToStorage.js';
 import { bukhariOptions } from '../utils/options/bukhariOptions.js';
@@ -14,6 +13,17 @@ class QueryOptions {
     }
     return this;
   }
+
+  #convertOptionsToQueryString = (options) =>
+  Object.values(options)
+    .map((option) => {
+      if (Array.isArray(option.value))
+        return option.value
+          .map((value) => `${option.id}=${value}`)
+          .join('&');
+      else return `${option.id}=${option.value}`;
+    })
+    .join('&');
 
   updateOption = (key, value) => {
     this.options[key].value = value;
@@ -57,23 +67,23 @@ class QueryOptions {
 
   convertOptionsToQueryString = (tabId) => {
     if (tabId === 'bukhari-tab')
-      return convertOptionsToQueryString(
+      return this.#convertOptionsToQueryString(
         Object.assign(
           { ...defaultOptions, specialist: this.options.specialist },
           bukhariOptions,
         ),
       );
     else if (tabId === 'muslim-tab')
-      return convertOptionsToQueryString(
+      return this.#convertOptionsToQueryString(
         Object.assign(
           { ...defaultOptions, specialist: this.options.specialist },
           muslimOptions,
         ),
       );
     else if (tabId === 'main-tab')
-      return convertOptionsToQueryString(this.options);
+      return this.#convertOptionsToQueryString(this.options);
 
-    return convertOptionsToQueryString(defaultOptions);
+    return this.#convertOptionsToQueryString(defaultOptions);
   };
 }
 
