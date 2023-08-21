@@ -8,7 +8,7 @@ export const getHadith = async (
 ) => {
   const query = queryOptions.convertOptionsToQueryString(tabId);
 
-  const url = `https://dorar-hadith-api.cyclic.app/v1/site/hadith/search?value=${text}&page=${page}&${query}`;
+  const url = `https://dorar-hadith-api.cyclic.cloud/v1/site/hadith/search?value=${text}&page=${page}&${query}`;
 
   const result = await cache.get(url);
   if (result) return result;
