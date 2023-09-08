@@ -1,5 +1,5 @@
-import { loadFromStorage } from './utils/adapters/loadFromStorage.js';
 import hadithSearchController from './controllers/hadithSearch.controller.js';
+import * as cache from './utils/cache.js';
 import { showMessage } from './utils/sendMessage.js';
 import { updateHadithCounter } from './utils/updateHadithCounter.js';
 import paginationController from './controllers/pagination.controller.js';
@@ -26,7 +26,7 @@ let currText = '';
 let currTabId = 'main-tab';
 
 // It will only run once (when the window is rendering for the first time)
-loadFromStorage('text').then(async (text) => {
+cache.get('text').then(async (text) => {
   currText = text;
   hadithSearchController.setTabId(currTabId);
 

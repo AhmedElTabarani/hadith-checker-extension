@@ -1,4 +1,4 @@
-import { saveToStorage } from '../../utils/adapters/saveToStorage.js';
+import * as cache from '../../utils/cache.js';
 
 const searchbar = document.querySelector('#searchbar');
 const btnSearch = document.querySelector('#search-window-btn');
@@ -7,7 +7,7 @@ btnSearch.addEventListener('click', async () => {
     document.querySelector('.err').innerHTML = 'هذا الحقل مطلوب';
     return;
   }
-  await saveToStorage('text', searchbar.value);
+  await cache.set('text', searchbar.value);
   await chrome.windows.create({
     url: chrome.runtime.getURL('index.html'),
     type: 'popup',

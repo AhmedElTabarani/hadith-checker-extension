@@ -1,5 +1,4 @@
-import { loadFromStorage } from '../utils/adapters/loadFromStorage.js';
-import { saveToStorage } from '../utils/adapters/saveToStorage.js';
+import * as cache from '../utils/cache.js';
 import { bukhariOptions } from '../utils/options/bukhariOptions.js';
 import { defaultOptions } from '../utils/options/defaultOptions.js';
 import { muslimOptions } from '../utils/options/muslimOptions.js';
@@ -11,9 +10,9 @@ class QueryOptions {
     ];
   }
   async init() {
-    this.options = await loadFromStorage('options');
+    this.options = await cache.get('options');
     if (!this.options) {
-      await saveToStorage('options', defaultOptions);
+      await cache.set('options', defaultOptions);
       this.options = defaultOptions;
     }
     return this;
@@ -48,11 +47,11 @@ class QueryOptions {
   };
 
   resetOptions = () => {
-    return saveToStorage('options', defaultOptions);
+    return cache.set('options', defaultOptions);
   };
 
   saveOptions = () => {
-    return saveToStorage('options', this.options);
+    return cache.set('options', this.options);
   };
 
   isChanged = (key = 'all', useJsonStringify = true) => {
