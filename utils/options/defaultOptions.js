@@ -37,6 +37,6 @@ export const defaultOptions = {
   specialist: {
     id: 'specialist',
     key: 'بحث للغير المتخصصين أم للمتخصصين',
-    value: 'true',
+    value: true,
   },
 };

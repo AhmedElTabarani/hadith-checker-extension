@@ -1,4 +1,4 @@
-import { getAllSimilarHadithById } from '../getAllSimilarHadithById.js';
+import hadithSearchController from '../../controllers/hadithSearch.controller.js';
 import { setPopupLoader, hidePopupLoader } from '../loader.js';
 import { generateHadithCard } from '../adapters/generateHadithCard.js';
 
@@ -15,16 +15,19 @@ export const createSimilarHadithButton = (hadithId) => {
 
   btn.addEventListener('click', async (e) => {
     btn.disabled = true;
-    const result = await getAllSimilarHadithById(e.target.value);
-    if (result.length === 0) return;
+    const { data } =
+      await hadithSearchController.getAllSimilarHadithUsingSiteDorar(
+        e.target.value,
+      );
+    if (data.length === 0) return;
 
     setPopupLoader();
 
     const cards = document.createElement('section');
     cards.classList.add('cards');
 
-    for (let i = 0; i < result.length; i++)
-      cards.appendChild(generateHadithCard(result[i]));
+    for (let i = 0; i < data.length; i++)
+      cards.appendChild(generateHadithCard(data[i]));
 
     hidePopupLoader();
     popupCard.replaceChildren(cards);

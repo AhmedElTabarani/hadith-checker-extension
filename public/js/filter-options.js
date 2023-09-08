@@ -18,39 +18,24 @@ const settings = document.querySelector('.toggle-settings');
 
 ignoreWordsElement.value = queryOptions.getOption('ignoreWords');
 
+const addOrRemoveRedDot = (option, element) => {
+  const isChanged = queryOptions.isChanged(option, true);
+  isChanged
+    ? element.parentElement.classList.add('red-dot')
+    : element.parentElement.classList.remove('red-dot');
+};
+
 queryOptions.isChanged()
   ? settings.classList.add('red-dot')
   : settings.classList.remove('red-dot');
 
-queryOptions.isChanged('ignoreWords', false)
-  ? ignoreWordsElement.parentElement.classList.add('red-dot')
-  : ignoreWordsElement.parentElement.classList.remove('red-dot');
-
-queryOptions.isChanged('hadithDegree', true)
-  ? hadithDegreeElement.parentElement.classList.add('red-dot')
-  : hadithDegreeElement.parentElement.classList.remove('red-dot');
-
-queryOptions.isChanged('searchZone', true)
-  ? searchZoneElement.parentElement.classList.add('red-dot')
-  : searchZoneElement.parentElement.classList.remove('red-dot');
-
-queryOptions.isChanged('book', true)
-  ? bookElement.parentElement.classList.add('red-dot')
-  : bookElement.parentElement.classList.remove('red-dot');
-
-queryOptions.isChanged('mohdith', true)
-  ? mohdithElement.parentElement.classList.add('red-dot')
-  : mohdithElement.parentElement.classList.remove('red-dot');
-
-queryOptions.isChanged('rawi', true)
-  ? rawiElement.parentElement.classList.add('red-dot')
-  : rawiElement.parentElement.classList.remove('red-dot');
-
-queryOptions.isChanged('searchMethod', false)
-  ? searchMethodElement.parentElement.classList.add('red-dot')
-  : searchMethodElement.parentElement.classList.remove('red-dot');
-
-
+addOrRemoveRedDot('ignoreWords', ignoreWordsElement);
+addOrRemoveRedDot('hadithDegree', hadithDegreeElement);
+addOrRemoveRedDot('searchZone', searchZoneElement);
+addOrRemoveRedDot('book', bookElement);
+addOrRemoveRedDot('mohdith', mohdithElement);
+addOrRemoveRedDot('rawi', rawiElement);
+addOrRemoveRedDot('searchMethod', searchMethodElement);
 
 document.querySelector('.main .toggle-settings .fa-gear').onclick =
   function () {

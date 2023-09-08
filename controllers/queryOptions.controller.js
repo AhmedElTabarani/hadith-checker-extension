@@ -5,6 +5,11 @@ import { defaultOptions } from '../utils/options/defaultOptions.js';
 import { muslimOptions } from '../utils/options/muslimOptions.js';
 
 class QueryOptions {
+  constructor() {
+    this.excludedOptionsFromConverted = [
+      'specialist',
+    ];
+  }
   async init() {
     this.options = await loadFromStorage('options');
     if (!this.options) {
@@ -15,15 +20,16 @@ class QueryOptions {
   }
 
   #convertOptionsToQueryString = (options) =>
-  Object.values(options)
-    .map((option) => {
-      if (Array.isArray(option.value))
-        return option.value
-          .map((value) => `${option.id}=${value}`)
-          .join('&');
-      else return `${option.id}=${option.value}`;
-    })
-    .join('&');
+    Object.entries(options)
+      .map(([key, option]) => {
+        if (this.excludedOptionsFromConverted.includes(key)) return;
+        if (Array.isArray(option.value))
+          return option.value
+            .map((value) => `${option.id}=${value}`)
+            .join('&');
+        else return `${option.id}=${option.value}`;
+      })
+      .join('&');
 
   updateOption = (key, value) => {
     this.options[key].value = value;

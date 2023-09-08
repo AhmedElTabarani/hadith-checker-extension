@@ -1,8 +1,8 @@
 import { loadFromStorage } from './utils/adapters/loadFromStorage.js';
-import { getHadith } from './utils/getHadith.js';
+import hadithSearchController from './controllers/hadithSearch.controller.js';
 import { showMessage } from './utils/sendMessage.js';
 import { updateHadithCounter } from './utils/updateHadithCounter.js';
-import { updatePageCounter } from './utils/updatePageCounter.js';
+import paginationController from './controllers/pagination.controller.js';
 import { updateSpecialistHadithCounter } from './utils/updateSpecialistHadithCounter.js';
 import { updateNonSpecialistHadithCounter } from './utils/updateNonSpecialistHadithCounter.js';
 import { updateContent } from './utils/updateContent.js';
@@ -12,19 +12,23 @@ import queryOptions from './controllers/queryOptions.controller.js';
 const content = document.getElementById('content');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
+const pageNumberSelection = document.getElementById(
+  'page-number-selection',
+);
+const goToPage = document.getElementById('go-to-page');
 const settings = document.querySelector('.settings-box');
 const dorarSearchLink = document.querySelector('.dorar-search-link');
 const toggleSpecialist = document.querySelector(
   '.toggle-box .toggle',
 );
 
-let currPage = 1;
 let currText = '';
 let currTabId = 'main-tab';
 
 // It will only run once (when the window is rendering for the first time)
 loadFromStorage('text').then(async (text) => {
   currText = text;
+  hadithSearchController.setTabId(currTabId);
 
   toggleSpecialist.checked = queryOptions.getOption('specialist');
   dorarSearchLink.setAttribute(
@@ -33,17 +37,13 @@ loadFromStorage('text').then(async (text) => {
   );
 
   setLoader();
-  const { data, metadata } = await getHadith(
-    currText,
-    currPage,
-    currTabId,
-  );
+  const { data, metadata } =
+    await hadithSearchController.searchUsingSiteDorar(currText);
 
   const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
   updateNonSpecialistHadithCounter(numberOfNonSpecialist);
   updateSpecialistHadithCounter(numberOfSpecialist);
 
-  updatePageCounter(currPage);
   updateHadithCounter(data.length);
 
   if (data.length === 0) {
@@ -64,30 +64,30 @@ loadFromStorage('text').then(async (text) => {
 
 next.addEventListener('click', async (e) => {
   e.preventDefault();
-  currPage += 1;
+  paginationController.nextPage();
   setLoader();
-  const { data } = await getHadith(currText, currPage, currTabId);
-
-  updatePageCounter(currPage);
+  debugger;
+  const { data } = await hadithSearchController.searchUsingSiteDorar(
+    currText,
+  );
+  updateHadithCounter(data.length);
 
   if (data.length === 0) {
-    currPage -= 1;
     showMessage(
       `
-      <span>أنت في الصفحة الأخيرة بالفعل</span>
-      <span>لا توجد أي نتائج أخرى</span>
+      <span>لا توجد أي نتائج</span>
       <br/>
       `,
     );
     hideLoader();
-    updatePageCounter(currPage);
+    content.innerHTML = '';
     return;
   }
-  updateHadithCounter(data.length);
   updateContent(data);
   showMessage('');
   hideLoader();
 });
+
 prev.addEventListener('click', async (e) => {
   e.preventDefault();
   if (currPage === 1) {
@@ -99,11 +99,52 @@ prev.addEventListener('click', async (e) => {
     );
     return;
   }
-  currPage -= 1;
+  paginationController.prevPage();
   setLoader();
-  const { data } = await getHadith(currText, currPage, currTabId);
-  updatePageCounter(currPage);
+  const { data } = await hadithSearchController.searchUsingSiteDorar(
+    currText,
+  );
   updateHadithCounter(data.length);
+
+  if (data.length === 0) {
+    showMessage(
+      `
+      <span>لا توجد أي نتائج</span>
+      <br/>
+      `,
+    );
+    hideLoader();
+    content.innerHTML = '';
+    return;
+  }
+
+  updateContent(data);
+  showMessage('');
+  hideLoader();
+});
+
+goToPage.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const page = Math.abs(pageNumberSelection.valueAsNumber);
+  paginationController.goToPage(page);
+  setLoader();
+  const { data } = await hadithSearchController.searchUsingSiteDorar(
+    currText,
+  );
+  updateHadithCounter(data.length);
+
+  if (data.length === 0) {
+    showMessage(
+      `
+      <span>لا توجد أي نتائج</span>
+      <span>أختر صفحة أخرى</span>
+      <br/>
+      `,
+    );
+    content.innerHTML = '';
+    hideLoader();
+    return;
+  }
   updateContent(data);
   showMessage('');
   hideLoader();
@@ -114,13 +155,13 @@ const tabButtons = Array.from(
 );
 
 const switchTab = async (e) => {
-  console.log('clicked');
   const clickedTabButton = e.target;
 
   // Do nothing if clicked the same tab
   if (clickedTabButton.dataset.tabid === currTabId) return;
 
   currTabId = clickedTabButton.dataset.tabid;
+  hadithSearchController.setTabId(currTabId);
 
   // Update active tab button and inactive the rest
   for (const tabButton of tabButtons) {
@@ -134,17 +175,13 @@ const switchTab = async (e) => {
   else settings.style.display = 'block';
 
   setLoader();
-  const { data, metadata } = await getHadith(
-    currText,
-    currPage,
-    currTabId,
-  );
+  const { data, metadata } =
+    await hadithSearchController.searchUsingSiteDorar(currText);
 
   const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
   updateNonSpecialistHadithCounter(numberOfNonSpecialist);
   updateSpecialistHadithCounter(numberOfSpecialist);
 
-  updatePageCounter(currPage);
   updateHadithCounter(data.length);
 
   if (data.length === 0) {
@@ -174,17 +211,13 @@ toggleSpecialist.addEventListener('click', async (e) => {
   queryOptions.updateOption('specialist', value);
 
   setLoader();
-  const { data, metadata } = await getHadith(
-    currText,
-    currPage,
-    currTabId,
-  );
+  const { data, metadata } =
+    await hadithSearchController.searchUsingSiteDorar(currText);
 
   const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
   updateNonSpecialistHadithCounter(numberOfNonSpecialist);
   updateSpecialistHadithCounter(numberOfSpecialist);
 
-  updatePageCounter(currPage);
   updateHadithCounter(data.length);
 
   if (data.length === 0) {
@@ -195,6 +228,7 @@ toggleSpecialist.addEventListener('click', async (e) => {
         <br/>
         `,
     );
+    content.innerHTML = '';
     hideLoader();
     return;
   }

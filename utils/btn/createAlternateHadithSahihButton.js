@@ -1,4 +1,4 @@
-import { getAlternateHadithSahihById } from '../getAlternateHadithSahihById.js';
+import hadithSearchController from '../../controllers/hadithSearch.controller.js';
 import { setPopupLoader, hidePopupLoader } from '../loader.js';
 import { generateHadithCard } from '../adapters/generateHadithCard.js';
 
@@ -20,8 +20,11 @@ export const createAlternateHadithSahihButton = (alternateId) => {
     const cards = document.createElement('section');
     cards.classList.add('cards');
 
-    const result = await getAlternateHadithSahihById(e.target.value);
-    const card = generateHadithCard(result);
+    const { data } =
+      await hadithSearchController.getAlternateHadithUsingSiteDorar(
+        e.target.value,
+      );
+    const card = generateHadithCard(data);
     cards.appendChild(card);
 
     hidePopupLoader();

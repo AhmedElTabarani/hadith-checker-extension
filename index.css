@@ -169,6 +169,19 @@ label {
   margin-top: 1em;
 }
 
+#page-select {
+  text-align: center;
+}
+
+#page-number-selection {
+  color: var(--main-color);
+  font-size: 1.3em;
+  font-weight: bold;
+  text-align: center;
+  height: 2em;
+  width: 12em;
+}
+
 #message {
   display: flex;
   padding: 0 1em;
@@ -558,17 +571,11 @@ footer {
 
 .search-btn,
 .reset-option-btn {
-  background-color: #0070f3;
-  border: none;
-  color: #fff;
-  padding: 10px 15px;
-  /* float: left; */
-  display: block;
-  /* margin-left: 60px; */
-  border-radius: 8px;
-  margin: 27px;
-  font-size: 14px;
-  cursor: pointer;
+  padding: 8px;
+  margin-top: 18px;
+  margin-right: 24px;
+  font-size: 16px;
+  width: 13em;
 }
 
 .vscomp-wrapper.has-select-all .vscomp-toggle-all-button {
@@ -718,10 +725,6 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.btnn {
-  width: 80%;
 }
 
 .err {
