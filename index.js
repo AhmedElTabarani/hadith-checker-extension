@@ -66,7 +66,6 @@ next.addEventListener('click', async (e) => {
   e.preventDefault();
   paginationController.nextPage();
   setLoader();
-  debugger;
   const { data } = await hadithSearchController.searchUsingSiteDorar(
     currText,
   );
