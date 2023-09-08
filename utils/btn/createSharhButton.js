@@ -1,4 +1,4 @@
-import { getSharhById } from '../getSharhById.js';
+import sharhSearchController from '../../controllers/sharhSearch.controller.js';
 import { setPopupLoader, hidePopupLoader } from '../loader.js';
 import { generateHadithCard } from '../adapters/generateHadithCard.js';
 
@@ -20,8 +20,11 @@ export const createSharhButton = (sharhId) => {
     const cards = document.createElement('section');
     cards.classList.add('cards');
 
-    const result = await getSharhById(e.target.value);
-    const card = generateHadithCard(result);
+    const { data } =
+      await sharhSearchController.getOneSharhByIdUsingSiteDorar(
+        e.target.value,
+      );
+    const card = generateHadithCard(data);
     cards.appendChild(card);
 
     hidePopupLoader();

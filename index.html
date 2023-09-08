@@ -110,9 +110,9 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="search-btn">بحث</button>
+          <button type="submit" class="nice-btn search-btn">بحث</button>
         </form>
-        <button id="reset-option-btn" class="reset-option-btn">
+        <button id="reset-option-btn" class="nice-btn reset-option-btn">
           الرجوع للاختيارات الافتراضية
         </button>
       </div>
@@ -145,6 +145,18 @@
 
       <div class="group-btn">
         <button id="next" class="nice-btn">الصفحة التالية</button>
+        <section id="page-select">
+          <input
+            type="number"
+            id="page-number-selection"
+            placeholder="ادخل رقم الصفحة"
+            min="1"
+            value="1"
+          />
+          <button id="go-to-page" class="nice-btn">
+            الانتقال للصفحة
+          </button>
+        </section>
         <button id="prev" class="nice-btn">الصفحة السابقة</button>
       </div>
       <p id="message"></p>

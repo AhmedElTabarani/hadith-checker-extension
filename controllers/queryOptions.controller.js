@@ -1,29 +1,34 @@
-import { loadFromStorage } from '../utils/adapters/loadFromStorage.js';
-import { saveToStorage } from '../utils/adapters/saveToStorage.js';
+import * as cache from '../utils/cache.js';
 import { bukhariOptions } from '../utils/options/bukhariOptions.js';
 import { defaultOptions } from '../utils/options/defaultOptions.js';
 import { muslimOptions } from '../utils/options/muslimOptions.js';
 
 class QueryOptions {
+  constructor() {
+    this.excludedOptionsFromConverted = [
+      'specialist',
+    ];
+  }
   async init() {
-    this.options = await loadFromStorage('options');
+    this.options = await cache.get('options');
     if (!this.options) {
-      await saveToStorage('options', defaultOptions);
+      await cache.set('options', defaultOptions);
       this.options = defaultOptions;
     }
     return this;
   }
 
   #convertOptionsToQueryString = (options) =>
-  Object.values(options)
-    .map((option) => {
-      if (Array.isArray(option.value))
-        return option.value
-          .map((value) => `${option.id}=${value}`)
-          .join('&');
-      else return `${option.id}=${option.value}`;
-    })
-    .join('&');
+    Object.entries(options)
+      .map(([key, option]) => {
+        if (this.excludedOptionsFromConverted.includes(key)) return;
+        if (Array.isArray(option.value))
+          return option.value
+            .map((value) => `${option.id}=${value}`)
+            .join('&');
+        else return `${option.id}=${option.value}`;
+      })
+      .join('&');
 
   updateOption = (key, value) => {
     this.options[key].value = value;
@@ -42,11 +47,11 @@ class QueryOptions {
   };
 
   resetOptions = () => {
-    return saveToStorage('options', defaultOptions);
+    return cache.set('options', defaultOptions);
   };
 
   saveOptions = () => {
-    return saveToStorage('options', this.options);
+    return cache.set('options', this.options);
   };
 
   isChanged = (key = 'all', useJsonStringify = true) => {
