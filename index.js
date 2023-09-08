@@ -89,7 +89,7 @@ next.addEventListener('click', async (e) => {
 
 prev.addEventListener('click', async (e) => {
   e.preventDefault();
-  if (currPage === 1) {
+  if (paginationController.getPage() === 1) {
     showMessage(
       `
       <span>أنت في الصفحة الأولى بالفعل</span>
