@@ -58,7 +58,8 @@
 
 </div>
 
-## رابط الإضافة على متجر جوجل
+## رابط الإضافة على متجر جوجل كروم
+
 
 <div align="center">
 
@@ -67,6 +68,21 @@
    <img src="https://camo.githubusercontent.com/67412515c4d8584d1ebbfd028590488eb8e6b8fe92deb2b95069c3d246f847dd/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f7765622d6465762d75706c6f6164732f696d6167652f576c443877433667386b685957504a5573516365516b6858536c76312f485273394d50756661314a316835676c4e6875742e706e67" width="300px">
 
 </a>
+
+
+</div>
+
+## رابط الإضافة على متجر مايكروسوفت إيدج
+
+<div align="center">
+
+<a href="https://microsoftedge.microsoft.com/addons/detail/%D8%A7%D9%84%D8%AA%D8%AD%D9%82%D9%82-%D9%85%D9%86-%D8%A7%D9%84%D8%A3%D8%AD%D8%A7%D8%AF%D9%8A%D8%AB-hadi/fnkpjflmalknlnheabefoflglahlmjec" target="_blank">
+
+   <img src="https://github.com/AhmedElTabarani/hadith-checker-extension/assets/69223584/aa56a5e6-4839-412d-ac68-ab36ebf3384a" width="300px">
+
+</a>
+
+
 </div>
 
 ## يوجد مشكلة !!
