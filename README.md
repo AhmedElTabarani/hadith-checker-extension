@@ -65,7 +65,7 @@
 
 <a href="https://chrome.google.com/webstore/detail/hadith-checker/cfbllcckohbiiplkigbfllfphhakanke" target="_blank">
 
-   <img src="https://camo.githubusercontent.com/67412515c4d8584d1ebbfd028590488eb8e6b8fe92deb2b95069c3d246f847dd/68747470733a2f2f73746f726167652e676f6f676c65617069732e636f6d2f7765622d6465762d75706c6f6164732f696d6167652f576c443877433667386b685957504a5573516365516b6858536c76312f485273394d50756661314a316835676c4e6875742e706e67" width="300px">
+   <img src="https://github.com/AhmedElTabarani/hadith-checker-extension/assets/69223584/af57d468-21bf-423b-a7a4-ed4e94e32bd1" width="300px">
 
 </a>
 
