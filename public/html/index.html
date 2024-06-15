@@ -7,25 +7,25 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
-    <script src="./thirdparty/html2canvas.min.js"></script>
-    <script src="./thirdparty/he.min.js"></script>
-    <script src="./thirdparty/virtual-select.min.js"></script>
+    <script src="../../thirdparty/html2canvas.min.js"></script>
+    <script src="../../thirdparty/he.min.js"></script>
+    <script src="../../thirdparty/virtual-select.min.js"></script>
     <script
-      src="./public/js/filter-options.js"
+      src="../js/filter-options.js"
       defer
       type="module"
     ></script>
-    <script src="./index.js" defer type="module"></script>
+    <script src="../js/index.js" defer type="module"></script>
     <link
       href="http://fonts.cdnfonts.com/css/neo-sans-arabic"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="thirdparty/virtual-select.min.css" />
+    <link rel="stylesheet" href="../../thirdparty/virtual-select.min.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="../css/index.css" />
     <title>التحقق من الأحاديث | Hadith Checker</title>
   </head>
 
@@ -42,7 +42,7 @@
               data-tabId="main-tab"
               aria-label="View Hadith"
             >
-              الأحاديث
+              البحث في موقع الدرر السَنية
             </button>
           </li>
           <li>
@@ -61,6 +61,17 @@
               aria-label="Search Sahih Muslim"
             >
               البحث في صحيح مسلم
+            </button>
+          </li>
+          <li>
+            <button
+              class="tab-btn"
+              data-tabId="sunnah-site-tab"
+              aria-label="Search In Sunnah Site"
+            >
+              Search In Sunnah Site With English Translation
+              <br />
+              البحث في موقع السنة مع ترجمة الإنجليزية
             </button>
           </li>
         </ul>
@@ -110,9 +121,14 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="nice-btn search-btn">بحث</button>
+          <button type="submit" class="nice-btn search-btn">
+            بحث
+          </button>
         </form>
-        <button id="reset-option-btn" class="nice-btn reset-option-btn">
+        <button
+          id="reset-option-btn"
+          class="nice-btn reset-option-btn"
+        >
           الرجوع للاختيارات الافتراضية
         </button>
       </div>
@@ -124,6 +140,8 @@
       </label>
       <p id="page-counter">الصفحة رقم: <span></span></p>
       <p id="hadith-counter">عدد النتائج: <span></span></p>
+      <p id="total-hadith">العدد الكلي للأحاديث : <span></span></p>
+      <p id="number-of-pages">عدد الصفحات : <span></span></p>
       <p id="specialist-hadith">
         عدد الأحاديث للمتخصصين: <span></span>
       </p>
@@ -141,6 +159,9 @@
       <div id="content"></div>
       <a class="dorar-search-link" href="" target="_blank"
         >البحث في موقع الدرر السَنية</a
+      >;
+      <a class="sunnah-search-link" href="" target="_blank"
+        >البحث في موقع السنة</a
       >;
 
       <div class="group-btn">
@@ -166,7 +187,7 @@
         href="https://github.com/AhmedElTabarani/hadith-checker-extension"
         target="_blank"
       >
-        <img src="./icons/GitHub-Mark-32px.png" />
+        <img src="../../icons/GitHub-Mark-32px.png" />
       </a>
     </footer>
   </body>

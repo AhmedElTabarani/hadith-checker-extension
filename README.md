@@ -1,6 +1,12 @@
-# Hadith Checker Extension (Chrome)
+# Hadith Checker Extension
 
 إضافة للمتصفح تستطيع من خلالها أن تتفقد الأحاديث هل هي موضوعة أو صحيحة
+
+تم إنشاء الإضافة بشكل أساسي للغة العربية لأنها تعتمد على موقع dorar.net وهو موقع عربي للأحاديث النبوية  
+وبعد فترة اكتشفت موقع sunnah.com الذي يحتوي على ترجمة باللغة الإنجليزية للأحاديث النبوية لذلك قررت أن أعتمد عليه في جانب الغة الإنجليزية
+
+> [!NOTE]
+> For English [Click here](https://github.com/AhmedElTabarani/hadith-checker-extension/blob/main/README_ENGLISH.md)
 
 <div align="center">
 
@@ -10,7 +16,7 @@
 
 ## طريقة الاستعمال
 
-فقط حدد النص وإضغط على الزر الأيمن للفأرة ثم اختار خيار `التحقق من الحديث` ثم ستخرج لك نافذة بها `30` نتيجة بحث
+فقط حدد النص واضغط على الزر الأيمن للفأرة ثم اختار خيار `التحقق من الحديث` ثم ستخرج لك نافذة بها `30` نتيجة بحث
 
 <div align="center">
 
@@ -58,8 +64,17 @@
 
 </div>
 
-## رابط الإضافة على متجر جوجل كروم
+لترجمة الإنجليزية يوجد قسم يسمى `البحث في موقع السنة مع الترجمة الإنجليزية`
 
+يستخرج لك `100` نتيجة لكل صفحة
+
+<div align="center">
+
+![image](https://github.com/AhmedElTabarani/hadith-checker-extension/assets/69223584/7269b811-f327-4ebb-8bed-00e2ccc9bf16)
+
+</div>
+
+## رابط الإضافة على متجر جوجل كروم
 
 <div align="center">
 
@@ -68,7 +83,6 @@
    <img src="https://github.com/AhmedElTabarani/hadith-checker-extension/assets/69223584/af57d468-21bf-423b-a7a4-ed4e94e32bd1" width="300px">
 
 </a>
-
 
 </div>
 
@@ -81,7 +95,6 @@
    <img src="https://github.com/AhmedElTabarani/hadith-checker-extension/assets/69223584/aa56a5e6-4839-412d-ac68-ab36ebf3384a" width="300px">
 
 </a>
-
 
 </div>
 

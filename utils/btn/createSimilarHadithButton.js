@@ -1,6 +1,6 @@
 import hadithSearchController from '../../controllers/hadithSearch.controller.js';
 import { setPopupLoader, hidePopupLoader } from '../loader.js';
-import { generateHadithCard } from '../adapters/generateHadithCard.js';
+import { generateDorarHadithCard } from '../adapters/generateDorarHadithCard.js';
 
 const popupCard = document.getElementById('popup-card');
 const exitPopupCard = document.getElementById('exit-popup');
@@ -27,7 +27,7 @@ export const createSimilarHadithButton = (hadithId) => {
     cards.classList.add('cards');
 
     for (let i = 0; i < data.length; i++)
-      cards.appendChild(generateHadithCard(data[i]));
+      cards.appendChild(generateDorarHadithCard(data[i]));
 
     hidePopupLoader();
     popupCard.replaceChildren(cards);

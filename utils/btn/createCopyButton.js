@@ -1,4 +1,4 @@
-export const createCopyButton = () => {
+export const createCopyButton = (reference) => {
   const btn = document.createElement('button');
   btn.classList.add('copy-btn', 'nice-btn');
   btn.setAttribute('type', 'button');
@@ -9,7 +9,7 @@ export const createCopyButton = () => {
     const oldPadding = content.style.padding;
     content.style.padding = '20px';
 
-    const dorarLink = document.querySelector('.dorar-search-link');
+    const dorarLink = document.querySelector(reference);
     const url = dorarLink.href;
     const text = `\`\`\`${content.textContent}\`\`\`\nالمصدر: ${url}`;
 

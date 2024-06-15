@@ -64,6 +64,9 @@
 }
 
 header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   background-color: var(--ele-bg);
   border-bottom: 1px solid var(--ele-bg-dark);
@@ -80,7 +83,8 @@ a {
   color: var(--main-color);
 }
 
-a.dorar-search-link {
+a.dorar-search-link,
+a.sunnah-search-link {
   display: block;
   padding: 1em;
   padding-right: 3em;
@@ -161,7 +165,9 @@ label {
 }
 
 #specialist-hadith,
-#non-specialist-hadith {
+#non-specialist-hadith,
+#total-hadith,
+#number-of-pages {
   color: var(--main-color);
   font-size: 1.2em;
   font-weight: bold;
@@ -280,6 +286,13 @@ label {
   line-height: 36px;
 }
 
+.hadith-narrated {
+  font-family: kitab;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
 hr {
   border: var(--ele-bg-dark) 1px solid;
   border-radius: 1px;
@@ -369,6 +382,12 @@ button:disabled:active {
 
 .tab-list {
   list-style: none;
+  display: flex;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .tab {
@@ -385,11 +404,19 @@ button:disabled:active {
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  line-height: 24px;
+  font-size: 16px;
+  font-weight: 400;
 }
 
-.tab button.active {
+.tab-btn.active {
   background-color: var(--main-color);
   color: var(--ele-bg);
+}
+
+.tab-btn:hover {
+  color: white;
+  background-color: var(--main-color-dark);
 }
 
 footer {

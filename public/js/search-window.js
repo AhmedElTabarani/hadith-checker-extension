@@ -17,7 +17,7 @@ btnSearch.addEventListener('click', async () => {
   }
   await cache.set('text', searchbar.value);
   await chrome.windows.create({
-    url: chrome.runtime.getURL('index.html'),
+    url: chrome.runtime.getURL('/public/html/index.html'),
     type: 'popup',
   });
 });

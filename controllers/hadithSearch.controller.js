@@ -2,15 +2,19 @@ import * as cache from '../utils/cache.js';
 import queryOptions from './queryOptions.controller.js';
 import extractorHelper from '../utils/ExtractorHelper.js';
 import paginationController from './pagination.controller.js';
+import getSunnahHadithInfoText from '../utils/getSunnahHadithInfoText.js';
+import getSunnahHadithInfoHTML from '../utils/getSunnahHadithInfoHTML.js';
+import getSunnahHadithReferenceValues from '../utils/getSunnahHadithReferenceValues.js';
+import getSunnahHadithReferenceUrlInfo from '../utils/getSunnahHadithReferenceUrlInfo.js';
 
 class HadithSearchController {
   constructor() {
-    this.resetData();
+    this.resetDorarData();
     this.tabId = 'main-tab';
     this.parser = new DOMParser();
   }
 
-  resetData = () => {
+  resetDorarData = () => {
     this.options = queryOptions.getAllOptions();
     this.query = queryOptions.convertOptionsToQueryString(this.tabId);
     this.specialistType =
@@ -21,8 +25,19 @@ class HadithSearchController {
     this.tabId = tabId;
   };
 
+  search = async (text) => {
+    switch (this.tabId) {
+      case 'main-tab':
+      case 'bukhari-tab':
+      case 'muslim-tab':
+        return this.searchUsingSiteDorar(text);
+      case 'sunnah-site-tab':
+        return this.searchUsingSiteSunnah(text);
+    }
+  };
+
   searchUsingSiteDorar = async (text) => {
-    this.resetData();
+    this.resetDorarData();
     const page = paginationController.getPage();
     const url = `https://www.dorar.net/hadith/search?q=${text}&page=${page}&${
       this.query
@@ -120,6 +135,103 @@ class HadithSearchController {
       specialist: this.specialistType === 'specialist',
       numberOfNonSpecialist,
       numberOfSpecialist,
+    };
+
+    cache.set(url, { data: result, metadata });
+    return { data: result, metadata };
+  };
+
+  searchUsingSiteSunnah = async (text) => {
+    const page = paginationController.getPage();
+
+    const url = `https://sunnah.com/search?q=${text}&page=${page}`;
+
+    const cachedData = await cache.get(url);
+    if (cachedData) return cachedData;
+
+    const data = await fetch(encodeURI(url));
+    const html = he.decode(await data.text());
+    const doc = this.parser.parseFromString(
+      html,
+      'text/html',
+    ).documentElement;
+
+    const allHadith = doc.querySelector('.AllHadith');
+
+    if (!allHadith) {
+      return [];
+    }
+
+    const totalOfHadith = +allHadith
+      .querySelector('span')
+      .textContent.split(' ')
+      .at(-1);
+
+    const result = Array.from(doc.querySelectorAll('.boh')).map(
+      (info) => {
+        const [collection, book] =
+          info.querySelectorAll('.nounderline');
+
+        const {
+          englishHadithNarrated,
+          englishHadith,
+          englishFullHadith,
+          englishGrade,
+          arabicHadithNarrated,
+          arabicHadith,
+          arabicFullHadith,
+          arabicGrade,
+        } = this.options.highlightWords
+          ? getSunnahHadithInfoHTML(info)
+          : getSunnahHadithInfoText(info);
+
+        const english = {
+          hadithNarrated: englishHadithNarrated,
+          hadith: englishHadith,
+          fullHadith: englishFullHadith,
+          grade: englishGrade,
+        };
+        const arabic = {
+          hadithNarrated: arabicHadithNarrated,
+          hadith: arabicHadith,
+          fullHadith: arabicFullHadith,
+          grade: arabicGrade,
+        };
+
+        const reference = info.querySelector('.hadith_reference');
+        const { hadithNumberInBook, hadithNumberInCollection } =
+          getSunnahHadithReferenceValues(reference);
+
+        const collectionId = collection
+          .getAttribute('href')
+          .split('/')
+          .at(-1);
+
+        const bookId = book.getAttribute('href').split('/').at(-1);
+        return {
+          collection: collection.textContent.trim(),
+          book: book.textContent.trim(),
+          english,
+          arabic,
+          reference: {
+            ...getSunnahHadithReferenceUrlInfo(
+              collectionId,
+              bookId,
+              hadithNumberInBook,
+              hadithNumberInCollection,
+            ),
+          },
+        };
+      },
+    );
+
+    cache.set(url, result);
+
+    const metadata = {
+      numberOfHadith: result.length,
+      totalOfHadith,
+      page,
+      numberOfPages: Math.ceil(totalOfHadith / 100),
     };
 
     cache.set(url, { data: result, metadata });

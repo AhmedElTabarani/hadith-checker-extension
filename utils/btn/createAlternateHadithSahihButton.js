@@ -1,6 +1,6 @@
 import hadithSearchController from '../../controllers/hadithSearch.controller.js';
 import { setPopupLoader, hidePopupLoader } from '../loader.js';
-import { generateHadithCard } from '../adapters/generateHadithCard.js';
+import { generateDorarHadithCard } from '../adapters/generateDorarHadithCard.js';
 
 const popupCard = document.getElementById('popup-card');
 const exitPopupCard = document.getElementById('exit-popup');
@@ -24,7 +24,7 @@ export const createAlternateHadithSahihButton = (alternateId) => {
       await hadithSearchController.getAlternateHadithUsingSiteDorar(
         e.target.value,
       );
-    const card = generateHadithCard(data);
+    const card = generateDorarHadithCard(data);
     cards.appendChild(card);
 
     hidePopupLoader();
