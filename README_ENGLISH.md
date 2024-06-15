@@ -2,11 +2,11 @@
 
 A browser extension through which you can verify whether Hadiths are authentic or fabricated
 
-This extension mainly designed for Arabic language because it was relay on dorar.net website which is an Arabic website for hadiths  
-After a while i discovered sunnah.com site which has english translations for hadith so i decided to relay on it for english language
+This extension was mainly designed for the Arabic language because it was relay on dorar.net website which is an Arabic website for hadiths
+After a while, I discovered the sunnah.com site which has English translations for hadith so I decided to rely on it for the English language
 
 > [!NOTE]
-> Right now there is only one tab you can benefit from it which is the `Search In Sunnah Site With English Translation` tab
+> Right now there is only one tab you can benefit from, which is the `Search In Sunnah Site With English Translation` tab
 > UI not translated to English yet [Issue 33: Add i18n](https://github.com/AhmedElTabarani/hadith-checker-extension/issues/33)
 
 <div align="center">
