@@ -11,7 +11,7 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.contextMenus.onClicked.addListener(async (info, tab) => {
   await cache.set('text', info.selectionText);
   const popupWindow = await chrome.windows.create({
-    url: chrome.runtime.getURL('index.html'),
+    url: chrome.runtime.getURL('/public/html/index.html'),
     type: 'popup',
   });
 

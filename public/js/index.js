@@ -1,30 +1,30 @@
-import hadithSearchController from './controllers/hadithSearch.controller.js';
-import * as cache from './utils/cache.js';
-import { updateHadithCounter } from './utils/updateHadithCounter.js';
-import paginationController from './controllers/pagination.controller.js';
+import hadithSearchController from '../../controllers/hadithSearch.controller.js';
+import * as cache from '../../utils/cache.js';
+import { updateHadithCounter } from '../../utils/updateHadithCounter.js';
+import paginationController from '../../controllers/pagination.controller.js';
 import {
   hideSpecialistHadith,
   showSpecialistHadith,
   updateSpecialistHadithCounter,
-} from './utils/updateSpecialistHadith.js';
+} from '../../utils/updateSpecialistHadith.js';
 import {
   hideNonSpecialistHadith,
   showNonSpecialistHadith,
   updateNonSpecialistHadithCounter,
-} from './utils/updateNonSpecialistHadith.js';
-import { updateContent } from './utils/updateContent.js';
-import queryOptions from './controllers/queryOptions.controller.js';
-import asyncHandler from './utils/asyncHandler.js';
+} from '../../utils/updateNonSpecialistHadith.js';
+import { updateContent } from '../../utils/updateContent.js';
+import queryOptions from '../../controllers/queryOptions.controller.js';
+import asyncHandler from '../../utils/asyncHandler.js';
 import {
   hideTotalHadith,
   showTotalHadith,
   updateTotalHadithCounter,
-} from './utils/updateTotalHadith.js';
+} from '../../utils/updateTotalHadith.js';
 import {
   hideNumberOfPages,
   showNumberOfPages,
   updateNumberOfPagesCounter,
-} from './utils/updatenumberOfPages.js';
+} from '../../utils/updatenumberOfPages.js';
 
 const content = document.getElementById('content');
 const next = document.getElementById('next');

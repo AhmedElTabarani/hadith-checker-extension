@@ -64,6 +64,9 @@
 }
 
 header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   background-color: var(--ele-bg);
   border-bottom: 1px solid var(--ele-bg-dark);
