@@ -76,14 +76,14 @@ cache.get('text').then(
     } else {
       showTotalHadith();
       showNumberOfPages();
-      updateNumberOfPagesCounter(metadata.numberOfPages);
-      updateTotalHadithCounter(metadata.totalOfHadith);
+      updateNumberOfPagesCounter(metadata?.numberOfPages || 0);
+      updateTotalHadithCounter(metadata?.totalOfHadith || 0);
       hideNonSpecialistHadith();
       hideSpecialistHadith();
       specialistToggleBox.style.display = 'none';
     }
 
-    updateHadithCounter(data.length);
+    updateHadithCounter(data?.length || 0);
 
     if (data.length === 0) {
       throw new Error(
@@ -105,7 +105,7 @@ next.addEventListener(
     e.preventDefault();
     paginationController.nextPage();
     const { data } = await hadithSearchController.search(currText);
-    updateHadithCounter(data.length);
+    updateHadithCounter(data?.length || 0);
 
     if (data.length === 0) {
       content.innerHTML = '';
@@ -134,7 +134,7 @@ prev.addEventListener(
     }
     paginationController.prevPage();
     const { data } = await hadithSearchController.search(currText);
-    updateHadithCounter(data.length);
+    updateHadithCounter(data?.length || 0);
 
     if (data.length === 0) {
       content.innerHTML = '';
@@ -157,7 +157,7 @@ goToPage.addEventListener(
     const page = Math.abs(pageNumberSelection.valueAsNumber);
     paginationController.goToPage(page);
     const { data } = await hadithSearchController.search(currText);
-    updateHadithCounter(data.length);
+    updateHadithCounter(data?.length || 0);
 
     if (data.length === 0) {
       content.innerHTML = '';
@@ -200,6 +200,7 @@ const switchTab = asyncHandler(async (e) => {
   const { data, metadata } = await hadithSearchController.search(
     currText,
   );
+
   if (currTabId !== 'sunnah-site-tab') {
     const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
     updateNonSpecialistHadithCounter(numberOfNonSpecialist);
@@ -212,16 +213,16 @@ const switchTab = asyncHandler(async (e) => {
   } else {
     showTotalHadith();
     showNumberOfPages();
-    updateNumberOfPagesCounter(metadata.numberOfPages);
-    updateTotalHadithCounter(metadata.totalOfHadith);
+    updateNumberOfPagesCounter(metadata?.numberOfPages || 0);
+    updateTotalHadithCounter(metadata?.totalOfHadith || 0);
     hideNonSpecialistHadith();
     hideSpecialistHadith();
     specialistToggleBox.style.display = 'none';
   }
 
-  updateHadithCounter(data.length);
+  updateHadithCounter(data?.length || 0);
 
-  if (data.length === 0) {
+  if (!data || data.length === 0) {
     content.innerHTML = '';
     throw new Error(
       `
@@ -261,14 +262,14 @@ toggleSpecialist.addEventListener(
     } else {
       showTotalHadith();
       showNumberOfPages();
-      updateNumberOfPagesCounter(metadata.numberOfPages);
-      updateTotalHadithCounter(metadata.totalOfHadith);
+      updateNumberOfPagesCounter(metadata?.numberOfPages || 0);
+      updateTotalHadithCounter(metadata?.totalOfHadith || 0);
       hideNonSpecialistHadith();
       hideSpecialistHadith();
       specialistToggleBox.style.display = 'none';
     }
 
-    updateHadithCounter(data.length);
+    updateHadithCounter(data?.length || 0);
 
     if (data.length === 0) {
       content.innerHTML = '';
