@@ -5,7 +5,9 @@ A browser extension through which you can verify whether Hadiths are authentic o
 This extension mainly designed for Arabic language because it was relay on dorar.net website which is an Arabic website for hadiths  
 After a while i discovered sunnah.com site which has english translations for hadith so i decided to relay on it for english language
 
-And the UI not translated to English yet [Issue 33: Add i18n](https://github.com/AhmedElTabarani/hadith-checker-extension/issues/33)
+> [!NOTE]
+> Right now there is only one tab you can benefit from it which is the `Search In Sunnah Site With English Translation` tab
+> UI not translated to English yet [Issue 33: Add i18n](https://github.com/AhmedElTabarani/hadith-checker-extension/issues/33)
 
 <div align="center">
 
@@ -31,7 +33,7 @@ You can also click on the icon to search for any Hadith directly.
 
 </div>
 
-For english use, the is only one tab you can benefit from it which is the `Search In Sunnah Site With English Translation` tab
+For english use, there is only one tab you can benefit from it which is the `Search In Sunnah Site With English Translation` tab
 
 There is `100` results for each page
 

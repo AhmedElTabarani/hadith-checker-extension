@@ -5,7 +5,8 @@
 تم إنشاء الإضافة بشكل أساسي للغة العربية لأنها تعتمد على موقع dorar.net وهو موقع عربي للأحاديث النبوية  
 وبعد فترة اكتشفت موقع sunnah.com الذي يحتوي على ترجمة باللغة الإنجليزية للأحاديث النبوية لذلك قررت أن أعتمد عليه في جانب الغة الإنجليزية
 
-> Note For English [Click here](https://github.com/AhmedElTabarani/hadith-checker-extension/blob/main/README_ENGLISH.md)
+> [!NOTE]
+> For English [Click here](https://github.com/AhmedElTabarani/hadith-checker-extension/blob/main/README_ENGLISH.md)
 
 <div align="center">
 
