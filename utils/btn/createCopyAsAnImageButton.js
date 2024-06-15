@@ -1,4 +1,4 @@
-export const createCopyAsAnImageButton = () => {
+export const createCopyAsAnImageButton = (reference) => {
   const btn = document.createElement('button');
   btn.classList.add('copy-as-image-btn', 'nice-btn');
   btn.setAttribute('type', 'button');
@@ -10,7 +10,7 @@ export const createCopyAsAnImageButton = () => {
     content.style.padding = '20px';
 
     const textElement = document.createElement('p');
-    textElement.textContent = 'المصدر موقع الدرر السنية: https://dorar.net/hadith';
+    textElement.textContent = reference;
     textElement.style.fontSize = '14px';
     content.appendChild(textElement);
 

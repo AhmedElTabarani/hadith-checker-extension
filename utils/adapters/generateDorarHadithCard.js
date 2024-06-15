@@ -1,4 +1,4 @@
-export const generateHadithCard = (hadithObj) => {
+export const generateDorarHadithCard = (hadithObj) => {
   const {
     hadith,
     rawi,

@@ -42,7 +42,7 @@
               data-tabId="main-tab"
               aria-label="View Hadith"
             >
-              الأحاديث
+              البحث في موقع الدرر السَنية
             </button>
           </li>
           <li>
@@ -61,6 +61,17 @@
               aria-label="Search Sahih Muslim"
             >
               البحث في صحيح مسلم
+            </button>
+          </li>
+          <li>
+            <button
+              class="tab-btn"
+              data-tabId="sunnah-site-tab"
+              aria-label="Search In Sunnah Site"
+            >
+              Search In Sunnah Site With English Translation
+              <br />
+              البحث في موقع السنة مع ترجمة الإنجليزية
             </button>
           </li>
         </ul>
@@ -110,9 +121,14 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="nice-btn search-btn">بحث</button>
+          <button type="submit" class="nice-btn search-btn">
+            بحث
+          </button>
         </form>
-        <button id="reset-option-btn" class="nice-btn reset-option-btn">
+        <button
+          id="reset-option-btn"
+          class="nice-btn reset-option-btn"
+        >
           الرجوع للاختيارات الافتراضية
         </button>
       </div>
@@ -124,6 +140,8 @@
       </label>
       <p id="page-counter">الصفحة رقم: <span></span></p>
       <p id="hadith-counter">عدد النتائج: <span></span></p>
+      <p id="total-hadith">العدد الكلي للأحاديث : <span></span></p>
+      <p id="number-of-pages">عدد الصفحات : <span></span></p>
       <p id="specialist-hadith">
         عدد الأحاديث للمتخصصين: <span></span>
       </p>
@@ -141,6 +159,9 @@
       <div id="content"></div>
       <a class="dorar-search-link" href="" target="_blank"
         >البحث في موقع الدرر السَنية</a
+      >;
+      <a class="sunnah-search-link" href="" target="_blank"
+        >البحث في موقع السنة</a
       >;
 
       <div class="group-btn">

@@ -2,11 +2,29 @@ import hadithSearchController from './controllers/hadithSearch.controller.js';
 import * as cache from './utils/cache.js';
 import { updateHadithCounter } from './utils/updateHadithCounter.js';
 import paginationController from './controllers/pagination.controller.js';
-import { updateSpecialistHadithCounter } from './utils/updateSpecialistHadithCounter.js';
-import { updateNonSpecialistHadithCounter } from './utils/updateNonSpecialistHadithCounter.js';
+import {
+  hideSpecialistHadith,
+  showSpecialistHadith,
+  updateSpecialistHadithCounter,
+} from './utils/updateSpecialistHadith.js';
+import {
+  hideNonSpecialistHadith,
+  showNonSpecialistHadith,
+  updateNonSpecialistHadithCounter,
+} from './utils/updateNonSpecialistHadith.js';
 import { updateContent } from './utils/updateContent.js';
 import queryOptions from './controllers/queryOptions.controller.js';
 import asyncHandler from './utils/asyncHandler.js';
+import {
+  hideTotalHadith,
+  showTotalHadith,
+  updateTotalHadithCounter,
+} from './utils/updateTotalHadith.js';
+import {
+  hideNumberOfPages,
+  showNumberOfPages,
+  updateNumberOfPagesCounter,
+} from './utils/updatenumberOfPages.js';
 
 const content = document.getElementById('content');
 const next = document.getElementById('next');
@@ -17,9 +35,11 @@ const pageNumberSelection = document.getElementById(
 const goToPage = document.getElementById('go-to-page');
 const settings = document.querySelector('.settings-box');
 const dorarSearchLink = document.querySelector('.dorar-search-link');
-const toggleSpecialist = document.querySelector(
-  '.toggle-box .toggle',
+const sunnahSearchLink = document.querySelector(
+  '.sunnah-search-link',
 );
+const specialistToggleBox = document.querySelector('.toggle-box');
+const toggleSpecialist = specialistToggleBox.querySelector('.toggle');
 
 let currText = '';
 let currTabId = 'main-tab';
@@ -35,13 +55,33 @@ cache.get('text').then(
       'href',
       `https://dorar.net/hadith/search?q=${currText}`,
     );
+    sunnahSearchLink.setAttribute(
+      'href',
+      `https://sunnah.com/search?q=${currText}`,
+    );
 
-    const { data, metadata } =
-      await hadithSearchController.searchUsingSiteDorar(currText);
+    const { data, metadata } = await hadithSearchController.search(
+      currText,
+    );
 
-    const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
-    updateNonSpecialistHadithCounter(numberOfNonSpecialist);
-    updateSpecialistHadithCounter(numberOfSpecialist);
+    if (currTabId !== 'sunnah-site-tab') {
+      const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
+      updateNonSpecialistHadithCounter(numberOfNonSpecialist);
+      updateSpecialistHadithCounter(numberOfSpecialist);
+      showNonSpecialistHadith();
+      showSpecialistHadith();
+      hideTotalHadith();
+      hideNumberOfPages();
+      specialistToggleBox.style.display = 'flex';
+    } else {
+      showTotalHadith();
+      showNumberOfPages();
+      updateNumberOfPagesCounter(metadata.numberOfPages);
+      updateTotalHadithCounter(metadata.totalOfHadith);
+      hideNonSpecialistHadith();
+      hideSpecialistHadith();
+      specialistToggleBox.style.display = 'none';
+    }
 
     updateHadithCounter(data.length);
 
@@ -55,7 +95,7 @@ cache.get('text').then(
         `,
       );
     }
-    updateContent(data);
+    updateContent(data, currTabId);
   }),
 );
 
@@ -64,8 +104,7 @@ next.addEventListener(
   asyncHandler(async (e) => {
     e.preventDefault();
     paginationController.nextPage();
-    const { data } =
-      await hadithSearchController.searchUsingSiteDorar(currText);
+    const { data } = await hadithSearchController.search(currText);
     updateHadithCounter(data.length);
 
     if (data.length === 0) {
@@ -77,7 +116,7 @@ next.addEventListener(
       `,
       );
     }
-    updateContent(data);
+    updateContent(data, currTabId);
   }),
 );
 
@@ -94,8 +133,7 @@ prev.addEventListener(
       );
     }
     paginationController.prevPage();
-    const { data } =
-      await hadithSearchController.searchUsingSiteDorar(currText);
+    const { data } = await hadithSearchController.search(currText);
     updateHadithCounter(data.length);
 
     if (data.length === 0) {
@@ -108,7 +146,7 @@ prev.addEventListener(
       );
     }
 
-    updateContent(data);
+    updateContent(data, currTabId);
   }),
 );
 
@@ -118,8 +156,7 @@ goToPage.addEventListener(
     e.preventDefault();
     const page = Math.abs(pageNumberSelection.valueAsNumber);
     paginationController.goToPage(page);
-    const { data } =
-      await hadithSearchController.searchUsingSiteDorar(currText);
+    const { data } = await hadithSearchController.search(currText);
     updateHadithCounter(data.length);
 
     if (data.length === 0) {
@@ -132,7 +169,7 @@ goToPage.addEventListener(
       `,
       );
     }
-    updateContent(data);
+    updateContent(data, currTabId);
   }),
 );
 
@@ -160,12 +197,27 @@ const switchTab = asyncHandler(async (e) => {
   if (currTabId !== 'main-tab') settings.style.display = 'none';
   else settings.style.display = 'block';
 
-  const { data, metadata } =
-    await hadithSearchController.searchUsingSiteDorar(currText);
-
-  const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
-  updateNonSpecialistHadithCounter(numberOfNonSpecialist);
-  updateSpecialistHadithCounter(numberOfSpecialist);
+  const { data, metadata } = await hadithSearchController.search(
+    currText,
+  );
+  if (currTabId !== 'sunnah-site-tab') {
+    const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
+    updateNonSpecialistHadithCounter(numberOfNonSpecialist);
+    updateSpecialistHadithCounter(numberOfSpecialist);
+    showNonSpecialistHadith();
+    showSpecialistHadith();
+    hideTotalHadith();
+    hideNumberOfPages();
+    specialistToggleBox.style.display = 'flex';
+  } else {
+    showTotalHadith();
+    showNumberOfPages();
+    updateNumberOfPagesCounter(metadata.numberOfPages);
+    updateTotalHadithCounter(metadata.totalOfHadith);
+    hideNonSpecialistHadith();
+    hideSpecialistHadith();
+    specialistToggleBox.style.display = 'none';
+  }
 
   updateHadithCounter(data.length);
 
@@ -180,7 +232,7 @@ const switchTab = asyncHandler(async (e) => {
     );
   }
 
-  updateContent(data);
+  updateContent(data, currTabId);
 });
 
 tabButtons.forEach((button) => {
@@ -193,12 +245,28 @@ toggleSpecialist.addEventListener(
     const value = e.target.checked;
     queryOptions.updateOption('specialist', value);
 
-    const { data, metadata } =
-      await hadithSearchController.searchUsingSiteDorar(currText);
+    const { data, metadata } = await hadithSearchController.search(
+      currText,
+    );
 
-    const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
-    updateNonSpecialistHadithCounter(numberOfNonSpecialist);
-    updateSpecialistHadithCounter(numberOfSpecialist);
+    if (currTabId !== 'sunnah-site-tab') {
+      const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
+      updateNonSpecialistHadithCounter(numberOfNonSpecialist);
+      updateSpecialistHadithCounter(numberOfSpecialist);
+      showNonSpecialistHadith();
+      showSpecialistHadith();
+      hideTotalHadith();
+      hideNumberOfPages();
+      specialistToggleBox.style.display = 'flex';
+    } else {
+      showTotalHadith();
+      showNumberOfPages();
+      updateNumberOfPagesCounter(metadata.numberOfPages);
+      updateTotalHadithCounter(metadata.totalOfHadith);
+      hideNonSpecialistHadith();
+      hideSpecialistHadith();
+      specialistToggleBox.style.display = 'none';
+    }
 
     updateHadithCounter(data.length);
 
@@ -212,6 +280,6 @@ toggleSpecialist.addEventListener(
         `,
       );
     }
-    updateContent(data);
+    updateContent(data, currTabId);
   }),
 );

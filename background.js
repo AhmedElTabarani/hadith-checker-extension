@@ -2,7 +2,7 @@ import * as cache from './utils/cache.js';
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    title: 'التحقق من الحديث',
+    title: 'التحقق من الحديث | Check Hadith',
     id: 'check-hadith',
     contexts: ['selection'],
   });

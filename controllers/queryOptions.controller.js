@@ -1,13 +1,12 @@
 import * as cache from '../utils/cache.js';
 import { bukhariOptions } from '../utils/options/bukhariOptions.js';
 import { defaultOptions } from '../utils/options/defaultOptions.js';
+import { defaultSunnahSiteOptions } from '../utils/options/defaultSunnahSiteOptions.js';
 import { muslimOptions } from '../utils/options/muslimOptions.js';
 
 class QueryOptions {
   constructor() {
-    this.excludedOptionsFromConverted = [
-      'specialist',
-    ];
+    this.excludedOptionsFromConverted = ['specialist'];
   }
   async init() {
     this.options = await cache.get('options');
@@ -87,6 +86,10 @@ class QueryOptions {
       );
     else if (tabId === 'main-tab')
       return this.#convertOptionsToQueryString(this.options);
+    else if (tabId === 'sunnah-site-tab')
+      return this.#convertOptionsToQueryString(
+        defaultSunnahSiteOptions,
+      );
 
     return this.#convertOptionsToQueryString(defaultOptions);
   };
