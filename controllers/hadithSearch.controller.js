@@ -88,13 +88,12 @@ class HadithSearchController {
       const mohdithId = extractorHelper.getMohdithId(info);
       const bookId = extractorHelper.getBookId(info);
 
-      const [similarHadithDorar, alternateHadithSahihDorar] =
-        extractorHelper.getSimilarAndAlternateHadithIds(info);
+      const [similarHadithDorar, alternateHadithSahihDorar] = [
+        extractorHelper.getSimilarHadith(info),
+        extractorHelper.getAlternateHadith(info),
+      ];
 
-      const hadithId = extractorHelper.getHadithId(
-        similarHadithDorar,
-        alternateHadithSahihDorar,
-      );
+      const hadithId = extractorHelper.getHadithId(info);
 
       return {
         hadith,
@@ -112,7 +111,7 @@ class HadithSearchController {
         hasAlternateHadithSahih: !!alternateHadithSahihDorar,
         similarHadithDorar,
         alternateHadithSahihDorar,
-        urlToGetSmilarHadith: similarHadithDorar
+        urlToGetSimilarHadith: similarHadithDorar
           ? `/v1/site/hadith/similar/${hadithId}`
           : undefined,
         urlToGetAlternateHadithSahih: alternateHadithSahihDorar
@@ -269,13 +268,12 @@ class HadithSearchController {
       const mohdithId = extractorHelper.getMohdithId(info);
       const bookId = extractorHelper.getBookId(info);
 
-      const [similarHadithDorar, alternateHadithSahihDorar] =
-        extractorHelper.getSimilarAndAlternateHadithIds(info);
+      const [similarHadithDorar, alternateHadithSahihDorar] = [
+        extractorHelper.getSimilarHadith(info),
+        extractorHelper.getAlternateHadith(info),
+      ];
 
-      const hadithId = extractorHelper.getHadithId(
-        similarHadithDorar,
-        alternateHadithSahihDorar,
-      );
+      const hadithId = extractorHelper.getHadithId(info);
 
       return {
         hadith,
@@ -292,7 +290,7 @@ class HadithSearchController {
         hasAlternateHadithSahih: !!alternateHadithSahihDorar,
         similarHadithDorar,
         alternateHadithSahihDorar,
-        urlToGetSmilarHadith: similarHadithDorar
+        urlToGetSimilarHadith: similarHadithDorar
           ? `/v1/site/hadith/similar/${hadithId}`
           : undefined,
         urlToGetAlternateHadithSahih: alternateHadithSahihDorar
@@ -344,13 +342,9 @@ class HadithSearchController {
     const mohdithId = extractorHelper.getMohdithId(info);
     const bookId = extractorHelper.getBookId(info);
 
-    const [similarHadithDorar] =
-      extractorHelper.getSimilarAndAlternateHadithIds(info);
+    const similarHadithDorar = extractorHelper.getSimilarHadith(info);
 
-    const hadithId = extractorHelper.getHadithId(
-      similarHadithDorar,
-      undefined,
-    );
+    const hadithId = extractorHelper.getHadithId(info);
 
     const result = {
       hadith,
@@ -365,7 +359,7 @@ class HadithSearchController {
       hasSimilarHadith: !!similarHadithDorar,
       hasAlternateHadithSahih: false,
       similarHadithDorar,
-      urlToGetSmilarHadith: similarHadithDorar
+      urlToGetSimilarHadith: similarHadithDorar
         ? `/v1/site/hadith/similar/${hadithId}`
         : undefined,
       hasSharhMetadata: !!sharhId,

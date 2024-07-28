@@ -17,20 +17,20 @@ class ExtractorHelper {
     return info.querySelector('a[xplain]')?.getAttribute('xplain');
   };
 
-  getSimilarAndAlternateHadithIds = (info) => {
-    return Array.from(
-      info.querySelectorAll(
-        'a[style="margin-right:5px;color:#3399ff;"]',
-      ),
-    ).map((el) => el.getAttribute('href') || undefined);
+  getAlternateHadith = (info) => {
+    const alternateHadith = info.querySelector('a[href$="?alts=1"]');
+    return alternateHadith?.getAttribute('href');
   };
 
-  getHadithId = (similarHadithDorar, alternateHadithSahihDorar) => {
-    if (similarHadithDorar)
-      return similarHadithDorar.match(/\/h\/(.*)\?/)[1];
-    if (alternateHadithSahihDorar)
-      return alternateHadithSahihDorar.match(/\/h\/(.*)\?/)[1];
-    };
+  getSimilarHadith = (info) => {
+    const similarHadith = info.querySelector('a[href$="?sims=1"]');
+    return similarHadith?.getAttribute('href');
+  };
+
+  getHadithId = (info) => {
+    const hadithId = info.querySelector('a[tag]');
+    return hadithId?.getAttribute('tag');
+  };
 }
 
 export default new ExtractorHelper();
