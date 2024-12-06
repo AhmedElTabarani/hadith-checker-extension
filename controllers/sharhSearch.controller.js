@@ -6,7 +6,7 @@ class SharhSearchController {
   }
 
   getOneSharhByIdUsingSiteDorar = async (sharhId) => {
-    const url = `https://www.dorar.net/hadith/sharh/${sharhId}`;
+    const url = `https://dorar.net/hadith/sharh/${sharhId}`;
 
     const cachedData = await cache.get(url);
     if (cachedData) return cachedData;
