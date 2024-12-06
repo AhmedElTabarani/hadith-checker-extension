@@ -39,7 +39,7 @@ class HadithSearchController {
   searchUsingSiteDorar = async (text) => {
     this.resetDorarData();
     const page = paginationController.getPage();
-    const url = `https://www.dorar.net/hadith/search?q=${text}&page=${page}&${
+    const url = `https://dorar.net/hadith/search?q=${text}&page=${page}&${
       this.query
     }&${this.specialistType === 'specialist' ? '&all' : ''}`;
 
@@ -238,7 +238,7 @@ class HadithSearchController {
   };
 
   getAllSimilarHadithUsingSiteDorar = async (similarId) => {
-    const url = `https://www.dorar.net/h/${similarId}?sims=1`;
+    const url = `https://dorar.net/h/${similarId}?sims=1`;
 
     const cachedData = await cache.get(url);
     if (cachedData) return cachedData;
@@ -316,7 +316,7 @@ class HadithSearchController {
   };
 
   getAlternateHadithUsingSiteDorar = async (alternateId) => {
-    const url = `https://www.dorar.net/h/${alternateId}?alts=1`;
+    const url = `https://dorar.net/h/${alternateId}?alts=1`;
 
     const cachedData = await cache.get(url);
     if (cachedData) return cachedData;
