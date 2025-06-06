@@ -31,6 +31,11 @@ class ExtractorHelper {
     const hadithId = info.querySelector('a[tag]');
     return hadithId?.getAttribute('tag');
   };
+
+  getUsulHadith = (info) => {
+    const usulHadith = info.querySelector('a[href$="?osoul=1"]');
+    return usulHadith?.getAttribute('href');
+  };
 }
 
 export default new ExtractorHelper();

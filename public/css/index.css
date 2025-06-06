@@ -132,6 +132,31 @@ a:hover {
   background-color: var(--main-color-dark);
 }
 
+/* Usul Source Cards */
+.usul-source-title {
+  color: var(--main-color);
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.usul-source-name,
+.usul-chain,
+.usul-hadith-text {
+  font-family: kitab;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  line-height: 1.6;
+}
+
+.usul-source-name strong,
+.usul-chain strong,
+.usul-hadith-text strong {
+  color: #374151;
+  font-weight: 600;
+}
+
 .hadith-degree {
   font-size: 18px;
   padding-right: 2em;
