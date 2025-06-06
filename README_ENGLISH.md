@@ -43,6 +43,26 @@ There is `100` results for each page
 
 </div>
 
+## Hadith Origins Feature
+
+You can explore the origins and sources of any hadith by clicking the `أصول الحديث` (Hadith Origins) button.
+
+This feature provides:
+- **Multiple Sources**: View all different sources that narrated the same hadith
+- **Chain Variations**: Compare different chains of narration (isnad)
+- **Source Analysis**: Understand how the hadith was transmitted through various collections
+
+This helps researchers and students of hadith to:
+- Verify the authenticity through multiple sources
+- Study the variations in narration
+- Understand the historical transmission of the hadith
+
+<div align="center">
+
+![image](https://github.com/user-attachments/assets/eac167ca-0214-4d99-bca3-45d848bc42b0)
+
+</div>
+
 ## Link to the extension on the Chrome Web Store
 
 <div align="center">
