@@ -2,6 +2,7 @@ import { createCopyButton } from './btn/createCopyButton.js';
 import { createSharhButton } from './btn/createSharhButton.js';
 import { createSimilarHadithButton } from './btn/createSimilarHadithButton.js';
 import { createAlternateHadithSahihButton } from './btn/createAlternateHadithSahihButton.js';
+import { createUsulHadithButton } from './btn/createUsulHadithButton.js';
 import { generateDorarHadithCard } from './adapters/generateDorarHadithCard.js';
 import { createCopyAsAnImageButton } from './btn/createCopyAsAnImageButton.js';
 
@@ -44,6 +45,13 @@ export default (allHadith) => {
       const alternateHadithBtn =
         createAlternateHadithSahihButton(hadithId);
       card.appendChild(alternateHadithBtn);
+    }
+
+    // Add usul hadith button
+    const hasUsulHadith = hadith.hasUsulHadith;
+    if (hasUsulHadith) {
+      const usulHadithBtn = createUsulHadithButton(hadithId);
+      card.appendChild(usulHadithBtn);
     }
 
     // Add copy as an image button
