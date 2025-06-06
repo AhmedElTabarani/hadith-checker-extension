@@ -5,7 +5,7 @@
   "manifest_version": 3,
   "action": {
     "default_popup": "/public/html/search-window.html",
-    "default_icon": "./icons/icons32.png"
+    "default_icon": "icons/icons32.png"
   },
   "background": {
     "service_worker": "background.js",
@@ -15,9 +15,9 @@
   "permissions": ["contextMenus", "storage", "unlimitedStorage"],
   "host_permissions": ["https://dorar.net/", "https://sunnah.com/"],
   "icons": {
-    "16": "./icons/icons16.png",
-    "32": "./icons/icons32.png",
-    "48": "./icons/icons48.png",
-    "128": "./icons/icons128.png"
+    "16": "icons/icons16.png",
+    "32": "icons/icons32.png",
+    "48": "icons/icons48.png",
+    "128": "icons/icons128.png"
   }
 }
