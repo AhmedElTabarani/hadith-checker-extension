@@ -3,11 +3,14 @@ export const generateDorarHadithCard = (hadithObj) => {
     hadith,
     rawi,
     mohdith,
+    mohdithId,
     book,
+    bookId,
     numberOrPage,
     grade,
     explainGrade,
     takhrij,
+    categories,
   } = hadithObj;
 
   const card = document.createElement('div');
@@ -19,8 +22,8 @@ export const generateDorarHadithCard = (hadithObj) => {
       <hr/>
       <div class="hadith-info">
         <span class="hadith-rawi"><span class="info-subtitle">الراوي:</span> ${rawi}</span>
-        <span class="hadith-mohdith"><span class="info-subtitle">المحدث:</span> ${mohdith}</span>
-        <span class="hadith-book"><span class="info-subtitle">الكتاب:</span> ${book}</span>
+        <span class="hadith-mohdith"><span class="info-subtitle">المحدث:</span> ${mohdithId ? `<a class="info-link mohdith-info-link" href="#" data-mohdith-id="${mohdithId}">${mohdith}</a>` : mohdith}</span>
+        <span class="hadith-book"><span class="info-subtitle">الكتاب:</span> ${bookId ? `<a class="info-link book-info-link" href="#" data-book-id="${bookId}">${book}</a>` : book}</span>
         <span class="hadith-number"><span class="info-subtitle">رقم الحديث أو الصفحة:</span> ${numberOrPage}</span>
         <span class="hadith-grade"><span class="info-subtitle">حكم المحدث:</span> ${grade}</span>
         ${
@@ -34,6 +37,16 @@ export const generateDorarHadithCard = (hadithObj) => {
             : ''
         }
       </div>
+      ${
+        categories && categories.length > 0
+          ? `<div class="hadith-categories">
+              <span class="info-subtitle">التصنيف الموضوعي:</span>
+              <div class="categories-list">
+                ${categories.map((cat) => `<a class="category-badge" href="https://dorar.net/hadith-category/cat/${cat.id}" target="_blank">${cat.name}</a>`).join('')}
+              </div>
+            </div>`
+          : ''
+      }
     </div>
   `;
 

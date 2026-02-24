@@ -40,14 +40,85 @@ const sunnahSearchLink = document.querySelector(
 );
 const specialistToggleBox = document.querySelector('.toggle-box');
 const toggleSpecialist = specialistToggleBox.querySelector('.toggle');
+const inlineSearchbar = document.getElementById('inline-searchbar');
+const inlineSearchBtn = document.getElementById('inline-search-btn');
 
 let currText = '';
 let currTabId = 'main-tab';
+
+// Helper to perform a full search and update all UI
+const performSearch = asyncHandler(async () => {
+  paginationController.goToPage(1);
+
+  dorarSearchLink.setAttribute(
+    'href',
+    `https://dorar.net/hadith/search?q=${currText}`,
+  );
+  sunnahSearchLink.setAttribute(
+    'href',
+    `https://sunnah.com/search?q=${currText}`,
+  );
+
+  const { data, metadata } = await hadithSearchController.search(
+    currText,
+  );
+
+  if (currTabId !== 'sunnah-site-tab') {
+    const { numberOfNonSpecialist, numberOfSpecialist } = metadata;
+    updateNonSpecialistHadithCounter(numberOfNonSpecialist);
+    updateSpecialistHadithCounter(numberOfSpecialist);
+    showNonSpecialistHadith();
+    showSpecialistHadith();
+    hideTotalHadith();
+    hideNumberOfPages();
+    specialistToggleBox.style.display = 'flex';
+  } else {
+    showTotalHadith();
+    showNumberOfPages();
+    updateNumberOfPagesCounter(metadata?.numberOfPages || 0);
+    updateTotalHadithCounter(metadata?.totalOfHadith || 0);
+    hideNonSpecialistHadith();
+    hideSpecialistHadith();
+    specialistToggleBox.style.display = 'none';
+  }
+
+  updateHadithCounter(data?.length || 0);
+
+  if (data.length === 0) {
+    content.innerHTML = '';
+    throw new Error(
+      `
+      <span>لا توجد أي نتائج</span>
+      <br/>
+      <span>حاول تحديد نص أخر او جزء أصغر من الحديث</span>
+      <br/>
+      `,
+    );
+  }
+  updateContent(data, currTabId);
+});
+
+// Inline search bar handlers
+inlineSearchBtn.addEventListener('click', () => {
+  const text = inlineSearchbar.value.trim();
+  if (!text) return;
+  currText = text;
+  cache.set('text', currText);
+  performSearch();
+});
+
+inlineSearchbar.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    inlineSearchBtn.click();
+  }
+});
 
 // It will only run once (when the window is rendering for the first time)
 cache.get('text').then(
   asyncHandler(async (text) => {
     currText = text;
+    inlineSearchbar.value = currText;
     hadithSearchController.setTabId(currTabId);
 
     toggleSpecialist.checked = queryOptions.getOption('specialist');

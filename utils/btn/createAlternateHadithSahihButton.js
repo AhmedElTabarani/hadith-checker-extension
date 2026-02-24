@@ -24,6 +24,25 @@ export const createAlternateHadithSahihButton = (alternateId) => {
       await hadithSearchController.getAlternateHadithUsingSiteDorar(
         e.target.value,
       );
+
+    if (!data) {
+      hidePopupLoader();
+      const noDataCard = document.createElement('div');
+      noDataCard.classList.add('card');
+      noDataCard.innerHTML = `
+        <div>
+          <h3 class="no-data-title">لا يوجد حديث بديل صحيح</h3>
+        </div>
+      `;
+      cards.appendChild(noDataCard);
+      popupCard.replaceChildren(cards);
+      body.classList.add('scroll-disable');
+      popupCard.style.display = 'flex';
+      exitPopupCard.style.display = 'block';
+      btn.disabled = false;
+      return;
+    }
+
     const card = generateDorarHadithCard(data);
     cards.appendChild(card);
 

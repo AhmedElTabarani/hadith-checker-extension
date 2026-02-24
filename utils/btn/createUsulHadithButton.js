@@ -25,6 +25,24 @@ export const createUsulHadithButton = (usulId) => {
         e.target.value,
       );
 
+    if (!data) {
+      hidePopupLoader();
+      const noDataCard = document.createElement('div');
+      noDataCard.classList.add('card');
+      noDataCard.innerHTML = `
+        <div>
+          <h3 class="no-data-title">لا يوجد أصول الحديث</h3>
+        </div>
+      `;
+      cards.appendChild(noDataCard);
+      popupCard.replaceChildren(cards);
+      body.classList.add('scroll-disable');
+      popupCard.style.display = 'flex';
+      exitPopupCard.style.display = 'block';
+      btn.disabled = false;
+      return;
+    }
+
     // Create main hadith card
     const mainCard = generateDorarHadithCard(data);
     cards.appendChild(mainCard);

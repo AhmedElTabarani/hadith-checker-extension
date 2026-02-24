@@ -10,7 +10,7 @@
 
 <div align="center">
 
-![cover](https://user-images.githubusercontent.com/69223584/231058081-05616aa9-81c6-4896-984d-de4b7a6522d8.png)
+![cover](./images/cover.png)
 
 </div>
 
@@ -20,7 +20,7 @@
 
 <div align="center">
 
-![image](https://user-images.githubusercontent.com/69223584/218287950-2363ff60-a450-429a-9cfb-c932ef32e7a8.png)
+![image](./images/hadith-example.png)
 
 </div>
 
@@ -28,7 +28,7 @@
 
 <div align="center">
 
-![image0](https://user-images.githubusercontent.com/69223584/231255789-247ad8a1-3857-4f7d-a6e2-8c7d0d79a303.png)
+![image0](./images/icon-extenstion-popup.png)
 
 </div>
 
@@ -36,7 +36,7 @@
 
 <div align="center">
 
-![image2](https://user-images.githubusercontent.com/69223584/218287955-4e645152-3574-43f9-b5d0-7b55a1cdcb54.png)
+![image2](./images/select-bukhari-tab.png)
 
 </div>
 
@@ -44,20 +44,29 @@
 
 <div align="center">
 
-![image4](https://user-images.githubusercontent.com/69223584/235382277-92917392-0d9d-47af-8a3d-cced6c427a25.png)
+![image4](./images/sharh-hadith-btn.png)
 
 </div>
 
 تستطيع معرفة أصول الحديث ومصادره المختلفة
 
 عند الضغط على زر `أصول الحديث` ستحصل على الحديث الأصلي مع جميع المصادر التي روته مع أسانيدها المختلفة، مما يساعدك في:
+
 - معرفة المصادر المتعددة للحديث الواحد
 - مقارنة الأسانيد المختلفة
 - فهم طرق رواية الحديث عبر المصادر المختلفة
 
 <div align="center">
 
-![image](https://github.com/user-attachments/assets/eac167ca-0214-4d99-bca3-45d848bc42b0)
+![image](./images/usul-hadith-btn.png)
+
+</div>
+
+يمكنك أيضًا الوصول إلى إجراءات إضافية مثل نسخ الحديث ونسخ كصورة وشرح الحديث والحديث الصحيح البديل والأحاديث المشابهة وأصول الحديث
+
+<div align="center">
+
+![image](./images/categories-and-btn-card-footer.png)
 
 </div>
 
@@ -73,7 +82,7 @@
 
 <div align="center">
 
-![image3](https://user-images.githubusercontent.com/69223584/218287960-d156784d-0350-4dfb-a29e-7c4e321aa817.png)
+![image3](./images/filters.png)
 
 </div>
 
@@ -83,7 +92,7 @@
 
 <div align="center">
 
-![image](https://github.com/AhmedElTabarani/hadith-checker-extension/assets/69223584/7269b811-f327-4ebb-8bed-00e2ccc9bf16)
+![image](./images/main-page-en.png)
 
 </div>
 
