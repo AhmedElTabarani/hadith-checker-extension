@@ -5,6 +5,8 @@ import { createAlternateHadithSahihButton } from './btn/createAlternateHadithSah
 import { createUsulHadithButton } from './btn/createUsulHadithButton.js';
 import { generateDorarHadithCard } from './adapters/generateDorarHadithCard.js';
 import { createCopyAsAnImageButton } from './btn/createCopyAsAnImageButton.js';
+import { attachMohdithInfoHandlers } from './btn/attachMohdithInfoHandlers.js';
+import { attachBookInfoHandlers } from './btn/attachBookInfoHandlers.js';
 
 const content = document.getElementById('content');
 
@@ -14,6 +16,10 @@ export default (allHadith) => {
 
   allHadith.forEach((hadith) => {
     const card = generateDorarHadithCard(hadith);
+
+    // Attach mohdith and book info popup handlers
+    attachMohdithInfoHandlers(card);
+    attachBookInfoHandlers(card);
 
     // Add copy button
     const copyBtn = createCopyButton('.dorar-search-link');

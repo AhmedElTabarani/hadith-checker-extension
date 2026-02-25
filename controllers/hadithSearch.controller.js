@@ -7,6 +7,7 @@ import getSunnahHadithInfoHTML from '../utils/getSunnahHadithInfoHTML.js';
 import getSunnahHadithReferenceValues from '../utils/getSunnahHadithReferenceValues.js';
 import getSunnahHadithReferenceUrlInfo from '../utils/getSunnahHadithReferenceUrlInfo.js';
 import parseHadithInfo from '../utils/parseHadithInfo.js';
+import { parseHadithCategories } from '../utils/parseHadithCategories.js';
 
 class HadithSearchController {
   constructor() {
@@ -90,6 +91,7 @@ class HadithSearchController {
       ];
 
       const hadithId = extractorHelper.getHadithId(info);
+      const categories = parseHadithCategories(info);
 
       return {
         hadith,
@@ -103,6 +105,7 @@ class HadithSearchController {
         explainGrade,
         takhrij,
         hadithId,
+        categories,
         hasSimilarHadith: !!similarHadithDorar,
         hasAlternateHadithSahih: !!alternateHadithSahihDorar,
         hasUsulHadith: !!usulHadithDorar,
@@ -279,6 +282,7 @@ class HadithSearchController {
       ];
 
       const hadithId = extractorHelper.getHadithId(info);
+      const categories = parseHadithCategories(info);
 
       return {
         hadith,
@@ -292,6 +296,7 @@ class HadithSearchController {
         explainGrade,
         takhrij,
         hadithId,
+        categories,
         hasSimilarHadith: !!similarHadithDorar,
         hasAlternateHadithSahih: !!alternateHadithSahihDorar,
         hasUsulHadith: !!usulHadithDorar,
@@ -341,6 +346,10 @@ class HadithSearchController {
 
     const info = doc.querySelectorAll('.border-bottom')[1];
 
+    if (!info) {
+      return { data: null };
+    }
+
     const hadith = info.children[0].textContent
       .replace(/-\s*\:?\s*/g, '')
       .trim();
@@ -363,6 +372,7 @@ class HadithSearchController {
     const usulHadithDorar = extractorHelper.getUsulHadith(info);
 
     const hadithId = extractorHelper.getHadithId(info);
+    const categories = parseHadithCategories(info);
 
     const result = {
       hadith,
@@ -376,6 +386,7 @@ class HadithSearchController {
       explainGrade,
       takhrij,
       hadithId,
+      categories,
       hasSimilarHadith: !!similarHadithDorar,
       hasAlternateHadithSahih: false,
       hasUsulHadith: !!usulHadithDorar,
@@ -417,7 +428,7 @@ class HadithSearchController {
     // Get the main hadith info (first .border-bottom)
     const mainInfo = doc.querySelector('.border-bottom');
     if (!mainInfo) {
-      throw new Error('No usul hadith found');
+      return { data: null };
     }
 
     const mainHadith = mainInfo.children[0].textContent
@@ -444,6 +455,7 @@ class HadithSearchController {
     ];
 
     const hadithId = extractorHelper.getHadithId(mainInfo);
+    const categories = parseHadithCategories(mainInfo);
 
     // Get the usul hadith sources (all articles after the heading)
     const usulSources = [];
@@ -497,6 +509,7 @@ class HadithSearchController {
       explainGrade,
       takhrij,
       hadithId,
+      categories,
       hasSimilarHadith: !!similarHadithDorar,
       hasAlternateHadithSahih: !!alternateHadithSahihDorar,
       hasUsulHadith: true,

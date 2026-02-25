@@ -11,7 +11,7 @@ After a while, I discovered the sunnah.com site which has English translations f
 
 <div align="center">
 
-![cover](https://user-images.githubusercontent.com/69223584/231058081-05616aa9-81c6-4896-984d-de4b7a6522d8.png)
+![cover](./images/cover.png)
 
 </div>
 
@@ -21,7 +21,7 @@ Simply highlight the text, right-click, then select the `Check Hadith` option
 
 <div align="center">
 
-![image](https://github.com/AhmedElTabarani/sunnah-hadith-api/assets/69223584/5fbc9b05-fb56-4327-8ef4-9453bb3c2ef0)
+![image](./images/hadith-example.png)
 
 </div>
 
@@ -29,7 +29,7 @@ You can also click on the icon to search for any Hadith directly.
 
 <div align="center">
 
-![image0](https://user-images.githubusercontent.com/69223584/231255789-247ad8a1-3857-4f7d-a6e2-8c7d0d79a303.png)
+![image0](./images/icon-extenstion-popup.png)
 
 </div>
 
@@ -39,7 +39,7 @@ There is `100` results for each page
 
 <div align="center">
 
-![image](https://github.com/AhmedElTabarani/hadith-checker-extension/assets/69223584/7269b811-f327-4ebb-8bed-00e2ccc9bf16)
+![image](./images/main-page-en.png)
 
 </div>
 
@@ -48,18 +48,28 @@ There is `100` results for each page
 You can explore the origins and sources of any hadith by clicking the `أصول الحديث` (Hadith Origins) button.
 
 This feature provides:
+
 - **Multiple Sources**: View all different sources that narrated the same hadith
 - **Chain Variations**: Compare different chains of narration (isnad)
 - **Source Analysis**: Understand how the hadith was transmitted through various collections
 
 This helps researchers and students of hadith to:
+
 - Verify the authenticity through multiple sources
 - Study the variations in narration
 - Understand the historical transmission of the hadith
 
 <div align="center">
 
-![image](https://github.com/user-attachments/assets/eac167ca-0214-4d99-bca3-45d848bc42b0)
+![image](./images/usul-hadith-btn.png)
+
+</div>
+
+You can also access other card footer actions like copy, copy as image, hadith explanation, similar hadith, and hadith origins.
+
+<div align="center">
+
+![image](./images/categories-and-btn-card-footer.png)
 
 </div>
 

@@ -17,7 +17,7 @@
     ></script>
     <script src="../js/index.js" defer type="module"></script>
     <link
-      href="http://fonts.cdnfonts.com/css/neo-sans-arabic"
+      href="https://fonts.cdnfonts.com/css/neo-sans-arabic"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../thirdparty/virtual-select.min.css" />
@@ -34,6 +34,19 @@
       <h1>التحقق من الأحاديث</h1>
     </header>
     <main class="main">
+      <div class="inline-search">
+        <div class="inline-search-wrapper">
+          <input
+            id="inline-searchbar"
+            class="inline-search-input"
+            type="text"
+            placeholder="ابحث عن حديث..."
+          />
+          <button id="inline-search-btn" class="inline-search-btn">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
       <nav class="tab">
         <ul class="tab-list">
           <li>
@@ -157,12 +170,14 @@
       </div>
       <div id="popup-card"></div>
       <div id="content"></div>
-      <a class="dorar-search-link" href="" target="_blank"
-        >البحث في موقع الدرر السَنية</a
-      >;
-      <a class="sunnah-search-link" href="" target="_blank"
-        >البحث في موقع السنة</a
-      >;
+      <div class="external-links">
+        <a class="dorar-search-link" href="" target="_blank"
+          >البحث في موقع الدرر السَنية</a
+        >
+        <a class="sunnah-search-link" href="" target="_blank"
+          >البحث في موقع السنة</a
+        >
+      </div>
 
       <div class="group-btn">
         <button id="next" class="nice-btn">الصفحة التالية</button>
